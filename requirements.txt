@@ -23,7 +23,7 @@ MarkupSafe==3.0.3
 narwhals==2.16.0
 ngrok==1.4.0
 numpy==2.0.2
-openai==2.16.0
+openai>=1.0,<2
 packaging==25.0
 pandas==2.3.3
 pillow==11.3.0
