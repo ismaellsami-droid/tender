@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+
+# Environnements
+.venv/
+venv/
+.env
+
+# Streamlit
+.streamlit/
+
+# Runtime / local state
+state.json
+
+# Project-specific
+archive/
+data/
+leviathan/
+openai_ids
+
+# OS
+.DS_Store
