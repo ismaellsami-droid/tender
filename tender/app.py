@@ -1,7 +1,7 @@
 import html
 import streamlit as st
-from engine.pipeline import run_pipeline
-from hobbes_engine import reset_conversation_thread
+from tender.engine.pipeline import run_pipeline
+from tender.hobbes_engine import reset_conversation_thread
 
 
 st.title("Hobbes PoC — citations only")
