@@ -1,19 +1,20 @@
-# engine/pipeline.py
-import os, re
+# tender/engine/pipeline.py
+import re
 from pathlib import Path
-import html
 from typing import Any, Dict, List, Optional, Tuple
+
 from tender.engine.trace import TraceCollector
+from tender.engine.base import AuditRefused
+from tender.engine.engine import answer_with_citations_only, AuditRefused
 
-from tender.hobbes_engine import answer_with_citations_only, AuditRefused
-
+DEFAULT_DATA_DIR = "data"
 REFUSAL_TEXT = "Je ne peux pas répondre à partir du corpus actuel."
 
 _MARKER_RE = re.compile(r"【\d+:\d+†([^】]+)】")  # captures filename inside the marker
 
-
 # --- Extract (ch, §) from the pretty ref line you already build ---
 _REF_CH_SEC_RE = re.compile(r"Ch\.\s*(\d{1,2}).*?§\s*(\d{1,2})", re.IGNORECASE)
+
 
 def _parse_ch_sec_from_ref(ref: str) -> Optional[Tuple[int, int]]:
     m = _REF_CH_SEC_RE.search(ref or "")
@@ -21,24 +22,30 @@ def _parse_ch_sec_from_ref(ref: str) -> Optional[Tuple[int, int]]:
         return None
     return int(m.group(1)), int(m.group(2))
 
+
 def _read_local_section_text(data_dir: str, filename: str) -> str:
-    # data_dir: "data" or "Tenber/data" depending on your cwd (you run from repo root)
     p = Path(data_dir) / filename
     try:
         return p.read_text(encoding="utf-8")
     except Exception:
-        # fallback encodings if needed
         try:
             return p.read_text(encoding="latin-1")
         except Exception as e:
             return f"[ERROR reading {p}: {e}]"
 
-def build_selection_view(trace_dict: Dict[str, Any], *, final_quotes: List[Dict[str, str]], data_dir: str = "data") -> Dict[str, Any]:
+
+def build_selection_view(
+    trace_dict: Dict[str, Any],
+    *,
+    final_quotes: List[Dict[str, str]],
+    data_dir: str = "data",
+) -> Dict[str, Any]:
     """
     Returns:
       {
         "event": "retrieval_pool",
         "count": N,
+        "summary": {...},
         "pool": [
           {..., "selected":"Y/N", "quote": "...", "section_text": "...", ...}
         ]
@@ -77,7 +84,6 @@ def build_selection_view(trace_dict: Dict[str, Any], *, final_quotes: List[Dict[
                 selected_file_ids.add(fid)
 
     # 3) Map (ch, sec) -> quote text from your quotes_selected list
-    #    final_quotes = [{"quote": "...", "ref": "..."}]
     for q in final_quotes or []:
         chsec = _parse_ch_sec_from_ref(q.get("ref", ""))
         if chsec:
@@ -95,18 +101,16 @@ def build_selection_view(trace_dict: Dict[str, Any], *, final_quotes: List[Dict[
         sec = item.get("section")
 
         is_selected = isinstance(fid, str) and fid in selected_file_ids
-        out = dict(item)  # keep rank/score/etc
+        out = dict(item)
 
         out["selected"] = "Y" if is_selected else "N"
 
         if is_selected:
-            # attach quote if we can match by (chapter, section)
             qtxt = ""
             if isinstance(ch, int) and isinstance(sec, int):
                 qtxt = selected_by_ch_sec.get((ch, sec), "")
             out["quote"] = qtxt
         else:
-            # attach full section text (file contents) if filename is present
             if isinstance(filename, str) and filename:
                 out["section_text"] = _read_local_section_text(data_dir, filename)
             else:
@@ -114,17 +118,12 @@ def build_selection_view(trace_dict: Dict[str, Any], *, final_quotes: List[Dict[
 
         enriched_pool.append(out)
 
-
     # --- Build summary from enriched_pool ---
-    retrieval_chapters = sorted({
-        it.get("chapter") for it in enriched_pool
-        if isinstance(it.get("chapter"), int)
-    })
+    retrieval_chapters = sorted({it.get("chapter") for it in enriched_pool if isinstance(it.get("chapter"), int)})
 
-    used_chapters = sorted({
-        it.get("chapter") for it in enriched_pool
-        if it.get("selected") == "Y" and isinstance(it.get("chapter"), int)
-    })
+    used_chapters = sorted(
+        {it.get("chapter") for it in enriched_pool if it.get("selected") == "Y" and isinstance(it.get("chapter"), int)}
+    )
 
     used_ranks = []
     for it in enriched_pool:
@@ -132,12 +131,11 @@ def build_selection_view(trace_dict: Dict[str, Any], *, final_quotes: List[Dict[
             continue
         rk = it.get("rank")
         sc = it.get("score")
-        if isinstance(rk, int) and (isinstance(sc, int) or isinstance(sc, float)):
+        if isinstance(rk, int) and isinstance(sc, (int, float)):
             used_ranks.append(f"{rk}:{sc:.4f}")
         elif isinstance(rk, int):
             used_ranks.append(f"{rk}:{sc}")
 
-    # de-duplicate while keeping order
     seen = set()
     used_ranks = [x for x in used_ranks if not (x in seen or seen.add(x))]
 
@@ -146,15 +144,13 @@ def build_selection_view(trace_dict: Dict[str, Any], *, final_quotes: List[Dict[
         "used_chapters": used_chapters,
         "used_ranks": used_ranks,
     }
+
     return {
         "event": "retrieval_pool",
         "count": len(enriched_pool),
         "summary": summary,
         "pool": enriched_pool,
     }
-
-
-
 
 
 def enrich_trace_with_retrieval_alignment(trace: Dict[str, Any]) -> None:
@@ -189,7 +185,6 @@ def enrich_trace_with_retrieval_alignment(trace: Dict[str, Any]) -> None:
     used_files: List[str] = []
     used_ranks: List[int] = []
     used_chapters: List[int] = []
-    used_sections: List[Tuple[int, int]] = []
 
     for ev in events:
         if ev.get("event") != "assistant_message_extracted":
@@ -202,41 +197,38 @@ def enrich_trace_with_retrieval_alignment(trace: Dict[str, Any]) -> None:
             if not isinstance(s, dict):
                 continue
             fid = s.get("file_id")
-            if isinstance(fid, str):
-                meta = retrieval_index.get(fid)
-                if meta:
-                    s.update({
+            if not isinstance(fid, str):
+                continue
+
+            meta = retrieval_index.get(fid)
+            if meta:
+                s.update(
+                    {
                         "retrieval_rank": meta.get("retrieval_rank"),
                         "retrieval_score": meta.get("retrieval_score"),
-                    })
-                used_files.append(fid)
+                    }
+                )
 
-                # Use chapter/section already present on source if any
-                ch = s.get("chapter")
-                sec = s.get("section")
-                if isinstance(ch, int):
-                    used_chapters.append(ch)
-                if isinstance(ch, int) and isinstance(sec, int):
-                    used_sections.append((ch, sec))
+            used_files.append(fid)
 
-                rk = s.get("retrieval_rank")
-                if isinstance(rk, int):
-                    used_ranks.append(rk)
+            ch = s.get("chapter")
+            if isinstance(ch, int):
+                used_chapters.append(ch)
+
+            rk = s.get("retrieval_rank")
+            if isinstance(rk, int):
+                used_ranks.append(rk)
 
     # 3) Compute retrieval coverage stats
     retrieval_files = set(retrieval_index.keys())
 
     retrieval_chapters = []
-    retrieval_sections = []
-    for fid, meta in retrieval_index.items():
+    for _fid, meta in retrieval_index.items():
         ch = meta.get("retrieval_chapter")
-        sec = meta.get("retrieval_section")
         if isinstance(ch, int):
             retrieval_chapters.append(ch)
-        if isinstance(ch, int) and isinstance(sec, int):
-            retrieval_sections.append((ch, sec))
 
-    used_files_set = set([f for f in used_files if isinstance(f, str)])
+    used_files_set = set(used_files)
     used_chapters_set = sorted(set([c for c in used_chapters if isinstance(c, int)]))
     retrieval_chapters_set = sorted(set([c for c in retrieval_chapters if isinstance(c, int)]))
 
@@ -258,11 +250,13 @@ def enrich_trace_with_retrieval_alignment(trace: Dict[str, Any]) -> None:
         "mean_used_rank": _mean(used_ranks),
     }
 
-    events.append({
-        "t_ms": events[-1].get("t_ms", 0) if events else 0,
-        "event": "trace_summary",
-        **summary,
-    })
+    events.append(
+        {
+            "t_ms": events[-1].get("t_ms", 0) if events else 0,
+            "event": "trace_summary",
+            **summary,
+        }
+    )
 
 
 def _titleize_from_slug(tokens: str) -> str:
@@ -308,9 +302,9 @@ def parse_and_format(raw: str) -> str:
 
     lines = [ln.rstrip() for ln in raw.split("\n")]
 
-    items = []
-    current_quote_lines = []
-    current_filename = None
+    items: List[str] = []
+    current_quote_lines: List[str] = []
+    current_filename: Optional[str] = None
 
     def flush():
         nonlocal current_quote_lines, current_filename
@@ -358,7 +352,7 @@ def parse_and_format(raw: str) -> str:
     final = "\n\n".join(items).strip()
 
     lines2 = final.replace("\r\n", "\n").replace("\r", "\n").split("\n")
-    fixed = []
+    fixed: List[str] = []
     prev_blank = True
     for ln in lines2:
         if ln.startswith('"') and not prev_blank:
@@ -370,12 +364,12 @@ def parse_and_format(raw: str) -> str:
     final = re.sub(r"\n{3,}", "\n\n", final).strip()
     return final
 
+
 def extract_filenames_from_raw(raw: str) -> list:
-    # capture all markers like 
     return sorted(set(_MARKER_RE.findall(raw or "")))
 
+
 def extract_items_from_final(final_text: str) -> list:
-    # items are separated by blank lines; each item = quote + ref line(s)
     items = []
     blocks = [b.strip() for b in (final_text or "").split("\n\n") if b.strip()]
     for b in blocks:
@@ -385,15 +379,22 @@ def extract_items_from_final(final_text: str) -> list:
         items.append({"quote": quote, "ref": ref})
     return items
 
-def run_pipeline(question: str, mode: str = "short") -> dict:
+
+def run_pipeline(
+    question: str,
+    mode: str = "short",
+    *,
+    corpus_id: str = "hobbes",
+    data_dir: str = DEFAULT_DATA_DIR,
+) -> dict:
     tr = TraceCollector()
-    tr.set_meta(mode=mode, question=question)
+    tr.set_meta(mode=mode, question=question, corpus_id=corpus_id)
 
     tr.stamp("pipeline_start")
 
     try:
         tr.stamp("engine_call_start")
-        raw = answer_with_citations_only(question, trace=tr)
+        raw = answer_with_citations_only(question, corpus_id=corpus_id, trace=tr)
         tr.stamp("engine_call_end", raw_len=len(raw))
 
         final_text = parse_and_format(raw)
@@ -405,15 +406,12 @@ def run_pipeline(question: str, mode: str = "short") -> dict:
         tr.stamp("sources_selected", count=len(files), filenames=files)
         tr.stamp("quotes_selected", count=len(items), quotes=items)
 
-        # Si tu veux : extraire les citations finales pour la trace (simple parsing)
         tr.set_meta(audit_passed=True)
 
         trace_dict = tr.to_dict()
         enrich_trace_with_retrieval_alignment(trace_dict)
-        # after you've built trace_dict = tr.to_dict()
-        # and after you have final_text + you already added quotes_selected event
 
-        # 1) Get quotes_selected list from the trace (or reuse items you already computed)
+        # Pull quotes_selected for build_selection_view
         events = trace_dict.get("events", [])
         final_quotes = []
         for ev in reversed(events):
@@ -421,10 +419,12 @@ def run_pipeline(question: str, mode: str = "short") -> dict:
                 final_quotes = ev.get("quotes") or []
                 break
 
-        # 2) Build selection view (loads local file text for non-selected)
-        selection = build_selection_view(trace_dict, final_quotes=final_quotes, data_dir="data")
+        selection = build_selection_view(
+            trace_dict,
+            final_quotes=final_quotes,
+            data_dir=data_dir,
+        )
 
-        # 3) Return it alongside final_answer + trace
         return {"final_answer": final_text, "trace": trace_dict, "selection": selection}
 
     except AuditRefused as e:
