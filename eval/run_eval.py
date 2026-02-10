@@ -1,6 +1,9 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import argparse
 import json
 import re
-import sys
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Set, Tuple
@@ -136,18 +139,19 @@ def compute_all_metrics(
     final_recall = (len(selected_hits) / len(exp_set)) if exp_set else None
     extra_selected_count = len(final_set) - len(selected_hits)
 
-    metrics.update({
-        "expected_total": len(exp_set),
-        "expected_retrieved": len(retrieved_hits),
-        "retrieval_recall_at_20": retrieval_recall_at_20,
-        "retrieval_mean_rank": _mean(ranks),
-        "retrieval_mean_score": _mean(scores),
-
-        "expected_selected": len(selected_hits),
-        "final_recall": final_recall,
-        "final_unique_citations": len(final_set),
-        "extra_selected_count": extra_selected_count,
-    })
+    metrics.update(
+        {
+            "expected_total": len(exp_set),
+            "expected_retrieved": len(retrieved_hits),
+            "retrieval_recall_at_20": retrieval_recall_at_20,
+            "retrieval_mean_rank": _mean(ranks),
+            "retrieval_mean_score": _mean(scores),
+            "expected_selected": len(selected_hits),
+            "final_recall": final_recall,
+            "final_unique_citations": len(final_set),
+            "extra_selected_count": extra_selected_count,
+        }
+    )
 
     return metrics
 
@@ -170,29 +174,71 @@ def load_suite(path: Path) -> Dict[str, Any]:
 
 
 # ----------------------------
+# CLI
+# ----------------------------
+
+def parse_args() -> argparse.Namespace:
+    p = argparse.ArgumentParser(description="Run evaluation suite against Tender pipeline.")
+    p.add_argument(
+        "suite",
+        nargs="?",
+        default="eval/tests/definitions_v0.json",
+        help="Path to suite JSON (default: eval/tests/definitions_v0.json)",
+    )
+    p.add_argument(
+        "--corpus",
+        default="hobbes",
+        help="Corpus id to evaluate (default: hobbes)",
+    )
+    p.add_argument(
+        "--mode",
+        default=None,
+        help="Pipeline mode override (default: suite.mode or 'short')",
+    )
+    p.add_argument(
+        "--data-dir",
+        default="data",
+        help="Local text dir passed to run_pipeline (default: data)",
+    )
+    p.add_argument(
+        "--out-root",
+        default="eval_runs",
+        help="Root folder for runs (default: eval_runs)",
+    )
+    return p.parse_args()
+
+
+# ----------------------------
 # Main (runner only)
 # ----------------------------
 
-def main():
-    # Usage:
-    #   python3 -m eval.run_eval eval/tests/definitions_v0.json
-    suite_path = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("eval/tests/definitions_v0.json")
+def main() -> None:
+    args = parse_args()
+
+    suite_path = Path(args.suite)
     suite = load_suite(suite_path)
 
     pipeline_ver = get_git_commit() or "no_git"
     suite_id = suite.get("id", suite_path.stem)
 
+    mode = args.mode or suite.get("mode", "short")
+
     ts = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    run_dir = Path("eval_runs") / f"{ts}__{safe_slug(pipeline_ver)}__{safe_slug(suite_id)}"
+    run_dir = (
+        Path(args.out_root)
+        / f"{ts}__{safe_slug(pipeline_ver)}__{safe_slug(suite_id)}__{safe_slug(args.corpus)}"
+    )
     ensure_dir(run_dir)
 
     config = {
         "timestamp": ts,
         "pipeline_version": pipeline_ver,
         "suite_id": suite_id,
-        "mode": suite.get("mode", "short"),
         "suite_path": str(suite_path),
         "n_tests": len(suite["tests"]),
+        "mode": mode,
+        "corpus_id": args.corpus,
+        "data_dir": args.data_dir,
     }
     (run_dir / "config.json").write_text(json.dumps(config, indent=2), encoding="utf-8")
 
@@ -206,7 +252,13 @@ def main():
         expected_quote_contains = test.get("expected_quote_contains", "") or ""
         expected = test.get("expected", []) or []
 
-        out = run_pipeline(question, mode=config["mode"])
+        out = run_pipeline(
+            question,
+            mode=mode,
+            corpus_id=args.corpus,     # ✅ multi-corpus
+            data_dir=args.data_dir,    # ✅ align with selection view
+        )
+
         final_answer = out.get("final_answer", "")
         trace = out.get("trace", {}) or {}
         selection = out.get("selection", {}) or {}
@@ -242,20 +294,18 @@ def main():
             "must_refuse": must_refuse,
             "expected_quote_contains": expected_quote_contains,
             "expected": expected,
-
             "final_answer": final_answer,
             "metrics": metrics,
             "selection": selection,
             "trace": trace,
-
             # run metadata copied into each row (makes analysis easier)
             "pipeline_version": pipeline_ver,
             "suite_id": suite_id,
-            "mode": config["mode"],
+            "mode": mode,
             "timestamp": ts,
+            "corpus_id": args.corpus,
         }
 
-        # keep grading details (useful for later analysis)
         row["extras_grading"] = graded_extras
         row["expected_quotes_grading"] = graded_expected
 
