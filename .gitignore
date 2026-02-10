@@ -1,11 +1,17 @@
+
 # Python
 __pycache__/
-*.pyc
+*.py[cod]
 
-# Environnements
+# Envs / secrets
 .venv/
 venv/
 .env
+
+# OS / IDE
+.DS_Store
+.vscode/
+.idea/
 
 # Streamlit
 .streamlit/
@@ -13,11 +19,18 @@ venv/
 # Runtime / local state
 state.json
 
-# Project-specific
-archive/
+# Data & corpora (big / generated)
 data/
 leviathan/
-openai_ids
 
-# OS
-.DS_Store
+# Local ids / credentials
+openai_ids/
+
+# Outputs / reports
+eval_runs/
+analysis/report.html
+
+# Archives / scratch
+archive/
+git/
+
