@@ -3,14 +3,15 @@ import re
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
+from tender.corpora.registry import default_corpus_id, get_corpus
 from tender.engine.trace import TraceCollector
 from tender.engine.base import AuditRefused
-from tender.engine.engine import answer_with_citations_only, AuditRefused
+from tender.engine.engine import answer_with_citations_only
 
-DEFAULT_DATA_DIR = "data"
 REFUSAL_TEXT = "Je ne peux pas répondre à partir du corpus actuel."
 
 _MARKER_RE = re.compile(r"【\d+:\d+†([^】]+)】")  # captures filename inside the marker
+_FILENAME_LINE_RE = re.compile(r"(?i)[a-z0-9][a-z0-9._-]*\.(txt|md|pdf)$")
 
 # --- Extract (ch, §) from the pretty ref line you already build ---
 _REF_CH_SEC_RE = re.compile(r"Ch\.\s*(\d{1,2}).*?§\s*(\d{1,2})", re.IGNORECASE)
@@ -33,6 +34,19 @@ def _read_local_section_text(data_dir: str, filename: str) -> str:
         except Exception as e:
             return f"[ERROR reading {p}: {e}]"
 
+_CH_SEC_FROM_FILENAME_RE = re.compile(r"_ch_(\d{1,2}).*?_s(\d{1,2})_", re.IGNORECASE)
+_CH_ONLY_FROM_FILENAME_RE = re.compile(r"_ch_(\d{1,2})_", re.IGNORECASE)
+
+def _ch_sec_from_filename(filename: str) -> tuple[Optional[int], Optional[int]]:
+    if not filename:
+        return None, None
+    m = _CH_SEC_FROM_FILENAME_RE.search(filename)
+    if m:
+        return int(m.group(1)), int(m.group(2))
+    m2 = _CH_ONLY_FROM_FILENAME_RE.search(filename)
+    if m2:
+        return int(m2.group(1)), None
+    return None, None
 
 def build_selection_view(
     trace_dict: Dict[str, Any],
@@ -97,12 +111,24 @@ def build_selection_view(
 
         fid = item.get("file_id")
         filename = item.get("filename")
+
+        # ✅ ensure chapter/section exist even if retrieval_pool didn't enrich them
         ch = item.get("chapter")
         sec = item.get("section")
 
-        is_selected = isinstance(fid, str) and fid in selected_file_ids
-        out = dict(item)
+        if not isinstance(ch, int) or (sec is not None and not isinstance(sec, int)):
+            if isinstance(filename, str) and filename:
+                ch2, sec2 = _ch_sec_from_filename(filename)
+                if isinstance(ch2, int):
+                    ch = ch2
+                if isinstance(sec2, int):
+                    sec = sec2
 
+        is_selected = isinstance(fid, str) and fid in selected_file_ids
+
+        out = dict(item)
+        out["chapter"] = ch
+        out["section"] = sec
         out["selected"] = "Y" if is_selected else "N"
 
         if is_selected:
@@ -117,6 +143,7 @@ def build_selection_view(
                 out["section_text"] = "[No filename available to load local text]"
 
         enriched_pool.append(out)
+
 
     # --- Build summary from enriched_pool ---
     retrieval_chapters = sorted({it.get("chapter") for it in enriched_pool if isinstance(it.get("chapter"), int)})
@@ -264,7 +291,7 @@ def _titleize_from_slug(tokens: str) -> str:
     return " ".join(w.capitalize() for w in words)
 
 
-def _pretty_ref_from_slug(filename: str) -> str:
+def _pretty_ref_from_slug(filename: str, *, reference_label: str) -> str:
     base = re.sub(r"\.[A-Za-z0-9]+$", "", filename.strip())
 
     m = re.search(r"_ch_(\d{1,2})_(.+?)_s(\d{1,2})_(.+)$", base, flags=re.IGNORECASE)
@@ -273,20 +300,20 @@ def _pretty_ref_from_slug(filename: str) -> str:
         ch_title = _titleize_from_slug(m.group(2))
         s_num = int(m.group(3))
         s_title = _titleize_from_slug(m.group(4))
-        return f"Leviathan I, Ch. {ch_num} — {ch_title}, §{s_num} — {s_title}"
+        return f"{reference_label}, Ch. {ch_num} — {ch_title}, §{s_num} — {s_title}"
 
     m = re.search(r"_ch_(\d{1,2})_(.+)$", base, flags=re.IGNORECASE)
     if m:
         ch_num = int(m.group(1))
         ch_title = _titleize_from_slug(m.group(2))
-        return f"Leviathan I, Ch. {ch_num} — {ch_title}"
+        return f"{reference_label}, Ch. {ch_num} — {ch_title}"
 
     return filename.strip()
 
 
 def _strip_model_ref(line: str) -> str:
     line = re.sub(
-        r"\s+Leviathan\s+(?:I|Book\s*1|Book\s*I)\s*,?\s*(?:Ch\.|Chapter)\s*\d+.*$",
+        r"\s+[A-Za-z][\w\s\-]{0,80},\s*(?:Ch\.|Chapter)\s*\d+.*$",
         "",
         line,
         flags=re.IGNORECASE,
@@ -294,7 +321,7 @@ def _strip_model_ref(line: str) -> str:
     return line.strip()
 
 
-def parse_and_format(raw: str) -> str:
+def parse_and_format(raw: str, *, reference_label: str = "Source") -> str:
     raw = re.split(r"\n\s*SOURCES\s*\(verified\).*", raw, flags=re.IGNORECASE | re.DOTALL)[0]
     raw = re.sub(r"^\s*-{10,}\s*$", "", raw, flags=re.MULTILINE)
     raw = raw.replace("\r\n", "\n").replace("\r", "\n").strip()
@@ -315,7 +342,7 @@ def parse_and_format(raw: str) -> str:
         quote_text = " ".join([ln.strip() for ln in current_quote_lines if ln.strip()])
         quote_text = _strip_model_ref(quote_text).strip()
 
-        ref = _pretty_ref_from_slug(current_filename) if current_filename else ""
+        ref = _pretty_ref_from_slug(current_filename, reference_label=reference_label) if current_filename else ""
 
         if quote_text:
             if ref:
@@ -338,7 +365,7 @@ def parse_and_format(raw: str) -> str:
             current_filename = m.group(1).strip()
             s = _MARKER_RE.sub("", s).strip()
 
-        if re.fullmatch(r"(?i)leviathan_.*\.(txt|md|pdf)", s):
+        if _FILENAME_LINE_RE.fullmatch(s):
             current_filename = s
             continue
 
@@ -384,11 +411,14 @@ def run_pipeline(
     question: str,
     mode: str = "short",
     *,
-    corpus_id: str = "hobbes",
-    data_dir: str = DEFAULT_DATA_DIR,
+    corpus_id: str = default_corpus_id(),
+    data_dir: Optional[str] = None,
 ) -> dict:
+    corpus = get_corpus(corpus_id)
+    effective_data_dir = data_dir or corpus.data_dir
+
     tr = TraceCollector()
-    tr.set_meta(mode=mode, question=question, corpus_id=corpus_id)
+    tr.set_meta(mode=mode, question=question, corpus_id=corpus_id, data_dir=effective_data_dir)
 
     tr.stamp("pipeline_start")
 
@@ -397,7 +427,7 @@ def run_pipeline(
         raw = answer_with_citations_only(question, corpus_id=corpus_id, trace=tr)
         tr.stamp("engine_call_end", raw_len=len(raw))
 
-        final_text = parse_and_format(raw)
+        final_text = parse_and_format(raw, reference_label=corpus.reference_label)
         tr.stamp("format_end", final_len=len(final_text))
 
         files = extract_filenames_from_raw(raw)
@@ -422,7 +452,7 @@ def run_pipeline(
         selection = build_selection_view(
             trace_dict,
             final_quotes=final_quotes,
-            data_dir=data_dir,
+            data_dir=effective_data_dir,
         )
 
         return {"final_answer": final_text, "trace": trace_dict, "selection": selection}

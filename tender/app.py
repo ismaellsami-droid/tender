@@ -14,6 +14,11 @@ def main():
 
     # ✅ Liste dynamique des corpus depuis le registry
     corpora = list_corpora()
+    if not corpora:
+        st.error("No corpus configured in registry.")
+        st.stop()
+
+    by_id = {c.corpus_id: c for c in corpora}
     labels = {c.corpus_id: c.label for c in corpora}
 
     corpus_ids: list[str] = [c.corpus_id for c in corpora]
@@ -37,7 +42,7 @@ def main():
                 q.strip(),
                 mode="short",
                 corpus_id=corpus_id,
-                # ✅ data_dir géré par défaut dans run_pipeline (ex: "data")
+                data_dir=by_id[corpus_id].data_dir,
             )
             final_text = result["final_answer"]
             safe = html.escape(final_text)

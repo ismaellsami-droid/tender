@@ -24,13 +24,14 @@ data/
 leviathan/
 
 # Local ids / credentials
+openai_ids
 openai_ids/
 
 # Outputs / reports
 eval_runs/
 analysis/report.html
+books/*/output/
 
 # Archives / scratch
 archive/
 git/
-

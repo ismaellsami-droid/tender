@@ -10,6 +10,7 @@ from typing import Any, Dict, List, Optional, Set, Tuple
 
 from openai import OpenAI
 
+from tender.corpora.registry import default_corpus_id, get_corpus
 from tender.engine.pipeline import run_pipeline
 from eval.grader import grade_quotes_relevance
 from eval.utils import (
@@ -187,8 +188,8 @@ def parse_args() -> argparse.Namespace:
     )
     p.add_argument(
         "--corpus",
-        default="hobbes",
-        help="Corpus id to evaluate (default: hobbes)",
+        default=default_corpus_id(),
+        help="Corpus id to evaluate (default: registry default)",
     )
     p.add_argument(
         "--mode",
@@ -197,8 +198,8 @@ def parse_args() -> argparse.Namespace:
     )
     p.add_argument(
         "--data-dir",
-        default="data",
-        help="Local text dir passed to run_pipeline (default: data)",
+        default=None,
+        help="Optional local text dir override passed to run_pipeline",
     )
     p.add_argument(
         "--out-root",
@@ -217,6 +218,8 @@ def main() -> None:
 
     suite_path = Path(args.suite)
     suite = load_suite(suite_path)
+    corpus = get_corpus(args.corpus)
+    effective_data_dir = args.data_dir or corpus.data_dir
 
     pipeline_ver = get_git_commit() or "no_git"
     suite_id = suite.get("id", suite_path.stem)
@@ -238,7 +241,7 @@ def main() -> None:
         "n_tests": len(suite["tests"]),
         "mode": mode,
         "corpus_id": args.corpus,
-        "data_dir": args.data_dir,
+        "data_dir": effective_data_dir,
     }
     (run_dir / "config.json").write_text(json.dumps(config, indent=2), encoding="utf-8")
 
@@ -256,7 +259,7 @@ def main() -> None:
             question,
             mode=mode,
             corpus_id=args.corpus,     # ✅ multi-corpus
-            data_dir=args.data_dir,    # ✅ align with selection view
+            data_dir=effective_data_dir,    # ✅ align with selection view
         )
 
         final_answer = out.get("final_answer", "")
