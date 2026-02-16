@@ -82,6 +82,149 @@ def _safe_float(x: Any) -> Optional[float]:
     return None
 
 
+def _normalize_for_match(s: str) -> str:
+    s = (s or "").replace("\r\n", "\n").replace("\r", "\n")
+    s = s.replace("’", "'").replace("‘", "'").replace("“", '"').replace("”", '"')
+    s = " ".join(s.split())
+    return s.lower()
+
+
+def _clean_quote_for_match(s: str) -> str:
+    """
+    Keep only the quoted text content.
+    Some outputs include appended reference fragments like:
+      ... "quote text" leviathan_...txt, Ch. 13, §5
+    """
+    q = (s or "").strip()
+    if not q:
+        return q
+
+    # Remove trailing inline filename + chapter marker if present.
+    q = re.sub(
+        r"\s+[a-z0-9][a-z0-9._-]*\.(?:txt|md|pdf)\s*,?\s*(?:Ch\.|Chapter)\s*\d+.*$",
+        "",
+        q,
+        flags=re.IGNORECASE,
+    ).strip()
+
+    # Remove trailing plain chapter marker if present.
+    q = re.sub(
+        r"\s+(?:[A-Za-z][\w\s\-]{0,80},\s*)?(?:Ch\.|Chapter)\s*\d+.*$",
+        "",
+        q,
+        flags=re.IGNORECASE,
+    ).strip()
+
+    # Drop surrounding matching quotes.
+    if len(q) >= 2 and q[0] in {'"', "'"} and q[-1] == q[0]:
+        q = q[1:-1].strip()
+
+    return q
+
+
+def _read_text_best_effort(path: Path) -> Optional[str]:
+    try:
+        return path.read_text(encoding="utf-8")
+    except Exception:
+        try:
+            return path.read_text(encoding="latin-1")
+        except Exception:
+            return None
+
+
+def _extract_final_quotes_with_refs(trace: Dict[str, Any]) -> List[Dict[str, str]]:
+    events = (trace or {}).get("events") or []
+    for ev in reversed(events):
+        if ev.get("event") == "quotes_selected":
+            quotes = ev.get("quotes") or []
+            return [q for q in quotes if isinstance(q, dict)]
+    return []
+
+
+def _selected_filename_map(selection: Dict[str, Any]) -> Dict[Tuple[int, int], str]:
+    out: Dict[Tuple[int, int], str] = {}
+    pool = (selection or {}).get("pool") or []
+    for it in pool:
+        if not isinstance(it, dict):
+            continue
+        if str(it.get("selected", "")).upper() != "Y":
+            continue
+        ch = it.get("chapter")
+        sec = it.get("section")
+        fn = it.get("filename")
+        if isinstance(ch, int) and isinstance(sec, int) and isinstance(fn, str) and fn:
+            out[(ch, sec)] = fn
+    return out
+
+
+def quote_match_metrics(
+    *,
+    trace: Dict[str, Any],
+    selection: Dict[str, Any],
+    data_dir: str,
+) -> Dict[str, Any]:
+    """
+    Checks each final selected quote against its local source file text.
+    """
+    filename_map = _selected_filename_map(selection)
+    quotes = _extract_final_quotes_with_refs(trace)
+
+    checked = 0
+    matched = 0
+    missing_source = 0
+
+    for q in quotes:
+        quote = _clean_quote_for_match(q.get("quote") or "")
+        ref = q.get("ref") or ""
+        if not quote:
+            continue
+
+        m = _REF_CH_SEC_RE.search(ref)
+        if not m:
+            continue
+        chsec = (int(m.group(1)), int(m.group(2)))
+        filename = filename_map.get(chsec)
+        if not filename:
+            missing_source += 1
+            continue
+
+        text = _read_text_best_effort(Path(data_dir) / filename)
+        if text is None:
+            missing_source += 1
+            continue
+
+        checked += 1
+        if _normalize_for_match(quote) in _normalize_for_match(text):
+            matched += 1
+
+    rate = (matched / checked) if checked > 0 else None
+    return {
+        "quote_match_checked": checked,
+        "quote_match_count": matched,
+        "quote_match_rate": rate,
+        "quote_match_all": (matched == checked) if checked > 0 else None,
+        "quote_match_missing_source": missing_source,
+    }
+
+
+def _grading_weighted_mean(graded: Dict[str, Any]) -> tuple[Optional[float], int]:
+    """
+    Returns (mean, count) from a grader payload:
+      {"per_item":[{"score":...}, ...], "mean": ...}
+    """
+    per_item = graded.get("per_item", []) if isinstance(graded, dict) else []
+    vals: List[float] = []
+    for it in per_item:
+        if not isinstance(it, dict):
+            continue
+        sc = it.get("score")
+        if isinstance(sc, (int, float)):
+            vals.append(float(sc))
+    if not vals:
+        return None, 0
+    return (sum(vals) / len(vals)), len(vals)
+
+
 # ----------------------------
 # Metrics (per-test only)
 # ----------------------------
@@ -183,8 +326,8 @@ def parse_args() -> argparse.Namespace:
     p.add_argument(
         "suite",
         nargs="?",
-        default="eval/tests/definitions_v0.json",
-        help="Path to suite JSON (default: eval/tests/definitions_v0.json)",
+        default="eval/tests/hobbes_leviathan_book01/pool_a_work.json",
+        help="Path to suite JSON (default: eval/tests/hobbes_leviathan_book01/pool_a_work.json)",
     )
     p.add_argument(
         "--corpus",
@@ -204,7 +347,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument(
         "--out-root",
         default="eval_runs",
-        help="Root folder for runs (default: eval_runs)",
+        help="Root folder for runs. Runs are stored under <out_root>/<corpus>/<suite_id>/ (default: eval_runs)",
     )
     return p.parse_args()
 
@@ -227,9 +370,10 @@ def main() -> None:
     mode = args.mode or suite.get("mode", "short")
 
     ts = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    runs_base = Path(args.out_root) / safe_slug(args.corpus) / safe_slug(suite_id)
     run_dir = (
-        Path(args.out_root)
-        / f"{ts}__{safe_slug(pipeline_ver)}__{safe_slug(suite_id)}__{safe_slug(args.corpus)}"
+        runs_base
+        / f"{ts}__{safe_slug(pipeline_ver)}__{safe_slug(mode)}"
     )
     ensure_dir(run_dir)
 
@@ -289,6 +433,24 @@ def main() -> None:
 
         metrics["expected_quotes_mean_relevance"] = graded_expected.get("mean")
         metrics["expected_quotes_count_graded"] = len(graded_expected.get("per_item", []))
+
+        extras_mean, extras_count = _grading_weighted_mean(graded_extras)
+        expected_mean, expected_count = _grading_weighted_mean(graded_expected)
+        total_count = extras_count + expected_count
+        if total_count > 0:
+            weighted = ((extras_mean or 0.0) * extras_count + (expected_mean or 0.0) * expected_count) / total_count
+        else:
+            weighted = None
+
+        metrics["answers_mean_relevance"] = weighted
+        metrics["answers_count_graded"] = total_count
+        metrics.update(
+            quote_match_metrics(
+                trace=trace,
+                selection=selection,
+                data_dir=effective_data_dir,
+            )
+        )
 
         # D) build row
         row = {

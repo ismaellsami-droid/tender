@@ -1,0 +1,101 @@
+{
+  "id": "LEVIATHAN_BOOK01_POOL_B_BLIND",
+  "mode": "short",
+  "tests": [
+    {
+      "id": "B_Q01_memory",
+      "question": "What does Hobbes mean by Memory?",
+      "category": "FACTUAL",
+      "must_refuse": false
+    },
+    {
+      "id": "B_Q02_reason",
+      "question": "What does Hobbes mean by Reason?",
+      "category": "FACTUAL",
+      "must_refuse": false
+    },
+
+    {
+      "id": "B_Q03_sense_vs_imagination",
+      "question": "What is the difference between Sense and Imagination in Hobbes?",
+      "category": "DISTINCTION",
+      "must_refuse": false
+    },
+    {
+      "id": "B_Q04_reason_vs_prudence",
+      "question": "What is the difference between Reason and Prudence?",
+      "category": "DISTINCTION",
+      "must_refuse": false
+    },
+
+    {
+      "id": "B_Q05_animals_passions",
+      "question": "Do animals have passions?",
+      "category": "DISTINCTION",
+      "must_refuse": false
+    },
+    {
+      "id": "B_Q06_animals_discourse",
+      "question": "Are animals capable of Discourse of the Mind?",
+      "category": "DISTINCTION",
+      "must_refuse": false
+    },
+
+    {
+      "id": "B_Q07_personal_interest",
+      "question": "What is Hobbes understanding of personal interest?",
+      "category": "PARAPHRASE_MODERN",
+      "must_refuse": false
+    },
+    {
+      "id": "B_Q08_true_knowledge",
+      "question": "How to build true knowledge according to Hobbes?",
+      "category": "PARAPHRASE_MODERN",
+      "must_refuse": false
+    },
+    {
+      "id": "B_Q09_right_wrong",
+      "question": "How do we define what is right and wrong to do according to Hobbes?",
+      "category": "PARAPHRASE_MODERN",
+      "must_refuse": false
+    },
+    {
+      "id": "B_Q10_animals_reasoning",
+      "question": "Are animals capable of reasoning?",
+      "category": "PARAPHRASE_MODERN",
+      "must_refuse": false
+    },
+    {
+      "id": "B_Q11_reason_vs_experience",
+      "question": "What is the difference between Reason and Experience?",
+      "category": "DISTINCTION",
+      "must_refuse": false
+    },
+
+    {
+      "id": "B_Q12_public_minister",
+      "question": "What does Hobbes mean by Public Minister?",
+      "category": "OUT_OF_SCOPE",
+      "must_refuse": true
+    },
+    {
+      "id": "B_Q13_psychology",
+      "question": "What does Hobbes think about psychology?",
+      "category": "OUT_OF_SCOPE",
+      "must_refuse": true
+    },
+
+    {
+      "id": "B_Q14_state_of_nature",
+      "question": "How does Hobbes describe the natural condition of mankind?",
+      "category": "BORDERLINE",
+      "must_refuse": false
+    },
+    {
+      "id": "B_Q15_drives_actions",
+      "question": "According to Hobbes, what drives human actions?",
+      "category": "BORDERLINE",
+      "must_refuse": false
+    }
+  ]
+}

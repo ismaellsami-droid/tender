@@ -12,8 +12,11 @@ FOCUS_METRICS = [
     "m__retrieval_recall_at_20",
     "m__retrieval_mean_rank",
     "m__retrieval_mean_score",
+    "m__selected_pool_scores",
+    "m__quote_match_rate",
     "m__final_recall",
     "m__extra_selected_count",
+    "m__answers_mean_relevance",
     "m__extras_mean_relevance",
     "m__expected_quotes_mean_relevance",
 ]
@@ -23,8 +26,11 @@ METRIC_CFG: Dict[str, Dict[str, Any]] = {
     "m__retrieval_recall_at_20": {"label": "retrieval_recall_at_20", "fmt": "pct0", "better": "up"},
     "m__retrieval_mean_rank": {"label": "retrieval_mean_rank", "fmt": "f1", "better": "down"},
     "m__retrieval_mean_score": {"label": "retrieval_mean_score", "fmt": "f2", "better": "up"},
+    "m__selected_pool_scores": {"label": "selected_pool_scores", "fmt": "text", "better": "neutral"},
+    "m__quote_match_rate": {"label": "quote_match_rate", "fmt": "pct0", "better": "up"},
     "m__final_recall": {"label": "final_recall", "fmt": "pct0", "better": "up"},
     "m__extra_selected_count": {"label": "extra_selected_count", "fmt": "f1", "better": "down"},
+    "m__answers_mean_relevance": {"label": "answers_mean_relevance", "fmt": "f1", "better": "up"},
     "m__extras_mean_relevance": {"label": "extras_mean_relevance", "fmt": "f1", "better": "up"},
     "m__expected_quotes_mean_relevance": {"label": "expected_quotes_mean_relevance", "fmt": "f1", "better": "up"},
 }
@@ -50,16 +56,35 @@ def read_jsonl(path: Path) -> List[Dict[str, Any]]:
 def find_runs(runs_dir: Path) -> List[Path]:
     if not runs_dir.exists():
         return []
-    return [
-        d for d in sorted(runs_dir.iterdir())
-        if d.is_dir()
-        and (d / "config.json").exists()
-        and (d / "results.jsonl").exists()
-    ]
+    runs: List[Path] = []
+    for cfg in sorted(runs_dir.rglob("config.json")):
+        d = cfg.parent
+        if (d / "results.jsonl").exists():
+            runs.append(d)
+    return runs
+
+
+def selected_pool_scores_joined(row: Dict[str, Any]) -> str:
+    selection = row.get("selection") or {}
+    pool = selection.get("pool") or []
+    scores: List[str] = []
+
+    for item in pool:
+        if not isinstance(item, dict):
+            continue
+        if str(item.get("selected", "")).upper() != "Y":
+            continue
+        score = item.get("score")
+        if isinstance(score, (int, float)):
+            scores.append(f"{float(score):.6f}")
+
+    return " - ".join(scores)
 
 
 def flatten_metrics(row: Dict[str, Any]) -> Dict[str, Any]:
-    return {f"m__{k}": v for k, v in (row.get("metrics") or {}).items()}
+    out = {f"m__{k}": v for k, v in (row.get("metrics") or {}).items()}
+    out["m__selected_pool_scores"] = selected_pool_scores_joined(row)
+    return out
 
 
 # =============================
@@ -71,9 +96,10 @@ def load_all_runs(runs_dir: Path) -> pd.DataFrame:
 
     for rd in find_runs(runs_dir):
         cfg = read_json(rd / "config.json")
+        run_relpath = str(rd.relative_to(runs_dir))
         for r in read_jsonl(rd / "results.jsonl"):
             base = {
-                "run_dir": rd.name,
+                "run_dir": run_relpath,
                 "timestamp": cfg.get("timestamp"),
                 "pipeline_version": cfg.get("pipeline_version"),
                 "suite_id": cfg.get("suite_id"),
@@ -90,7 +116,7 @@ def load_all_runs(runs_dir: Path) -> pd.DataFrame:
 
     df = pd.DataFrame(rows)
     for c in df.columns:
-        if c.startswith("m__"):
+        if c.startswith("m__") and METRIC_CFG.get(c, {}).get("fmt") != "text":
             df[c] = pd.to_numeric(df[c], errors="coerce")
 
     return df.sort_values(by=["timestamp", "run_dir"], ascending=[False, False])
@@ -102,11 +128,12 @@ def summarize_runs(df_tests: pd.DataFrame) -> pd.DataFrame:
 
     metrics = [c for c in FOCUS_METRICS if c in df_tests.columns]
     gcols = ["timestamp", "run_dir", "pipeline_version", "suite_id", "mode", "n_tests"]
+    agg_map = {c: ("first" if METRIC_CFG.get(c, {}).get("fmt") == "text" else "mean") for c in metrics}
 
     return (
         df_tests
         .groupby(gcols, dropna=False, as_index=False)
-        .agg({c: "mean" for c in metrics})
+        .agg(agg_map)
         .sort_values(by=["timestamp", "run_dir"], ascending=[False, False])
     )
 
@@ -127,8 +154,11 @@ def format_metric_value(metric: str, val: Any) -> str:
     if _is_nan(val):
         return ""
 
-    v = float(val)
     kind = METRIC_CFG.get(metric, {}).get("fmt")
+    if kind == "text":
+        return str(val)
+
+    v = float(val)
 
     if kind == "pct0":
         return f"{int(round(v * 100))}%"
@@ -140,6 +170,10 @@ def format_metric_value(metric: str, val: Any) -> str:
 
 
 def classify_change(metric: str, prev: Any, cur: Any) -> str:
+    kind = METRIC_CFG.get(metric, {}).get("fmt")
+    if kind == "text":
+        return "neutral"
+
     if _is_nan(prev) or _is_nan(cur):
         return "neutral"
 
@@ -157,11 +191,11 @@ def escape_html(x: Any) -> str:
     return str(x).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 
-def run_report_link(run_dir: Any) -> str:
-    if not run_dir:
+def run_report_link(run_relpath: Any) -> str:
+    if not run_relpath:
         return ""
-    rd = escape_html(run_dir)
-    return f'<a href="../eval_runs/{rd}/report.html" target="_blank">open</a>'
+    rd = escape_html(run_relpath)
+    return f'<a href="{rd}/report.html" target="_blank">open</a>'
 
 
 # =============================
@@ -245,18 +279,19 @@ def render_report(
             )
         )
 
-    metric_cols = [c for c in FOCUS_METRICS if c in df_tests.columns]
-    for test_id in sorted(df_tests["test_id"].dropna().unique()):
-        df_q = df_tests[df_tests["test_id"] == test_id]
-        q = df_q["question"].iloc[0] or ""
-        blocks.append(
-            metrics_table_block(
-                f"Test {test_id}",
-                q,
-                df_q[["timestamp", "run_dir"] + metric_cols],
-                metric_cols,
+    if not df_tests.empty and "test_id" in df_tests.columns:
+        metric_cols = [c for c in FOCUS_METRICS if c in df_tests.columns]
+        for test_id in sorted(df_tests["test_id"].dropna().unique()):
+            df_q = df_tests[df_tests["test_id"] == test_id]
+            q = df_q["question"].iloc[0] or ""
+            blocks.append(
+                metrics_table_block(
+                    f"Test {test_id}",
+                    q,
+                    df_q[["timestamp", "run_dir"] + metric_cols],
+                    metric_cols,
+                )
             )
-        )
 
     html = f"""<!doctype html>
 <html>
@@ -308,10 +343,18 @@ def main():
     ap.add_argument("--runs_dir", default="eval_runs")
     ap.add_argument("--suite")
     ap.add_argument("--mode")
-    ap.add_argument("--out", default="analysis/report.html")
+    ap.add_argument("--out")
     args = ap.parse_args()
 
-    df_tests = load_all_runs(Path(args.runs_dir))
+    runs_dir = Path(args.runs_dir)
+    out_path = Path(args.out) if args.out else runs_dir / "report.html"
+
+    df_tests = load_all_runs(runs_dir)
+    if df_tests.empty:
+        render_report(out_path, pd.DataFrame(), pd.DataFrame(), args.suite, args.mode)
+        print(f"✅ Wrote analysis report: {out_path}")
+        return
+
     if args.suite:
         df_tests = df_tests[df_tests["suite_id"] == args.suite]
     if args.mode:
@@ -319,8 +362,8 @@ def main():
 
     df_runs = summarize_runs(df_tests)
 
-    render_report(Path(args.out), df_runs, df_tests, args.suite, args.mode)
-    print(f"✅ Wrote analysis report: {args.out}")
+    render_report(out_path, df_runs, df_tests, args.suite, args.mode)
+    print(f"✅ Wrote analysis report: {out_path}")
 
 
 if __name__ == "__main__":

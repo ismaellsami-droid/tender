@@ -1,0 +1,109 @@
+{
+  "id": "LEVIATHAN_BOOK01_POOL_A_WORK",
+  "mode": "short",
+  "tests": [
+    {
+      "id": "A_Q01_state_of_nature",
+      "question": "What does Hobbes mean by State of Nature?",
+      "category": "FACTUAL",
+      "must_refuse": false,
+      "expected": [{"ch": 13, "sec": 5}]
+    },
+    {
+      "id": "A_Q02_science",
+      "question": "What does Hobbes mean by Science?",
+      "category": "FACTUAL",
+      "must_refuse": false,
+      "expected": [{"ch": 5, "sec": 7}]
+    },
+
+    {
+      "id": "A_Q03_science_vs_fact",
+      "question": "What is the difference between Science and Knowledge of Fact?",
+      "category": "DISTINCTION",
+      "must_refuse": false,
+      "expected": [{"ch": 5, "sec": 7}]
+    },
+    {
+      "id": "A_Q04_appetite_vs_aversion",
+      "question": "What is the difference between Appetite and Aversion?",
+      "category": "DISTINCTION",
+      "must_refuse": false,
+      "expected": [{"ch": 6, "sec": 2}]
+    },
+    {
+      "id": "A_Q05_animals_prudence",
+      "question": "Are animals capable of Prudence?",
+      "category": "DISTINCTION",
+      "must_refuse": false,
+      "expected": [{"ch": 3, "sec": 6}]
+    },
+    {
+      "id": "A_Q06_animals_language",
+      "question": "Are animals capable of langage?",
+      "category": "DISTINCTION",
+      "must_refuse": false,
+      "expected": [{"ch": 6, "sec": 1}]
+    },
+
+    {
+      "id": "A_Q07_time",
+      "question": "What does Hobbes think about sense of time?",
+      "category": "PARAPHRASE_MODERN",
+      "must_refuse": false,
+      "expected": [{"ch": 3, "sec": 5}]
+    },
+    {
+      "id": "A_Q08_animals_wisdom",
+      "question": "Are animals capable of wisdom?",
+      "category": "PARAPHRASE_MODERN",
+      "must_refuse": false,
+      "expected": [{"ch": 3, "sec": 6}]
+    },
+    {
+      "id": "A_Q09_fair",
+      "question": "How do we know what is fair according to Hobbes?",
+      "category": "PARAPHRASE_MODERN",
+      "must_refuse": false
+    },
+    {
+      "id": "A_Q10_logic",
+      "question": "What does Hobbes mean by logic?",
+      "category": "PARAPHRASE_MODERN",
+      "must_refuse": false
+    },
+    {
+      "id": "A_Q11_why_fight",
+      "question": "Why does Hobbes think humans fight so much?",
+      "category": "PARAPHRASE_MODERN",
+      "must_refuse": false
+    },
+
+    {
+      "id": "A_Q12_spirituality",
+      "question": "What does Hobbes mean by Spirituality?",
+      "category": "OUT_OF_SCOPE",
+      "must_refuse": true
+    },
+    {
+      "id": "A_Q13_meditation",
+      "question": "What does Hobbes think about meditation or inner peace?",
+      "category": "OUT_OF_SCOPE",
+      "must_refuse": true
+    },
+
+    {
+      "id": "A_Q14_life_without_government",
+      "question": "According to Hobbes, what characterizes human life without government?",
+      "category": "BORDERLINE",
+      "must_refuse": false,
+      "expected": [{"ch": 13, "sec": 4}]
+    },
+    {
+      "id": "A_Q15_human_nature",
+      "question": "What is human nature?",
+      "category": "BORDERLINE",
+      "must_refuse": false
+    }
+  ]
+}
