@@ -12,6 +12,8 @@ class CorpusConfig:
     data_dir: str
     reference_label: str = "Source"
     instructions: str | None = None
+    retrieval_k: int = 20
+    selection_k: int = 8
 
 # Hobbes / Leviathan Book I
 HOBBES_LEVIATHAN_BOOK01 = CorpusConfig(

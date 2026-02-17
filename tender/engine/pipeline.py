@@ -5,8 +5,7 @@ from typing import Any, Dict, List, Optional, Tuple
 
 from tender.corpora.registry import default_corpus_id, get_corpus
 from tender.engine.trace import TraceCollector
-from tender.engine.base import AuditRefused
-from tender.engine.engine import answer_with_citations_only
+from tender.engine.engine import answer_with_citations_only_v2
 
 REFUSAL_TEXT = "Je ne peux pas répondre à partir du corpus actuel."
 
@@ -407,6 +406,36 @@ def extract_items_from_final(final_text: str) -> list:
     return items
 
 
+def _format_final_from_quotes(
+    quotes: List[Dict[str, str]],
+    *,
+    reference_label: str,
+) -> tuple[str, List[Dict[str, str]], List[str]]:
+    """
+    Convert [{"quote","filename"}] into:
+      - final text blocks
+      - quote/ref items for trace
+      - filenames list
+    """
+    items: List[Dict[str, str]] = []
+    filenames: List[str] = []
+    blocks: List[str] = []
+
+    for q in quotes:
+        quote = (q.get("quote") or "").strip()
+        filename = (q.get("filename") or "").strip()
+        if not quote or not filename:
+            continue
+        ref = _pretty_ref_from_slug(filename, reference_label=reference_label)
+        items.append({"quote": quote, "ref": ref})
+        filenames.append(filename)
+        blocks.append(f"{quote}\n{ref}")
+
+    uniq_files = sorted(set(filenames))
+    final = "\n\n".join(blocks).strip()
+    return final, items, uniq_files
+
+
 def run_pipeline(
     question: str,
     mode: str = "short",
@@ -418,46 +447,76 @@ def run_pipeline(
     effective_data_dir = data_dir or corpus.data_dir
 
     tr = TraceCollector()
-    tr.set_meta(mode=mode, question=question, corpus_id=corpus_id, data_dir=effective_data_dir)
+    tr.set_meta(
+        mode=mode,
+        question=question,
+        corpus_id=corpus_id,
+        data_dir=effective_data_dir,
+        engine_mode="v2",
+    )
 
     tr.stamp("pipeline_start")
+    tr.stamp("engine_call_start", path="v2")
+    out_v2 = answer_with_citations_only_v2(
+        question,
+        corpus_id=corpus_id,
+        retrieval_k=getattr(corpus, "retrieval_k", 20),
+        selection_k=getattr(corpus, "selection_k", 8),
+    )
+    tr.stamp("engine_call_end", path="v2", raw_len=len(out_v2.get("model_output", "")))
 
-    try:
-        tr.stamp("engine_call_start")
-        raw = answer_with_citations_only(question, corpus_id=corpus_id, trace=tr)
-        tr.stamp("engine_call_end", raw_len=len(raw))
+    pool = out_v2.get("pool", []) or []
+    if isinstance(pool, list):
+        tr.stamp("retrieval_pool", source="vector_store.search", count=len(pool), pool=pool)
 
-        final_text = parse_and_format(raw, reference_label=corpus.reference_label)
-        tr.stamp("format_end", final_len=len(final_text))
+    selected_sources = []
+    for it in pool:
+        if not isinstance(it, dict) or str(it.get("selected", "")).upper() != "Y":
+            continue
+        selected_sources.append(
+            {
+                "file_id": it.get("file_id"),
+                "filename": it.get("filename"),
+                "chapter": it.get("chapter"),
+                "section": it.get("section"),
+                "retrieval_rank": it.get("rank"),
+                "retrieval_score": it.get("score"),
+            }
+        )
+    tr.stamp(
+        "retrieval_selection",
+        strategy="top_k",
+        selected_count=len(selected_sources),
+        selection_k=getattr(corpus, "selection_k", 8),
+    )
+    tr.stamp(
+        "assistant_message_extracted",
+        message_id=None,
+        text_blocks_count=1,
+        text_total_len=len(out_v2.get("model_output", "")),
+        grounded_citation_count=len(selected_sources),
+        sources_count=len(selected_sources),
+        sources=selected_sources,
+    )
 
-        files = extract_filenames_from_raw(raw)
-        items = extract_items_from_final(final_text)
+    final_text, items, files = _format_final_from_quotes(
+        out_v2.get("quotes", []) or [],
+        reference_label=corpus.reference_label,
+    )
+    tr.stamp("format_end", final_len=len(final_text))
+    tr.stamp("sources_selected", count=len(files), filenames=files)
+    tr.stamp("quotes_selected", count=len(items), quotes=items)
 
-        tr.stamp("sources_selected", count=len(files), filenames=files)
-        tr.stamp("quotes_selected", count=len(items), quotes=items)
-
-        tr.set_meta(audit_passed=True)
-
+    if out_v2.get("refused", False) or not items:
+        tr.set_meta(audit_passed=False, audit_reason="No verified quote extracted from fixed context")
+        tr.stamp("audit_refused")
         trace_dict = tr.to_dict()
         enrich_trace_with_retrieval_alignment(trace_dict)
+        selection = build_selection_view(trace_dict, final_quotes=[], data_dir=effective_data_dir)
+        return {"final_answer": REFUSAL_TEXT, "trace": trace_dict, "selection": selection}
 
-        # Pull quotes_selected for build_selection_view
-        events = trace_dict.get("events", [])
-        final_quotes = []
-        for ev in reversed(events):
-            if ev.get("event") == "quotes_selected":
-                final_quotes = ev.get("quotes") or []
-                break
-
-        selection = build_selection_view(
-            trace_dict,
-            final_quotes=final_quotes,
-            data_dir=effective_data_dir,
-        )
-
-        return {"final_answer": final_text, "trace": trace_dict, "selection": selection}
-
-    except AuditRefused as e:
-        tr.set_meta(audit_passed=False, audit_reason=str(e))
-        tr.stamp("audit_refused")
-        return {"final_answer": REFUSAL_TEXT, "trace": tr.to_dict()}
+    tr.set_meta(audit_passed=True)
+    trace_dict = tr.to_dict()
+    enrich_trace_with_retrieval_alignment(trace_dict)
+    selection = build_selection_view(trace_dict, final_quotes=items, data_dir=effective_data_dir)
+    return {"final_answer": final_text, "trace": trace_dict, "selection": selection}

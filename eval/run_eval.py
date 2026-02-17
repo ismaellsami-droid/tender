@@ -386,6 +386,7 @@ def main() -> None:
         "mode": mode,
         "corpus_id": args.corpus,
         "data_dir": effective_data_dir,
+        "engine_mode": "v2",
     }
     (run_dir / "config.json").write_text(json.dumps(config, indent=2), encoding="utf-8")
 
@@ -469,6 +470,7 @@ def main() -> None:
             "mode": mode,
             "timestamp": ts,
             "corpus_id": args.corpus,
+            "engine_mode": "v2",
         }
 
         row["extras_grading"] = graded_extras
