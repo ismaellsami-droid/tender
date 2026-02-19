@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import re
+import threading
 from typing import Any, Dict, List, Optional, Tuple
 
 from tender.corpora.registry import default_corpus_id, get_corpus
@@ -10,42 +11,20 @@ from tender.engine.base import BaseCorpusEngine
 
 REFUSAL_TEXT = "Je ne peux pas répondre à partir du corpus actuel."
 
-DEFAULT_STRICT_INSTRUCTIONS = """You are a source-only retrieval assistant.
-
-TASK:
-Given a user question, you must respond ONLY with verbatim quotations from the retrieved sources that help answer the question.
-
-OUTPUT FORMAT (STRICT):
-•⁠  ⁠Return between 2 and 4 quotations (minimum 1).
-•⁠  ⁠Each quotation must be:
-  1) Verbatim (exact text from the source, in English).
-  2) Short (1–2 sentences, max ~40 words).
-  3) Immediately followed by its reference on the same line, formatted as:
-     Source, Ch. <number>, §<number>
-     (If the section number cannot be inferred reliably, write:
-      Source, Ch. <number>)
-
-RULES:
-•⁠  ⁠Do NOT explain, summarize, paraphrase, or comment in any way.
-•⁠  ⁠Do NOT add any introductory or concluding text.
-•⁠  ⁠Do NOT use outside knowledge.
-•⁠  ⁠Use ONLY excerpts retrieved via file_search from the attached vector store.
-•⁠  ⁠If you cannot find at least ONE relevant quotation, output ONLY:
-  "Je ne peux pas répondre à partir du corpus actuel."
-•⁠  ⁠Infer Chapter and Section numbers from the source filename when possible
-  (e.g. filename contains "ch_13" and "s01" → Source, Ch. 13, §1).
-"""
-
 _CH_SEC_FROM_FILENAME_RE = re.compile(r"_ch_(\d{1,2}).*?_s(\d{1,2})_", re.IGNORECASE)
+_CH_ONLY_FROM_FILENAME_RE = re.compile(r"_ch_(\d{1,2})_", re.IGNORECASE)
 
 
 def _ch_sec_from_filename(filename: str) -> tuple[Optional[int], Optional[int]]:
     if not filename:
         return None, None
     m = _CH_SEC_FROM_FILENAME_RE.search(filename)
-    if not m:
-        return None, None
-    return int(m.group(1)), int(m.group(2))
+    if m:
+        return int(m.group(1)), int(m.group(2))
+    m2 = _CH_ONLY_FROM_FILENAME_RE.search(filename)
+    if m2:
+        return int(m2.group(1)), None
+    return None, None
 
 
 def _normalize_for_match(s: str) -> str:
@@ -78,17 +57,14 @@ def _extract_json_object(text: str) -> Optional[Dict[str, Any]]:
 class CorpusEngine(BaseCorpusEngine):
     def __init__(self, corpus_id: str):
         corpus = get_corpus(corpus_id)
-        instructions = corpus.instructions or DEFAULT_STRICT_INSTRUCTIONS
 
         super().__init__(
             corpus_id=corpus.corpus_id,
             model=corpus.model,
             vector_store_id=corpus.vector_store_id,
-            instructions=instructions,
-            assistant_id=getattr(corpus, "assistant_id", None),
         )
 
-    def retrieve_passages_v2(self, question: str, *, retrieval_k: int = 20) -> List[Dict[str, Any]]:
+    def retrieve_passages(self, question: str, *, retrieval_k: int = 20) -> List[Dict[str, Any]]:
         if not self.vector_store_id:
             raise ValueError(f"Missing vector_store_id for corpus '{self.corpus_id}'")
         client = self._get_client()
@@ -129,7 +105,7 @@ class CorpusEngine(BaseCorpusEngine):
             )
         return pool
 
-    def select_passages_v2(
+    def select_passages(
         self,
         pool: List[Dict[str, Any]],
         *,
@@ -145,7 +121,7 @@ class CorpusEngine(BaseCorpusEngine):
             enriched_pool.append(out)
         return selected, enriched_pool
 
-    def extract_quotes_v2(self, question: str, selected: List[Dict[str, Any]]) -> Dict[str, Any]:
+    def extract_quotes(self, question: str, selected: List[Dict[str, Any]]) -> Dict[str, Any]:
         passages: List[Dict[str, str]] = []
         by_filename: Dict[str, str] = {}
 
@@ -214,16 +190,16 @@ class CorpusEngine(BaseCorpusEngine):
             return {"refused": True, "raw_output": out_text, "quotes": []}
         return {"refused": False, "raw_output": out_text, "quotes": valid}
 
-    def answer_with_citations_only_v2(
+    def answer_with_citations(
         self,
         question: str,
         *,
         retrieval_k: int = 20,
         selection_k: int = 8,
     ) -> Dict[str, Any]:
-        pool = self.retrieve_passages_v2(question, retrieval_k=retrieval_k)
-        selected, enriched_pool = self.select_passages_v2(pool, selection_k=selection_k)
-        extraction = self.extract_quotes_v2(question, selected)
+        pool = self.retrieve_passages(question, retrieval_k=retrieval_k)
+        selected, enriched_pool = self.select_passages(pool, selection_k=selection_k)
+        extraction = self.extract_quotes(question, selected)
         return {
             "pool": enriched_pool,
             "selected": selected,
@@ -234,27 +210,29 @@ class CorpusEngine(BaseCorpusEngine):
 
 
 _ENGINE_CACHE: Dict[str, CorpusEngine] = {}
+_ENGINE_CACHE_LOCK = threading.Lock()
 
 
 def get_engine(corpus_id: str) -> CorpusEngine:
-    if corpus_id not in _ENGINE_CACHE:
-        _ENGINE_CACHE[corpus_id] = CorpusEngine(corpus_id)
-    return _ENGINE_CACHE[corpus_id]
+    if corpus_id in _ENGINE_CACHE:
+        return _ENGINE_CACHE[corpus_id]
+    with _ENGINE_CACHE_LOCK:
+        if corpus_id not in _ENGINE_CACHE:
+            _ENGINE_CACHE[corpus_id] = CorpusEngine(corpus_id)
+        return _ENGINE_CACHE[corpus_id]
 
 
-def answer_with_citations_only_v2(
+def answer_with_citations(
     question: str,
     *,
     corpus_id: str = default_corpus_id(),
     retrieval_k: int = 20,
     selection_k: int = 8,
 ) -> Dict[str, Any]:
-    return get_engine(corpus_id).answer_with_citations_only_v2(
+    return get_engine(corpus_id).answer_with_citations(
         question,
         retrieval_k=retrieval_k,
         selection_k=selection_k,
     )
 
 
-def reset_conversation_thread(*, corpus_id: str = default_corpus_id()) -> str:
-    return get_engine(corpus_id).reset_thread()

@@ -5,7 +5,6 @@ import traceback
 import streamlit as st
 
 from tender.engine.pipeline import run_pipeline
-from tender.engine.engine import reset_conversation_thread
 from tender.corpora.registry import list_corpora
 
 
@@ -30,17 +29,12 @@ def main():
         index=0,
     )
 
-    if st.button("New thread"):
-        reset_conversation_thread(corpus_id=corpus_id)
-        st.success("New conversation thread created.")
-
     q = st.text_input("Question")
 
     if st.button("Ask") and q.strip():
         try:
             result = run_pipeline(
                 q.strip(),
-                mode="short",
                 corpus_id=corpus_id,
                 data_dir=by_id[corpus_id].data_dir,
             )

@@ -5,12 +5,9 @@ from typing import Any, Dict, List, Optional, Tuple
 
 from tender.corpora.registry import default_corpus_id, get_corpus
 from tender.engine.trace import TraceCollector
-from tender.engine.engine import answer_with_citations_only_v2
+from tender.engine.engine import answer_with_citations, _ch_sec_from_filename
 
 REFUSAL_TEXT = "Je ne peux pas répondre à partir du corpus actuel."
-
-_MARKER_RE = re.compile(r"【\d+:\d+†([^】]+)】")  # captures filename inside the marker
-_FILENAME_LINE_RE = re.compile(r"(?i)[a-z0-9][a-z0-9._-]*\.(txt|md|pdf)$")
 
 # --- Extract (ch, §) from the pretty ref line you already build ---
 _REF_CH_SEC_RE = re.compile(r"Ch\.\s*(\d{1,2}).*?§\s*(\d{1,2})", re.IGNORECASE)
@@ -32,20 +29,6 @@ def _read_local_section_text(data_dir: str, filename: str) -> str:
             return p.read_text(encoding="latin-1")
         except Exception as e:
             return f"[ERROR reading {p}: {e}]"
-
-_CH_SEC_FROM_FILENAME_RE = re.compile(r"_ch_(\d{1,2}).*?_s(\d{1,2})_", re.IGNORECASE)
-_CH_ONLY_FROM_FILENAME_RE = re.compile(r"_ch_(\d{1,2})_", re.IGNORECASE)
-
-def _ch_sec_from_filename(filename: str) -> tuple[Optional[int], Optional[int]]:
-    if not filename:
-        return None, None
-    m = _CH_SEC_FROM_FILENAME_RE.search(filename)
-    if m:
-        return int(m.group(1)), int(m.group(2))
-    m2 = _CH_ONLY_FROM_FILENAME_RE.search(filename)
-    if m2:
-        return int(m2.group(1)), None
-    return None, None
 
 def build_selection_view(
     trace_dict: Dict[str, Any],
@@ -79,42 +62,24 @@ def build_selection_view(
     if not isinstance(pool, list):
         pool = []
 
-    # 2) Build set of selected file_ids from assistant_message_extracted.sources
-    selected_file_ids = set()
+    # Map (ch, sec) -> quote text from the final_quotes list
     selected_by_ch_sec: Dict[Tuple[int, int], str] = {}
-
-    for ev in events:
-        if ev.get("event") != "assistant_message_extracted":
-            continue
-        sources = ev.get("sources") or []
-        if not isinstance(sources, list):
-            continue
-        for s in sources:
-            if not isinstance(s, dict):
-                continue
-            fid = s.get("file_id")
-            if isinstance(fid, str):
-                selected_file_ids.add(fid)
-
-    # 3) Map (ch, sec) -> quote text from your quotes_selected list
     for q in final_quotes or []:
         chsec = _parse_ch_sec_from_ref(q.get("ref", ""))
         if chsec:
             selected_by_ch_sec[chsec] = q.get("quote", "")
 
-    # 4) Build selection entries
+    # Build selection entries — selected flag already set by select_passages
     enriched_pool = []
     for item in pool:
         if not isinstance(item, dict):
             continue
 
-        fid = item.get("file_id")
         filename = item.get("filename")
 
-        # ✅ ensure chapter/section exist even if retrieval_pool didn't enrich them
+        # Ensure chapter/section exist (fallback to filename parsing)
         ch = item.get("chapter")
         sec = item.get("section")
-
         if not isinstance(ch, int) or (sec is not None and not isinstance(sec, int)):
             if isinstance(filename, str) and filename:
                 ch2, sec2 = _ch_sec_from_filename(filename)
@@ -123,12 +88,11 @@ def build_selection_view(
                 if isinstance(sec2, int):
                     sec = sec2
 
-        is_selected = isinstance(fid, str) and fid in selected_file_ids
+        is_selected = str(item.get("selected", "")).upper() == "Y"
 
         out = dict(item)
         out["chapter"] = ch
         out["section"] = sec
-        out["selected"] = "Y" if is_selected else "N"
 
         if is_selected:
             qtxt = ""
@@ -310,102 +274,6 @@ def _pretty_ref_from_slug(filename: str, *, reference_label: str) -> str:
     return filename.strip()
 
 
-def _strip_model_ref(line: str) -> str:
-    line = re.sub(
-        r"\s+[A-Za-z][\w\s\-]{0,80},\s*(?:Ch\.|Chapter)\s*\d+.*$",
-        "",
-        line,
-        flags=re.IGNORECASE,
-    )
-    return line.strip()
-
-
-def parse_and_format(raw: str, *, reference_label: str = "Source") -> str:
-    raw = re.split(r"\n\s*SOURCES\s*\(verified\).*", raw, flags=re.IGNORECASE | re.DOTALL)[0]
-    raw = re.sub(r"^\s*-{10,}\s*$", "", raw, flags=re.MULTILINE)
-    raw = raw.replace("\r\n", "\n").replace("\r", "\n").strip()
-    raw = re.sub(r"\n{3,}", "\n\n", raw)
-
-    lines = [ln.rstrip() for ln in raw.split("\n")]
-
-    items: List[str] = []
-    current_quote_lines: List[str] = []
-    current_filename: Optional[str] = None
-
-    def flush():
-        nonlocal current_quote_lines, current_filename
-        if not current_quote_lines:
-            current_filename = None
-            return
-
-        quote_text = " ".join([ln.strip() for ln in current_quote_lines if ln.strip()])
-        quote_text = _strip_model_ref(quote_text).strip()
-
-        ref = _pretty_ref_from_slug(current_filename, reference_label=reference_label) if current_filename else ""
-
-        if quote_text:
-            if ref:
-                items.append(f"{quote_text}\n{ref}")
-            else:
-                items.append(quote_text)
-
-        current_quote_lines = []
-        current_filename = None
-
-    for ln in lines:
-        s = ln.strip()
-
-        if not s:
-            flush()
-            continue
-
-        m = _MARKER_RE.search(s)
-        if m:
-            current_filename = m.group(1).strip()
-            s = _MARKER_RE.sub("", s).strip()
-
-        if _FILENAME_LINE_RE.fullmatch(s):
-            current_filename = s
-            continue
-
-        if s.startswith('"') and current_quote_lines:
-            flush()
-
-        current_quote_lines.append(s)
-
-    flush()
-
-    final = "\n\n".join(items).strip()
-
-    lines2 = final.replace("\r\n", "\n").replace("\r", "\n").split("\n")
-    fixed: List[str] = []
-    prev_blank = True
-    for ln in lines2:
-        if ln.startswith('"') and not prev_blank:
-            fixed.append("")
-        fixed.append(ln)
-        prev_blank = (ln.strip() == "")
-
-    final = "\n".join(fixed)
-    final = re.sub(r"\n{3,}", "\n\n", final).strip()
-    return final
-
-
-def extract_filenames_from_raw(raw: str) -> list:
-    return sorted(set(_MARKER_RE.findall(raw or "")))
-
-
-def extract_items_from_final(final_text: str) -> list:
-    items = []
-    blocks = [b.strip() for b in (final_text or "").split("\n\n") if b.strip()]
-    for b in blocks:
-        parts = b.split("\n")
-        quote = parts[0].strip() if parts else ""
-        ref = "\n".join(parts[1:]).strip() if len(parts) > 1 else ""
-        items.append({"quote": quote, "ref": ref})
-    return items
-
-
 def _format_final_from_quotes(
     quotes: List[Dict[str, str]],
     *,
@@ -438,7 +306,6 @@ def _format_final_from_quotes(
 
 def run_pipeline(
     question: str,
-    mode: str = "short",
     *,
     corpus_id: str = default_corpus_id(),
     data_dir: Optional[str] = None,
@@ -448,24 +315,22 @@ def run_pipeline(
 
     tr = TraceCollector()
     tr.set_meta(
-        mode=mode,
         question=question,
         corpus_id=corpus_id,
         data_dir=effective_data_dir,
-        engine_mode="v2",
     )
 
     tr.stamp("pipeline_start")
-    tr.stamp("engine_call_start", path="v2")
-    out_v2 = answer_with_citations_only_v2(
+    tr.stamp("engine_call_start")
+    out = answer_with_citations(
         question,
         corpus_id=corpus_id,
         retrieval_k=getattr(corpus, "retrieval_k", 20),
         selection_k=getattr(corpus, "selection_k", 8),
     )
-    tr.stamp("engine_call_end", path="v2", raw_len=len(out_v2.get("model_output", "")))
+    tr.stamp("engine_call_end", raw_len=len(out.get("model_output", "")))
 
-    pool = out_v2.get("pool", []) or []
+    pool = out.get("pool", []) or []
     if isinstance(pool, list):
         tr.stamp("retrieval_pool", source="vector_store.search", count=len(pool), pool=pool)
 
@@ -493,21 +358,21 @@ def run_pipeline(
         "assistant_message_extracted",
         message_id=None,
         text_blocks_count=1,
-        text_total_len=len(out_v2.get("model_output", "")),
+        text_total_len=len(out.get("model_output", "")),
         grounded_citation_count=len(selected_sources),
         sources_count=len(selected_sources),
         sources=selected_sources,
     )
 
     final_text, items, files = _format_final_from_quotes(
-        out_v2.get("quotes", []) or [],
+        out.get("quotes", []) or [],
         reference_label=corpus.reference_label,
     )
     tr.stamp("format_end", final_len=len(final_text))
     tr.stamp("sources_selected", count=len(files), filenames=files)
     tr.stamp("quotes_selected", count=len(items), quotes=items)
 
-    if out_v2.get("refused", False) or not items:
+    if out.get("refused", False) or not items:
         tr.set_meta(audit_passed=False, audit_reason="No verified quote extracted from fixed context")
         tr.stamp("audit_refused")
         trace_dict = tr.to_dict()

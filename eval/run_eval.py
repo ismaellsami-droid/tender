@@ -11,6 +11,7 @@ from typing import Any, Dict, List, Optional, Set, Tuple
 from openai import OpenAI
 
 from tender.corpora.registry import default_corpus_id, get_corpus
+from tender.engine.engine import _normalize_for_match
 from tender.engine.pipeline import run_pipeline
 from eval.grader import grade_quotes_relevance
 from eval.utils import (
@@ -80,13 +81,6 @@ def _safe_float(x: Any) -> Optional[float]:
     if isinstance(x, (int, float)):
         return float(x)
     return None
-
-
-def _normalize_for_match(s: str) -> str:
-    s = (s or "").replace("\r\n", "\n").replace("\r", "\n")
-    s = s.replace("’", "'").replace("‘", "'").replace("“", '"').replace("”", '"')
-    s = " ".join(s.split())
-    return s.lower()
 
 
 def _clean_quote_for_match(s: str) -> str:
@@ -335,11 +329,6 @@ def parse_args() -> argparse.Namespace:
         help="Corpus id to evaluate (default: registry default)",
     )
     p.add_argument(
-        "--mode",
-        default=None,
-        help="Pipeline mode override (default: suite.mode or 'short')",
-    )
-    p.add_argument(
         "--data-dir",
         default=None,
         help="Optional local text dir override passed to run_pipeline",
@@ -367,14 +356,9 @@ def main() -> None:
     pipeline_ver = get_git_commit() or "no_git"
     suite_id = suite.get("id", suite_path.stem)
 
-    mode = args.mode or suite.get("mode", "short")
-
     ts = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     runs_base = Path(args.out_root) / safe_slug(args.corpus) / safe_slug(suite_id)
-    run_dir = (
-        runs_base
-        / f"{ts}__{safe_slug(pipeline_ver)}__{safe_slug(mode)}"
-    )
+    run_dir = runs_base / f"{ts}__{safe_slug(pipeline_ver)}"
     ensure_dir(run_dir)
 
     config = {
@@ -383,10 +367,8 @@ def main() -> None:
         "suite_id": suite_id,
         "suite_path": str(suite_path),
         "n_tests": len(suite["tests"]),
-        "mode": mode,
         "corpus_id": args.corpus,
         "data_dir": effective_data_dir,
-        "engine_mode": "v2",
     }
     (run_dir / "config.json").write_text(json.dumps(config, indent=2), encoding="utf-8")
 
@@ -402,9 +384,8 @@ def main() -> None:
 
         out = run_pipeline(
             question,
-            mode=mode,
-            corpus_id=args.corpus,     # ✅ multi-corpus
-            data_dir=effective_data_dir,    # ✅ align with selection view
+            corpus_id=args.corpus,
+            data_dir=effective_data_dir,
         )
 
         final_answer = out.get("final_answer", "")
@@ -467,11 +448,9 @@ def main() -> None:
             # run metadata copied into each row (makes analysis easier)
             "pipeline_version": pipeline_ver,
             "suite_id": suite_id,
-            "mode": mode,
             "timestamp": ts,
             "corpus_id": args.corpus,
-            "engine_mode": "v2",
-        }
+            }
 
         row["extras_grading"] = graded_extras
         row["expected_quotes_grading"] = graded_expected
