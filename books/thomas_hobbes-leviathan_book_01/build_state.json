@@ -1,0 +1,30 @@
+{
+  "book_id": "thomas_hobbes-leviathan_book_01",
+  "index": {
+    "split": {
+      "status": "done",
+      "ts": "2026-03-18T12:20:03.625842+00:00",
+      "files_written": 182,
+      "fingerprint": "e79bb37d795483a02ccdf7554cf4d108fa1ce86a5c2aa9c2064f1f5cbe405b47"
+    },
+    "toc": {
+      "status": "done",
+      "ts": "2026-03-18T12:20:03.627626+00:00",
+      "chapters": 16,
+      "sections": 182,
+      "fingerprint": "43ac01353b577b1c4d0d1e21be916a7e8a10c3a3fe51418bf68d3b575481a2dc"
+    },
+    "upload": {
+      "status": "done",
+      "ts": "2026-03-18T12:27:28.542684+00:00",
+      "vector_store_id": "vs_69ba98f420cc8191926a8f6ce7f8863d",
+      "fingerprint": "484628603fd7810cd19e12e113e87b1e452dafe27e941a2e19b5375594c7106f"
+    },
+    "register": {
+      "status": "done",
+      "ts": "2026-03-18T12:27:28.549777+00:00",
+      "fingerprint": "db1b31c56fbc564962ba0f6ddca6180cdb58c21382a004b49d05eed81daf512a"
+    }
+  },
+  "graph": {}
+}

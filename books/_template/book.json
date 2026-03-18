@@ -1,0 +1,11 @@
+{
+  "book_id": "author_booktitle_part01",
+  "book_slug": "booktitle",
+  "book_number": 1,
+  "book_title_slug": "part_title_slug",
+  "label": "Author — Book Title (Part I)",
+  "reference_label": "Book Title I",
+  "model": "gpt-4.1-mini",
+  "retrieval_k": 20,
+  "selection_k": 8
+}

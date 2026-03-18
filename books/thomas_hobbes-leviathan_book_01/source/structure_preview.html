@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Structure — Leviathan (Book I)</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+          background: #f5f5f5; margin: 0; padding: 2rem; color: #222; }
+  h1   { font-size: 1.1rem; color: #555; margin-bottom: 1.2rem; font-weight: 400; }
+  .chapter { background: #fff; border-left: 4px solid #2563eb; border-radius: 6px;
+               margin: 1.2rem 0 0.3rem; padding: 0.7rem 1rem;
+               box-shadow: 0 1px 3px rgba(0,0,0,.07); }
+  .chapter-label { font-size: .7rem; text-transform: uppercase;
+                    letter-spacing: .08em; color: #2563eb; font-weight: 600; }
+  .chapter-title { font-size: 1rem; font-weight: 600; margin-top: .15rem; }
+  .section { background: #fff; border-left: 3px solid #e5e7eb; border-radius: 4px;
+              margin: .25rem 0 .25rem 1.5rem; padding: .45rem 1rem;
+              display: flex; align-items: baseline; gap: .7rem; }
+  .section.intro { border-left-color: #7c3aed; }
+  .section.orphan { margin-left: 0; border-left-color: #f59e0b; }
+  .sec-num   { font-size: .72rem; color: #9ca3af; min-width: 2.2rem; }
+  .sec-title { font-size: .88rem; color: #374151; }
+  .sec-title.notitle { color: #9ca3af; font-style: italic; }
+  .sec-title.intro-label { color: #7c3aed; font-style: italic; }
+  .anchor    { font-size: .7rem; color: #bbb; margin-left: auto;
+                max-width: 45%; text-align: right;
+                white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .stats     { font-size: .8rem; color: #6b7280; margin-bottom: 1.2rem; }
+  .badge     { display: inline-block; background: #2563eb; color: #fff;
+                border-radius: 3px; padding: .1rem .4rem; font-size: .7rem;
+                margin-right: .4rem; }
+  .badge.sec { background: #6b7280; }
+</style>
+</head>
+<body>
+<h1>Leviathan (Book I)</h1>
+<div class="stats">
+  <span class="badge">16 chapters</span>
+  <span class="badge sec">182 sections</span>
+  &nbsp;198 items total
+</div>
+<div id="tree"></div>
+<script>
+const data = [
+  {
+    "type": "chapter",
+    "number": 1,
+    "title": "OF SENSE",
+    "anchor": "Concerning the Thoughts of man, I will consider them first Singly, and",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 1,
+    "title": "Chapter Introduction",
+    "anchor": "Concerning the Thoughts of man, I will consider them first Singly, and",
+    "intro": true
+  },
+  {
+    "type": "chapter",
+    "number": 2,
+    "title": "OF IMAGINATION",
+    "anchor": "That when a thing lies still, unlesse somewhat els stirre it, it will ",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 1,
+    "title": "Chapter Introduction",
+    "anchor": "That when a thing lies still, unlesse somewhat els stirre it, it will ",
+    "intro": true
+  },
+  {
+    "type": "section",
+    "number": 2,
+    "title": "Memory",
+    "anchor": "The decay of Sense in men waking, is not the decay of the motion",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 3,
+    "title": "Dreams",
+    "anchor": "The imaginations of them that sleep, are those we call Dreams. And the",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 4,
+    "title": "Apparitions Or Visions",
+    "anchor": "The most difficult discerning of a mans Dream, from his waking thought",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 5,
+    "title": "Understanding",
+    "anchor": "The Imagination that is raysed in man (or any other creature indued",
+    "intro": false
+  },
+  {
+    "type": "chapter",
+    "number": 3,
+    "title": "OF THE CONSEQUENCE OR TRAYNE OF IMAGINATIONS",
+    "anchor": "By Consequence, or Trayne of Thoughts, I understand that succession of",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 1,
+    "title": "Chapter Introduction",
+    "anchor": "By Consequence, or Trayne of Thoughts, I understand that succession of",
+    "intro": true
+  },
+  {
+    "type": "section",
+    "number": 2,
+    "title": "Trayne Of Thoughts Unguided",
+    "anchor": "This Trayne of Thoughts, or Mentall Discourse, is of two sorts. The fi",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 3,
+    "title": "Trayne Of Thoughts Regulated",
+    "anchor": "The second is more constant; as being Regulated by some desire, and de",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 4,
+    "title": "Remembrance",
+    "anchor": "The Trayn of regulated Thoughts is of two kinds; One, when of an",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 5,
+    "title": "Prudence",
+    "anchor": "Sometime a man desires to know the event of an action; and then",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 6,
+    "title": "Signes",
+    "anchor": "A Signe, is the Event Antecedent, of the Consequent; and contrarily, t",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 7,
+    "title": "Conjecture Of The Time Past",
+    "anchor": "As Prudence is a Praesumtion of the Future, contracted from the Experi",
+    "intro": false
+  },
+  {
+    "type": "chapter",
+    "number": 4,
+    "title": "OF SPEECH",
+    "anchor": "The Invention of Printing, though ingenious, compared with the inventi",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 1,
+    "title": "Originall Of Speech",
+    "anchor": "The Invention of Printing, though ingenious, compared with the inventi",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 2,
+    "title": "The Use Of Speech",
+    "anchor": "The generall use of Speech, is to transferre our Mentall Discourse, in",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 3,
+    "title": "Abuses Of Speech",
+    "anchor": "To these Uses, there are also foure correspondent Abuses. First, when ",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 4,
+    "title": "Names Proper & Common Universall",
+    "anchor": "Of Names, some are Proper, and singular to one onely thing; as Peter,",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 5,
+    "title": "Subject To Names",
+    "anchor": "Subject To Names, is whatsoever can enter into, or be considered in an",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 6,
+    "title": "Use Of Names Positive",
+    "anchor": "And this is all the variety of Names Positive; which are put to mark s",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 7,
+    "title": "Negative Names With Their Uses",
+    "anchor": "There be also other Names, called Negative; which are notes to signifi",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 8,
+    "title": "Words Insignificant",
+    "anchor": "All other names, are but insignificant sounds; and those of two sorts.",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 9,
+    "title": "Understanding",
+    "anchor": "When a man upon the hearing of any Speech, hath those thoughts which t",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 10,
+    "title": "Inconstant Names",
+    "anchor": "The names of such things as affect us, that is, which please, and disp",
+    "intro": false
+  },
+  {
+    "type": "chapter",
+    "number": 5,
+    "title": "OF REASON, AND SCIENCE.",
+    "anchor": "When a man Reasoneth, hee does nothing els but conceive a summe totall",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 1,
+    "title": "Reason What It Is",
+    "anchor": "When a man Reasoneth, hee does nothing els but conceive a summe totall",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 2,
+    "title": "Reason Defined",
+    "anchor": "Out of all which we may define, (that is to say determine,) what that ",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 3,
+    "title": "Right Reason Where",
+    "anchor": "And as in Arithmetique, unpractised men must, and Professors themselve",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 4,
+    "title": "The Use Of Reason",
+    "anchor": "The Use and End of Reason, is not the finding of the summe, and truth",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 5,
+    "title": "Of Error And Absurdity",
+    "anchor": "When a man reckons without the use of words, which may be done in part",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 6,
+    "title": "Causes Of Absurditie",
+    "anchor": "The first cause of Absurd conclusions I ascribe to the want of Method;",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 7,
+    "title": "Science",
+    "anchor": "By this it appears that Reason is not as Sense, and Memory, borne",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 8,
+    "title": "Prudence & Sapience, With Their Difference",
+    "anchor": "As, much Experience, is Prudence; so, is much Science, Sapience. For t",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 9,
+    "title": "Signes Of Science",
+    "anchor": "The signes of Science, are some, certain and infallible; some, uncerta",
+    "intro": false
+  },
+  {
+    "type": "chapter",
+    "number": 6,
+    "title": "OF THE INTERIOUR BEGINNINGS OF VOLUNTARY MOTIONS COMMONLY CALLED THE PASSIONS, AND THE SPEECHES BY WHICH THEY ARE EXPRESSED.",
+    "anchor": "There be in Animals, two sorts of Motions peculiar to them: One called",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 1,
+    "title": "Motion Vitall And Animal",
+    "anchor": "There be in Animals, two sorts of Motions peculiar to them: One called",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 2,
+    "title": "Endeavour; Appetite; Desire; Hunger; Thirst; Aversion",
+    "anchor": "This Endeavour, when it is toward something which causes it, is called",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 3,
+    "title": "Contempt",
+    "anchor": "Those things which we neither Desire, nor Hate, we are said to Contemn",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 4,
+    "title": "Good Evill",
+    "anchor": "But whatsoever is the object of any mans Appetite or Desire; that is i",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 5,
+    "title": "Pulchrum Turpe; Delightfull Profitable; Unpleasant Unprofitable",
+    "anchor": "The Latine Tongue has two words, whose significations approach to thos",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 6,
+    "title": "Delight Displeasure",
+    "anchor": "As, in Sense, that which is really within us, is (As I have sayd",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 7,
+    "title": "Pleasure Offence",
+    "anchor": "This Motion, which is called Appetite, and for the apparence of it Del",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 8,
+    "title": "Pleasures Of Sense; Pleasures Of The Mind; Joy Paine Griefe",
+    "anchor": "Of Pleasures, or Delights, some arise from the sense of an object Pres",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 9,
+    "title": "The Will",
+    "anchor": "In Deliberation, the last Appetite, or Aversion, immediately adhaering",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 10,
+    "title": "Formes Of Speech, In Passion",
+    "anchor": "The formes of Speech by which the Passions are expressed, are partly t",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 11,
+    "title": "Good And Evill Apparent",
+    "anchor": "And because in Deliberation the Appetites and Aversions are raised by ",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 12,
+    "title": "Felicity",
+    "anchor": "Continual Successe in obtaining those things which a man from time to ",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 13,
+    "title": "Praise Magnification",
+    "anchor": "The form of speech whereby men signifie their opinion of the Goodnesse",
+    "intro": false
+  },
+  {
+    "type": "chapter",
+    "number": 7,
+    "title": "OF THE ENDS OR RESOLUTIONS OF DISCOURSE",
+    "anchor": "Of all Discourse, governed by desire of Knowledge, there is at last an",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 1,
+    "title": "Chapter Introduction",
+    "anchor": "Of all Discourse, governed by desire of Knowledge, there is at last an",
+    "intro": true
+  },
+  {
+    "type": "section",
+    "number": 2,
+    "title": "Judgement, or Sentence Final; Doubt",
+    "anchor": "If the Discourse be meerly Mentall, it consisteth of thoughts that the",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 3,
+    "title": "Science Opinion Conscience",
+    "anchor": "And therefore, when the Discourse is put into Speech, and begins with ",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 4,
+    "title": "Beliefe Faith",
+    "anchor": "When a mans Discourse beginneth not at Definitions, it beginneth eithe",
+    "intro": false
+  },
+  {
+    "type": "chapter",
+    "number": 8,
+    "title": "OF THE VERTUES COMMONLY CALLED INTELLECTUAL, AND THEIR CONTRARY DEFECTS",
+    "anchor": "Vertue generally, in all sorts of subjects, is somewhat that is valued",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 1,
+    "title": "Intellectuall Vertue Defined",
+    "anchor": "Vertue generally, in all sorts of subjects, is somewhat that is valued",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 2,
+    "title": "Wit, Naturall, Or Acquired",
+    "anchor": "These Vertues are of two sorts; Naturall, and Acquired. By Naturall, I",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 3,
+    "title": "Good Wit, Or Fancy; Good Judgement; Discretion",
+    "anchor": "And this difference of quicknesse, is caused by the difference of mens",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 4,
+    "title": "Prudence",
+    "anchor": "When the thoughts of a man, that has a designe in hand, running over a",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 5,
+    "title": "Craft",
+    "anchor": "To Prudence, if you adde the use of unjust, or dishonest means, such a",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 6,
+    "title": "Acquired Wit",
+    "anchor": "As for Acquired Wit, (I mean acquired by method and instruction,) ther",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 7,
+    "title": "Giddinesse Madnesse",
+    "anchor": "And therefore, a man who has no great Passion for any of these things;",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 8,
+    "title": "Rage",
+    "anchor": "Pride, subjecteth a man to Anger, the excesse whereof, is the Madnesse",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 9,
+    "title": "Melancholy",
+    "anchor": "Dejection, subjects a man to causelesse fears; which is a Madnesse com",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 10,
+    "title": "Insignificant Speech",
+    "anchor": "There is yet another fault in the Discourses of some men; which may al",
+    "intro": false
+  },
+  {
+    "type": "chapter",
+    "number": 9,
+    "title": "OF THE SEVERALL SUBJECTS OF KNOWLEDGE",
+    "anchor": "There are of KNOWLEDGE two kinds; whereof one is Knowledge Of Fact: th",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 1,
+    "title": "Chapter Introduction",
+    "anchor": "There are of KNOWLEDGE two kinds; whereof one is Knowledge Of Fact: th",
+    "intro": true
+  },
+  {
+    "type": "chapter",
+    "number": 10,
+    "title": "OF POWER, WORTH, DIGNITY, HONOUR AND WORTHINESS",
+    "anchor": "The POWER of a Man, (to take it Universally,) is his present means, to",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 1,
+    "title": "Power",
+    "anchor": "The POWER of a Man, (to take it Universally,) is his present",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 2,
+    "title": "Worth",
+    "anchor": "The Value, or WORTH of a man, is as of all other",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 3,
+    "title": "Dignity",
+    "anchor": "The publique worth of a man, which is the Value set on",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 4,
+    "title": "To Honour and Dishonour",
+    "anchor": "To pray to another, for ayde of any kind, is to HONOUR;",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 5,
+    "title": "Titles of Honour",
+    "anchor": "Titles of Honour, such as are Duke, Count, Marquis, and Baron, are",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 6,
+    "title": "Worthinesse Fitnesse",
+    "anchor": "WORTHINESSE, is a thing different from the worth, or value of a",
+    "intro": false
+  },
+  {
+    "type": "chapter",
+    "number": 11,
+    "title": "OF THE DIFFERENCE OF MANNERS",
+    "anchor": "By MANNERS, I mean not here, Decency of behaviour; as how one man shou",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 1,
+    "title": "What Is Here Meant By Manners",
+    "anchor": "By MANNERS, I mean not here, Decency of behaviour; as how one",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 2,
+    "title": "A Restlesse Desire Of Power, In All Men",
+    "anchor": "So that in the first place, I put for a generall inclination",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 3,
+    "title": "Love Of Contention From Competition",
+    "anchor": "Competition of Riches, Honour, command, or other power, enclineth to C",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 4,
+    "title": "Civil Obedience From Love Of Ease",
+    "anchor": "Desire of Ease, and sensuall Delight, disposeth men to obey a common",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 5,
+    "title": "From Feare Of Death Or Wounds",
+    "anchor": "Fear of Death, and Wounds, disposeth to the same; and for the",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 6,
+    "title": "And From Love Of Arts",
+    "anchor": "Desire of Knowledge, and Arts of Peace, enclineth men to obey a",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 7,
+    "title": "Love Of Vertue, From Love Of Praise",
+    "anchor": "Desire of Praise, disposeth to laudable actions, such as please them w",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 8,
+    "title": "Hate, From Difficulty Of Requiting Great Benefits",
+    "anchor": "To have received from one, to whom we think our selves equall,",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 9,
+    "title": "And From Conscience Of Deserving To Be Hated",
+    "anchor": "To have done more hurt to a man, than he can, or",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 10,
+    "title": "Promptnesse To Hurt, From Fear",
+    "anchor": "Feare of oppression, disposeth a man to anticipate, or to seek ayd",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 11,
+    "title": "And From Distrust Of Their Own Wit",
+    "anchor": "Men that distrust their own subtilty, are in tumult, and sedition, bet",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 12,
+    "title": "Vain Undertaking From Vain-glory",
+    "anchor": "Vain-glorious men, such as without being conscious to themselves of gr",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 13,
+    "title": "Ambition, From Opinion Of Sufficiency",
+    "anchor": "Men that have a strong opinion of their own wisdome in matter",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 14,
+    "title": "Irresolution, From Too Great Valuing Of Small Matters",
+    "anchor": "Pusillanimity disposeth men to Irresolution, and consequently to lose ",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 15,
+    "title": "And From The Ignorance Of Naturall Causes",
+    "anchor": "Want of Science, that is, Ignorance of causes, disposeth, or rather co",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 16,
+    "title": "And From Want Of Understanding",
+    "anchor": "Ignorance of the signification of words; which is, want of understandi",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 17,
+    "title": "Credulity From Ignorance Of Nature",
+    "anchor": "Ignorance of naturall causes disposeth a man to Credulity, so as to",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 18,
+    "title": "Curiosity To Know, From Care Of Future Time",
+    "anchor": "Anxiety for the future time, disposeth men to enquire into the causes",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 19,
+    "title": "Naturall Religion, From The Same",
+    "anchor": "Curiosity, or love of the knowledge of causes, draws a man from",
+    "intro": false
+  },
+  {
+    "type": "chapter",
+    "number": 12,
+    "title": "OF RELIGION",
+    "anchor": "Seeing there are no signes, nor fruit of Religion, but in Man onely; t",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 1,
+    "title": "Religion, In Man Onely",
+    "anchor": "Seeing there are no signes, nor fruit of Religion, but in Man",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 2,
+    "title": "First, From His Desire Of Knowing Causes",
+    "anchor": "And first, it is peculiar to the nature of Man, to be",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 3,
+    "title": "From The Consideration Of The Beginning Of Things",
+    "anchor": "Secondly, upon the sight of any thing that hath a Beginning, to",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 4,
+    "title": "From His Observation Of The Sequell Of Things",
+    "anchor": "Thirdly, whereas there is no other Felicity of Beasts, but the enjoyin",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 5,
+    "title": "Which Makes Them Fear The Power Of Invisible Things",
+    "anchor": "This perpetuall feare, alwayes accompanying mankind in the ignorance o",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 6,
+    "title": "And Suppose Them Incorporeall",
+    "anchor": "And for the matter, or substance of the Invisible Agents, so fancyed;",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 7,
+    "title": "But Know Not The Way How They Effect Anything",
+    "anchor": "Then, for the way by which they think these Invisible Agents wrought",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 8,
+    "title": "But Honour Them As They Honour Men",
+    "anchor": "Thirdly, for the worship which naturally men exhibite to Powers invisi",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 9,
+    "title": "And Attribute To Them All Extraordinary Events",
+    "anchor": "Lastly, concerning how these Invisible Powers declare to men the thing",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 10,
+    "title": "Foure Things, Naturall Seeds Of Religion",
+    "anchor": "And in these foure things, Opinion of Ghosts, Ignorance of second caus",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 11,
+    "title": "Made Different By Culture",
+    "anchor": "For these seeds have received culture from two sorts of men. One",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 12,
+    "title": "The Absurd Opinion Of Gentilisme",
+    "anchor": "And for that part of Religion, which consisteth in opinions concerning",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 13,
+    "title": "The Causes Of Change In Religion",
+    "anchor": "From the propagation of Religion, it is not hard to understand the",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 14,
+    "title": "Injoyning Beleefe Of Impossibilities",
+    "anchor": "That which taketh away the reputation of Wisedome, in him that formeth",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 15,
+    "title": "Doing Contrary To The Religion They Establish",
+    "anchor": "That which taketh away the reputation of Sincerity, is the doing, or",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 16,
+    "title": "Want Of The Testimony Of Miracles",
+    "anchor": "Lastly, the testimony that men can render of divine Calling, can be",
+    "intro": false
+  },
+  {
+    "type": "chapter",
+    "number": 13,
+    "title": "OF THE NATURALL CONDITION OF MANKIND, AS CONCERNING THEIR FELICITY, AND MISERY",
+    "anchor": "Nature hath made men so equall, in the faculties of body, and mind; as",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 1,
+    "title": "Chapter Introduction",
+    "anchor": "Nature hath made men so equall, in the faculties of body, and mind; as",
+    "intro": true
+  },
+  {
+    "type": "section",
+    "number": 2,
+    "title": "From Equality Proceeds Diffidence",
+    "anchor": "From this equality of ability, ariseth equality of hope in the attaini",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 3,
+    "title": "From Diffidence Warre",
+    "anchor": "And from this diffidence of one another, there is no way for",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 4,
+    "title": "Out Of Civil States, There Is Alwayes Warre Of Every One Against Every One",
+    "anchor": "Hereby it is manifest, that during the time men live without a",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 5,
+    "title": "The Incommodities Of Such A War",
+    "anchor": "Whatsoever therefore is consequent to a time of Warre, where every man",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 6,
+    "title": "In Such A Warre, Nothing Is Unjust",
+    "anchor": "To this warre of every man against every man, this also is",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 7,
+    "title": "The Passions That Incline Men To Peace",
+    "anchor": "The Passions that encline men to Peace, are Feare of Death; Desire",
+    "intro": false
+  },
+  {
+    "type": "chapter",
+    "number": 14,
+    "title": "OF THE FIRST AND SECOND NATURALL LAWES, AND OF CONTRACTS",
+    "anchor": "The RIGHT OF NATURE, which Writers commonly call Jus Naturale, is the ",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 1,
+    "title": "Right Of Nature What",
+    "anchor": "The RIGHT OF NATURE, which Writers commonly call Jus Naturale, is the",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 2,
+    "title": "Liberty What",
+    "anchor": "By LIBERTY, is understood, according to the proper signification of th",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 3,
+    "title": "A Law Of Nature What",
+    "anchor": "A LAW OF NATURE, (Lex Naturalis,) is a Precept, or generall Rule,",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 4,
+    "title": "Naturally Every Man Has Right To Everything",
+    "anchor": "And because the condition of Man, (as hath been declared in the",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 5,
+    "title": "The Fundamental Law Of Nature",
+    "anchor": "And consequently it is a precept, or generall rule of Reason, “That",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 6,
+    "title": "The Second Law Of Nature",
+    "anchor": "From this Fundamentall Law of Nature, by which men are commanded to",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 7,
+    "title": "What it is to lay down a Right",
+    "anchor": "To Lay Downe a mans Right to any thing, is to Devest",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 8,
+    "title": "Renouncing (or) Transferring Right What; Obligation Duty Injustice",
+    "anchor": "Right is layd aside, either by simply Renouncing it; or by Transferrin",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 9,
+    "title": "Not All Rights Are Alienable",
+    "anchor": "Whensoever a man Transferreth his Right, or Renounceth it; it is eithe",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 10,
+    "title": "Contract What",
+    "anchor": "The mutuall transferring of Right, is that which men call CONTRACT.",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 11,
+    "title": "Covenant What",
+    "anchor": "Again, one of the Contractors, may deliver the Thing contracted for on",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 12,
+    "title": "Free-gift",
+    "anchor": "When the transferring of Right, is not mutuall; but one of the",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 13,
+    "title": "Signes Of Contract Expresse",
+    "anchor": "Signes of Contract, are either Expresse, or By Inference. Expresse, ar",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 14,
+    "title": "Signes Of Contract By Inference",
+    "anchor": "Signes by Inference, are sometimes the consequence of Words; sometimes",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 15,
+    "title": "Free Gift Passeth By Words Of The Present Or Past",
+    "anchor": "Words alone, if they be of the time to come, and contain",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 16,
+    "title": "Merit What",
+    "anchor": "He that performeth first in the case of a Contract, is said",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 17,
+    "title": "Covenants Of Mutuall Trust, When Invalid",
+    "anchor": "If a Covenant be made, wherein neither of the parties performe present",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 18,
+    "title": "Right To The End, Containeth Right To The Means",
+    "anchor": "He that transferreth any Right, transferreth the Means of enjoying it,",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 19,
+    "title": "No Covenant With Beasts",
+    "anchor": "To make Covenant with bruit Beasts, is impossible; because not underst",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 20,
+    "title": "Nor With God Without Speciall Revelation",
+    "anchor": "To make Covenant with God, is impossible, but by Mediation of such",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 21,
+    "title": "No Covenant, But Of Possible And Future",
+    "anchor": "The matter, or subject of a Covenant, is alwayes something that fallet",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 22,
+    "title": "Covenants How Made Voyd",
+    "anchor": "Men are freed of their Covenants two wayes; by Performing; or by",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 23,
+    "title": "Covenants Extorted By Feare Are Valide",
+    "anchor": "Covenants entred into by fear, in the condition of meer Nature, are",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 24,
+    "title": "The Former Covenant To One, Makes Voyd The Later To Another",
+    "anchor": "A former Covenant, makes voyd a later. For a man that hath",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 25,
+    "title": "A Mans Covenant Not To Defend Himselfe, Is Voyd",
+    "anchor": "A Covenant not to defend my selfe from force, by force, is",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 26,
+    "title": "No Man Obliged To Accuse Himselfe",
+    "anchor": "A Covenant to accuse ones Selfe, without assurance of pardon, is likew",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 27,
+    "title": "The End Of An Oath; The Forme Of As Oath",
+    "anchor": "The force of Words, being (as I have formerly noted) too weak",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 28,
+    "title": "No Oath, But By God",
+    "anchor": "By this it appears, that an Oath taken according to any other",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 29,
+    "title": "An Oath Addes Nothing To The Obligation",
+    "anchor": "It appears also, that the Oath addes nothing to the Obligation. For",
+    "intro": false
+  },
+  {
+    "type": "chapter",
+    "number": 15,
+    "title": "OF OTHER LAWES OF NATURE",
+    "anchor": "From that law of Nature, by which we are obliged to transferre to anot",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 1,
+    "title": "The Third Law Of Nature, Justice",
+    "anchor": "From that law of Nature, by which we are obliged to transferre",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 2,
+    "title": "Justice And Injustice What",
+    "anchor": "And in this law of Nature, consisteth the Fountain and Originall of",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 3,
+    "title": "Justice Not Contrary To Reason",
+    "anchor": "The Foole hath sayd in his heart, there is no such thing",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 4,
+    "title": "Covenants Not Discharged By The Vice Of The Person To Whom Made",
+    "anchor": "Others, that allow for a Law of Nature, the keeping of Faith,",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 5,
+    "title": "Justice Of Men, And Justice Of Actions What",
+    "anchor": "The names of Just, and Unjust, when they are attributed to Men,",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 6,
+    "title": "Justice Of Manners, And Justice Of Actions",
+    "anchor": "Again, the Injustice of Manners, is the disposition, or aptitude to do",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 7,
+    "title": "Nothing Done To A Man, By His Own Consent Can Be Injury",
+    "anchor": "Whatsoever is done to a man, conformable to his own Will signified",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 8,
+    "title": "Justice Commutative, And Distributive",
+    "anchor": "Justice of Actions, is by Writers divided into Commutative, and Distri",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 9,
+    "title": "The Fourth Law Of Nature, Gratitude",
+    "anchor": "As Justice dependeth on Antecedent Covenant; so does Gratitude depend ",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 10,
+    "title": "The Fifth, Mutuall accommodation, or Compleasance",
+    "anchor": "A fifth Law of Nature, is COMPLEASANCE; that is to say, “That",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 11,
+    "title": "The Sixth, Facility To Pardon",
+    "anchor": "A sixth Law of Nature is this, “That upon caution of the",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 12,
+    "title": "The Seventh, That In Revenges, Men Respect Onely The Future Good",
+    "anchor": "A seventh is, “That in Revenges, (that is, retribution of evil for",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 13,
+    "title": "The Eighth, Against Contumely",
+    "anchor": "And because all signes of hatred, or contempt, provoke to fight; insom",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 14,
+    "title": "The Ninth, Against Pride",
+    "anchor": "The question who is the better man, has no place in the",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 15,
+    "title": "The Tenth Against Arrogance",
+    "anchor": "On this law, dependeth another, “That at the entrance into conditions ",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 16,
+    "title": "The Eleventh Equity",
+    "anchor": "Also “If a man be trusted to judge between man and man,”",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 17,
+    "title": "The Twelfth, Equall Use Of Things Common",
+    "anchor": "And from this followeth another law, “That such things as cannot be",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 18,
+    "title": "The Thirteenth, Of Lot",
+    "anchor": "But some things there be, that can neither be divided, nor enjoyed",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 19,
+    "title": "The Fourteenth, Of Primogeniture, And First Seising",
+    "anchor": "Of Lots there be two sorts, Arbitrary, and Naturall. Arbitrary, is tha",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 20,
+    "title": "The Fifteenth, Of Mediators",
+    "anchor": "It is also a Law of Nature, “That all men that mediate",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 21,
+    "title": "The Sixteenth, Of Submission To Arbitrement",
+    "anchor": "And because, though men be never so willing to observe these Lawes,",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 22,
+    "title": "The Seventeenth, No Man Is His Own Judge",
+    "anchor": "And seeing every man is presumed to do all things in order",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 23,
+    "title": "The Eighteenth, No Man To Be Judge, That Has In Him Cause Of Partiality",
+    "anchor": "For the same reason no man in any Cause ought to be",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 24,
+    "title": "The Nineteenth, Of Witnesse",
+    "anchor": "And in a controversie of Fact, the Judge being to give no",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 25,
+    "title": "A Rule, By Which The Laws Of Nature May Easily Be Examined",
+    "anchor": "And though this may seem too subtile a deduction of the Lawes",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 26,
+    "title": "The Lawes Of Nature Oblige In Conscience Alwayes,",
+    "anchor": "But In Effect Then Onely When There Is Security The Lawes of",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 27,
+    "title": "The Laws Of Nature Are Eternal;",
+    "anchor": "The Lawes of Nature are Immutable and Eternall, For Injustice, Ingrati",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 28,
+    "title": "And Yet Easie",
+    "anchor": "The same Lawes, because they oblige onely to a desire, and endeavour,",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 29,
+    "title": "The Science Of These Lawes, Is The True Morall Philosophy",
+    "anchor": "And the Science of them, is the true and onely Moral Philosophy.",
+    "intro": false
+  },
+  {
+    "type": "chapter",
+    "number": 16,
+    "title": "OF PERSONS, AUTHORS, AND THINGS PERSONATED",
+    "anchor": "A PERSON, is he “whose words or actions are considered, either as his ",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 1,
+    "title": "Chapter Introduction",
+    "anchor": "A PERSON, is he “whose words or actions are considered, either as his ",
+    "intro": true
+  },
+  {
+    "type": "section",
+    "number": 2,
+    "title": "Person Naturall, And Artificiall",
+    "anchor": "When they are considered as his owne, then is he called a",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 3,
+    "title": "The Word Person, Whence",
+    "anchor": "The word Person is latine: instead whereof the Greeks have Prosopon, w",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 4,
+    "title": "Actor, Author; Authority",
+    "anchor": "Of Persons Artificiall, some have their words and actions Owned by tho",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 5,
+    "title": "Covenants By Authority, Bind The Author",
+    "anchor": "From hence it followeth, that when the Actor maketh a Covenant by",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 6,
+    "title": "But Not The Actor",
+    "anchor": "When the Actor doth any thing against the Law of Nature by",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 7,
+    "title": "The Authority Is To Be Shewne",
+    "anchor": "And he that maketh a Covenant with the Author, by mediation of",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 8,
+    "title": "Things Personated, Inanimate",
+    "anchor": "There are few things, that are uncapable of being represented by Ficti",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 9,
+    "title": "Irrational",
+    "anchor": "Likewise Children, Fooles, and Mad-men that have no use of Reason, may",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 10,
+    "title": "False Gods",
+    "anchor": "An Idol, or meer Figment of the brain, may be Personated; as",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 11,
+    "title": "The True God",
+    "anchor": "The true God may be Personated. As he was; first, by Moses;",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 12,
+    "title": "A Multitude Of Men, How One Person",
+    "anchor": "A Multitude of men, are made One Person, when they are by",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 13,
+    "title": "Every One Is Author",
+    "anchor": "And because the Multitude naturally is not One, but Many; they cannot",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 14,
+    "title": "An Actor May Be Many Men Made One By Plurality Of Voyces",
+    "anchor": "And if the Representative consist of many men, the voyce of the",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 15,
+    "title": "Representatives, When The Number Is Even, Unprofitable",
+    "anchor": "And a Representative of even number, especially when the number is not",
+    "intro": false
+  },
+  {
+    "type": "section",
+    "number": 16,
+    "title": "Negative Voyce",
+    "anchor": "Or if the number be odde, as three, or more, (men, or",
+    "intro": false
+  }
+];
+const tree = document.getElementById('tree');
+let currentChapter = null;
+data.forEach(item => {
+  if (item.type === 'chapter') {
+    currentChapter = item;
+    const d = document.createElement('div');
+    d.className = 'chapter';
+    d.innerHTML = '<div class="chapter-label">Chapter ' + item.number + '</div>'
+                + '<div class="chapter-title">' + item.title + '</div>';
+    tree.appendChild(d);
+  } else {
+    const d = document.createElement('div');
+    const orphan = currentChapter === null ? ' orphan' : '';
+    const intro  = item.intro ? ' intro' : '';
+    d.className = 'section' + orphan + intro;
+    const tc = item.intro ? 'sec-title intro-label'
+             : item.title === 'No Title' ? 'sec-title notitle'
+             : 'sec-title';
+    d.innerHTML = '<span class="sec-num">§' + item.number + '</span>'
+                + '<span class="' + tc + '">' + item.title + '</span>'
+                + '<span class="anchor">' + item.anchor + '…</span>';
+    tree.appendChild(d);
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+[
+  {
+    "term": "Example Term",
+    "quote": "Verbatim sentence from the text where the term is defined or used most meaningfully.",
+    "chapter_ref": "Chapter 1, Chapter Title, Section: Section Title",
+    "importance": "High",
+    "aliases": [
+      "ExampleTerm",
+      "AltSpelling"
+    ],
+    "frequency": 10,
+    "chapters": [1, 3, 5]
+  },
+  {
+    "term": "Second Term",
+    "quote": "Another defining sentence extracted verbatim from the source text.",
+    "chapter_ref": "Chapter 2, Second Chapter Title, Section: Opening Section",
+    "importance": "Medium",
+    "aliases": [],
+    "frequency": 4,
+    "chapters": [2]
+  },
+  {
+    "term": "Third",
+    "quote": "A sentence that gives context for this single-word term.",
+    "chapter_ref": "Chapter 1, Chapter Title, Section: Another Section",
+    "importance": "Low",
+    "aliases": [
+      "ThirdForm"
+    ],
+    "frequency": 2,
+    "chapters": [1, 2]
+  }
+]

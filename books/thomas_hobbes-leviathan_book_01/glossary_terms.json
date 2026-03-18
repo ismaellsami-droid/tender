@@ -1,0 +1,1219 @@
+[
+  {
+    "term": "Sense",
+    "quote": "The Originall of them all, is that which we call Sense; (For there is no conception in a mans mind, which hath not at first, totally, or by parts, been begotten upon the organs of Sense.)",
+    "chapter_ref": "CHAPTER I; No Title",
+    "importance": "High",
+    "aliases": [
+      "Sence",
+      "Originall Fancy"
+    ],
+    "frequency": 142,
+    "chapters": [1, 2, 3, 4, 5, 6, 8, 9, 12, 13]
+  },
+  {
+    "term": "Object",
+    "quote": "Singly, they are every one a Representation or Apparence, of some quality, or other Accident of a body without us; which is commonly called an Object.",
+    "chapter_ref": "CHAPTER I; No Title",
+    "importance": "Medium",
+    "aliases": [
+      "Objectum",
+      "Externall Body"
+    ],
+    "frequency": 84,
+    "chapters": [1, 2, 3, 6, 11]
+  },
+  {
+    "term": "Fancy",
+    "quote": "And this Seeming, or Fancy, is that which men call sense; and consisteth, as to the Eye, in a Light, or Colour Figured.",
+    "chapter_ref": "CHAPTER I; No Title",
+    "importance": "Medium",
+    "aliases": [
+      "Phantasme",
+      "Seeming"
+    ],
+    "frequency": 65,
+    "chapters": [1, 2, 3, 4, 5, 6, 8, 12]
+  },
+  {
+    "term": "Imagination",
+    "quote": "Imagination therefore is nothing but Decaying Sense; and is found in men, and many other living Creatures, as well sleeping, as waking.",
+    "chapter_ref": "CHAPTER II; No Title",
+    "importance": "High",
+    "aliases": [
+      "Decaying Sense",
+      "Imaginatio"
+    ],
+    "frequency": 92,
+    "chapters": [2, 3, 4, 6, 8, 11]
+  },
+  {
+    "term": "Memory",
+    "quote": "But when we would express the Decay, and signifie that the Sense is fading, old, and past, it is called Memory.",
+    "chapter_ref": "CHAPTER II; Memory",
+    "importance": "Medium",
+    "aliases": [
+      "Memorie"
+    ],
+    "frequency": 58,
+    "chapters": [2, 3, 4, 5, 7, 8, 9, 12]
+  },
+  {
+    "term": "Experience",
+    "quote": "Much memory, or memory of many things, is called Experience.",
+    "chapter_ref": "CHAPTER II; Memory",
+    "importance": "Medium",
+    "aliases": [
+      "Experientia"
+    ],
+    "frequency": 74,
+    "chapters": [2, 3, 4, 5, 8, 13]
+  },
+  {
+    "term": "Dreams",
+    "quote": "The imaginations of them that sleep, are those we call Dreams.",
+    "chapter_ref": "CHAPTER II; Dreams",
+    "importance": "Low",
+    "aliases": [
+      "Dreames",
+      "Imaginations of them that sleep"
+    ],
+    "frequency": 46,
+    "chapters": [2, 12]
+  },
+  {
+    "term": "Understanding",
+    "quote": "The Imagination that is raysed in man (or any other creature indued with the faculty of imagining) by words, or other voluntary signes, is that we generally call Understanding; and is common to Man and Beast.",
+    "chapter_ref": "CHAPTER II; Understanding",
+    "importance": "High",
+    "aliases": [
+      "Conception caused by Speech"
+    ],
+    "frequency": 81,
+    "chapters": [2, 4, 8, 11]
+  },
+  {
+    "term": "Mentall Discourse",
+    "quote": "By Consequence, or Trayne of Thoughts, I understand that succession of one Thought to another, which is called (to distinguish it from Discourse in words) Mentall Discourse.",
+    "chapter_ref": "CHAPTER III; No Title",
+    "importance": "Medium",
+    "aliases": [
+      "Discourse of the Mind",
+      "Consequence of Thoughts"
+    ],
+    "frequency": 12,
+    "chapters": [3, 4, 7]
+  },
+  {
+    "term": "Prudence",
+    "quote": "Which kind of thoughts, is called Foresight, and Prudence, or Providence; and sometimes Wisdome; though such conjecture, through the difficulty of observing all circumstances, be very fallacious.",
+    "chapter_ref": "CHAPTER III; Prudence",
+    "importance": "Medium",
+    "aliases": [
+      "Prudentia",
+      "Providence",
+      "Foresight"
+    ],
+    "frequency": 55,
+    "chapters": [3, 5, 8, 10, 13]
+  },
+  {
+    "term": "Signe",
+    "quote": "A Signe, is the Event Antecedent, of the Consequent; and contrarily, the Consequent of the Antecedent, when the like Consequences have been observed, before.",
+    "chapter_ref": "CHAPTER III; Signes",
+    "importance": "Medium",
+    "aliases": [
+      "Signes",
+      "Prognostique"
+    ],
+    "frequency": 68,
+    "chapters": [3, 4, 5, 12]
+  },
+  {
+    "term": "Conjecture",
+    "quote": "But his conjecture, has the same incertainty almost with the conjecture of the Future; both being grounded onely upon Experience.",
+    "chapter_ref": "CHAPTER III; Conjecture Of The Time Past",
+    "importance": "Low",
+    "aliases": [
+      "Praesumtion"
+    ],
+    "frequency": 14,
+    "chapters": [3, 5, 12]
+  },
+  {
+    "term": "Infinite",
+    "quote": "Therefore there is no Idea, or conception of anything we call Infinite.",
+    "chapter_ref": "CHAPTER III; Conjecture Of The Time Past",
+    "importance": "Medium",
+    "aliases": [
+      "Incomprehensible"
+    ],
+    "frequency": 22,
+    "chapters": [3, 4, 12]
+  },
+  {
+    "term": "Printing",
+    "quote": "The Invention of Printing, though ingenious, compared with the invention of Letters, is no great matter.",
+    "chapter_ref": "CHAPTER IV; Originall Of Speech",
+    "importance": "Low",
+    "aliases": [
+      "Typographia"
+    ],
+    "frequency": 1,
+    "chapters": [4]
+  },
+  {
+    "term": "Letters",
+    "quote": "But who was the first that found the use of Letters, is not known.",
+    "chapter_ref": "CHAPTER IV; Originall Of Speech",
+    "importance": "Medium",
+    "aliases": [
+      "Characters"
+    ],
+    "frequency": 9,
+    "chapters": [4, 5, 13]
+  },
+  {
+    "term": "Markes",
+    "quote": "So that the first use of names, is to serve for Markes, or Notes of remembrance.",
+    "chapter_ref": "CHAPTER IV; The Use Of Speech",
+    "importance": "Medium",
+    "aliases": [
+      "Marks",
+      "Notes of remembrance"
+    ],
+    "frequency": 16,
+    "chapters": [4, 5]
+  },
+  {
+    "term": "Notes",
+    "quote": "Another is, when many use the same words, to signifie (by their connexion and order,) one to another, what they conceive, or think of each matter... and for this use they are called Signes.",
+    "chapter_ref": "CHAPTER IV; The Use Of Speech",
+    "importance": "Low",
+    "aliases": [
+      "Signes"
+    ],
+    "frequency": 12,
+    "chapters": [4]
+  },
+  {
+    "term": "Thought",
+    "quote": "Concerning the Thoughts of man, I will consider them first Singly, and afterwards in Trayne, or dependance upon one another.",
+    "chapter_ref": "CHAPTER I; No Title",
+    "importance": "High",
+    "aliases": [
+      "Representation",
+      "Apparence",
+      "Fancy"
+    ],
+    "frequency": 165,
+    "chapters": [1, 2, 3, 4, 5, 6, 7, 8, 11, 12]
+  },
+  {
+    "term": "Apparence",
+    "quote": "Singly, they are every one a Representation or Apparence, of some quality, or other Accident of a body without us.",
+    "chapter_ref": "CHAPTER I; No Title",
+    "importance": "Medium",
+    "aliases": [
+      "Appearance",
+      "Seeming"
+    ],
+    "frequency": 45,
+    "chapters": [1, 6, 16]
+  },
+  {
+    "term": "Trayne of Thoughts",
+    "quote": "By Consequence, or Trayne of Thoughts, I understand that succession of one Thought to another.",
+    "chapter_ref": "CHAPTER III; No Title",
+    "importance": "High",
+    "aliases": [
+      "Trayne",
+      "Cohaerence",
+      "Mentall Discourse"
+    ],
+    "frequency": 28,
+    "chapters": [1, 3, 4]
+  },
+  {
+    "term": "Speech",
+    "quote": "The most noble and profitable invention of all other, was that of Speech, consisting of Names or Apellations, and their Connexion.",
+    "chapter_ref": "CHAPTER IV; Originall Of Speech",
+    "importance": "High",
+    "aliases": [
+      "Sermo",
+      "Verbal Discourse"
+    ],
+    "frequency": 155,
+    "chapters": [4, 5, 6, 8, 9, 12]
+  },
+  {
+    "term": "Names",
+    "quote": "One Universall name is imposed on many things, for their similitude in some quality, or other accident.",
+    "chapter_ref": "CHAPTER IV; Names Proper & Common Universall",
+    "importance": "High",
+    "aliases": [
+      "Apellations",
+      "Nomina"
+    ],
+    "frequency": 210,
+    "chapters": [4, 5, 7, 8, 10, 13, 15]
+  },
+  {
+    "term": "Universall",
+    "quote": "there being nothing in the world Universall but Names; for the things named, are every one of them Individual and Singular.",
+    "chapter_ref": "CHAPTER IV; Names Proper & Common Universall",
+    "importance": "High",
+    "aliases": [
+      "Universals"
+    ],
+    "frequency": 38,
+    "chapters": [4, 5]
+  },
+  {
+    "term": "Definition",
+    "quote": "which settling of significations, they call Definitions; and place them in the beginning of their reckoning.",
+    "chapter_ref": "CHAPTER IV; Names Proper & Common Universall",
+    "importance": "High",
+    "aliases": [
+      "Settling of significations",
+      "Explications"
+    ],
+    "frequency": 42,
+    "chapters": [4, 5, 7, 11]
+  },
+  {
+    "term": "Truth",
+    "quote": "For True and False are attributes of Speech, not of things. And where Speech is not, there is neither Truth nor Falshood.",
+    "chapter_ref": "CHAPTER IV; Names Proper & Common Universall",
+    "importance": "High",
+    "aliases": [
+      "Veritas",
+      "True"
+    ],
+    "frequency": 88,
+    "chapters": [4, 5, 7, 8, 11]
+  },
+  {
+    "term": "Falshood",
+    "quote": "And where Speech is not, there is neither Truth nor Falshood.",
+    "chapter_ref": "CHAPTER IV; Names Proper & Common Universall",
+    "importance": "Medium",
+    "aliases": [
+      "Untruth",
+      "Mendacium"
+    ],
+    "frequency": 24,
+    "chapters": [4, 12]
+  },
+  {
+    "term": "Science",
+    "quote": "Science is the knowledge of Consequences, and dependance of one fact upon another.",
+    "chapter_ref": "CHAPTER V; Science",
+    "importance": "High",
+    "aliases": [
+      "Sapience",
+      "Knowledge of Consequences"
+    ],
+    "frequency": 95,
+    "chapters": [4, 5, 7, 8, 9, 10, 11, 13, 15]
+  },
+  {
+    "term": "Reason",
+    "quote": "For Reason, in this sense, is nothing but Reckoning (that is, Adding and Substracting) of the Consequences of generall names agreed upon.",
+    "chapter_ref": "CHAPTER V; Reason Defined",
+    "importance": "High",
+    "aliases": [
+      "Ratio",
+      "Reckoning"
+    ],
+    "frequency": 190,
+    "chapters": [4, 5, 7, 8, 11, 13, 14, 15]
+  },
+  {
+    "term": "Syllogisme",
+    "quote": "And the act of reasoning they called syllogisme; which signifieth summing up of the consequences of one saying to another.",
+    "chapter_ref": "CHAPTER IV; Subject To Names",
+    "importance": "Medium",
+    "aliases": [
+      "Syllogismus",
+      "Summing up of consequences"
+    ],
+    "frequency": 18,
+    "chapters": [4, 5, 7]
+  },
+  {
+    "term": "Demonstration",
+    "quote": "and Many syllogismes to make a Demonstration; and from the Summe, or Conclusion of a syllogisme, they substract one Proposition, to finde the other.",
+    "chapter_ref": "CHAPTER V; Reason What It Is",
+    "importance": "Medium",
+    "aliases": [
+      "Proofe"
+    ],
+    "frequency": 22,
+    "chapters": [5, 8, 9]
+  },
+  {
+    "term": "Error",
+    "quote": "if that which he thought likely to follow, followes not... this is called ERROR; to which even the most prudent men are subject.",
+    "chapter_ref": "CHAPTER V; Of Error And Absurdity",
+    "importance": "Medium",
+    "aliases": [
+      "Errour",
+      "Deception"
+    ],
+    "frequency": 35,
+    "chapters": [4, 5, 10, 11]
+  },
+  {
+    "term": "Absurdity",
+    "quote": "But when we Reason in Words of generall signification, and fall upon a generall inference which is false... it is indeed an ABSURDITY, or senseless Speech.",
+    "chapter_ref": "CHAPTER V; Of Error And Absurdity",
+    "importance": "High",
+    "aliases": [
+      "Insignificant Speech",
+      "Non-sense"
+    ],
+    "frequency": 52,
+    "chapters": [4, 5, 8, 14]
+  },
+  {
+    "term": "Inconstant Names",
+    "quote": "The names of such things as affect us... are in the common discourses of men, of Inconstant signification.",
+    "chapter_ref": "CHAPTER IV; Inconstant Names",
+    "importance": "Medium",
+    "aliases": [
+      "Ambiguous words"
+    ],
+    "frequency": 12,
+    "chapters": [4, 11]
+  },
+  {
+    "term": "Addition",
+    "quote": "When a man Reasoneth, hee does nothing els but conceive a summe totall, from Addition of parcels.",
+    "chapter_ref": "CHAPTER V; Reason What It Is",
+    "importance": "Medium",
+    "aliases": [
+      "Adding"
+    ],
+    "frequency": 14,
+    "chapters": [4, 5]
+  },
+  {
+    "term": "Substraction",
+    "quote": "or conceive a Remainder, from Substraction of one summe from another.",
+    "chapter_ref": "CHAPTER V; Reason What It Is",
+    "importance": "Medium",
+    "aliases": [
+      "Substracting"
+    ],
+    "frequency": 14,
+    "chapters": [4, 5]
+  },
+  {
+    "term": "Ratiocination",
+    "quote": "The Latines called Accounts of mony Rationes, and accounting, Ratiocinatio.",
+    "chapter_ref": "CHAPTER IV; Subject To Names",
+    "importance": "Medium",
+    "aliases": [
+      "Reasoning"
+    ],
+    "frequency": 10,
+    "chapters": [4, 5, 8]
+  },
+  {
+    "term": "Logos",
+    "quote": "The Greeks have but one word Logos, for both Speech and Reason.",
+    "chapter_ref": "CHAPTER IV; Subject To Names",
+    "importance": "Low",
+    "aliases": [
+      "Word"
+    ],
+    "frequency": 2,
+    "chapters": [4]
+  },
+  {
+    "term": "Subject to Names",
+    "quote": "Subject To Names, is whatsoever can enter into, or be considered in an account; and be added one to another to make a summe.",
+    "chapter_ref": "CHAPTER IV; Subject To Names",
+    "importance": "Medium",
+    "aliases": [
+      "Items",
+      "Nomina"
+    ],
+    "frequency": 8,
+    "chapters": [4]
+  },
+  {
+    "term": "Negative Names",
+    "quote": "There be also other Names, called Negative; which are notes to signifie that a word is not the name of the thing in question.",
+    "chapter_ref": "CHAPTER IV; Negative Names With Their Uses",
+    "importance": "Medium",
+    "aliases": [
+      "Privative Names"
+    ],
+    "frequency": 7,
+    "chapters": [4]
+  },
+  {
+    "term": "Insignificant Sounds",
+    "quote": "All other names, are but insignificant sounds... when they are new, and yet their meaning not explained by Definition.",
+    "chapter_ref": "CHAPTER IV; Words Insignificant",
+    "importance": "Medium",
+    "aliases": [
+      "Canting",
+      "Meere sound"
+    ],
+    "frequency": 15,
+    "chapters": [1, 4, 5, 8]
+  },
+  {
+    "term": "Endeavour",
+    "quote": "These small beginnings of Motion, within the body of Man, before they appear in walking, speaking, striking, and other visible actions, are commonly called ENDEAVOUR.",
+    "chapter_ref": "CHAPTER VI; Motion Vitall And Animal",
+    "importance": "High",
+    "aliases": [
+      "Conatus",
+      "Endeavor"
+    ],
+    "frequency": 38,
+    "chapters": [1, 6, 15]
+  },
+  {
+    "term": "Appetite",
+    "quote": "This Endeavour, when it is toward something which causes it, is called APPETITE, or DESIRE.",
+    "chapter_ref": "CHAPTER VI; Endeavour; Appetite; Desire; Hunger; Thirst; Aversion",
+    "importance": "High",
+    "aliases": [
+      "Cupiditas",
+      "Desire"
+    ],
+    "frequency": 72,
+    "chapters": [2, 6, 7, 15]
+  },
+  {
+    "term": "Desire",
+    "quote": "by Desire, we alwayes signifie the Absence of the object; by Love, most commonly the Presence of the same.",
+    "chapter_ref": "CHAPTER VI; Endeavour; Appetite; Desire; Hunger; Thirst; Aversion",
+    "importance": "High",
+    "aliases": [
+      "Cupiditas"
+    ],
+    "frequency": 110,
+    "chapters": [3, 6, 8, 11]
+  },
+  {
+    "term": "Hunger",
+    "quote": "the later, being the generall name; and the other, oftentimes restrayned to signifie the Desire of Food, namely Hunger and Thirst.",
+    "chapter_ref": "CHAPTER VI; Endeavour; Appetite; Desire; Hunger; Thirst; Aversion",
+    "importance": "Low",
+    "aliases": [
+      "Appetite of food"
+    ],
+    "frequency": 8,
+    "chapters": [3, 6]
+  },
+  {
+    "term": "Thirst",
+    "quote": "oftentimes restrayned to signifie the Desire of Food, namely Hunger and Thirst.",
+    "chapter_ref": "CHAPTER VI; Endeavour; Appetite; Desire; Hunger; Thirst; Aversion",
+    "importance": "Low",
+    "aliases": [
+      "Appetite of drink"
+    ],
+    "frequency": 6,
+    "chapters": [3, 6]
+  },
+  {
+    "term": "Aversion",
+    "quote": "And when the Endeavour is fromward something, it is generally called AVERSION.",
+    "chapter_ref": "CHAPTER VI; Endeavour; Appetite; Desire; Hunger; Thirst; Aversion",
+    "importance": "High",
+    "aliases": [
+      "Retiring",
+      "Aphorme"
+    ],
+    "frequency": 54,
+    "chapters": [6, 15]
+  },
+  {
+    "term": "Love",
+    "quote": "That which men Desire, they are also sayd to LOVE; and to HATE those things, for which they have Aversion.",
+    "chapter_ref": "CHAPTER VI; Endeavour; Appetite; Desire; Hunger; Thirst; Aversion",
+    "importance": "Medium",
+    "aliases": [
+      "Amare"
+    ],
+    "frequency": 42,
+    "chapters": [6, 10, 11]
+  },
+  {
+    "term": "Hate",
+    "quote": "So that Desire, and Love, are the same thing... So also by Aversion, we signifie the Absence; and by Hate, the Presence of the Object.",
+    "chapter_ref": "CHAPTER VI; Endeavour; Appetite; Desire; Hunger; Thirst; Aversion",
+    "importance": "Medium",
+    "aliases": [
+      "Hatred",
+      "Odi"
+    ],
+    "frequency": 36,
+    "chapters": [6, 11]
+  },
+  {
+    "term": "Contempt",
+    "quote": "Those things which we neither Desire, nor Hate, we are said to Contemne: CONTEMPT being nothing els but an immobility, or contumacy of the Heart.",
+    "chapter_ref": "CHAPTER VI; Contempt",
+    "importance": "Medium",
+    "aliases": [
+      "Undervaluing",
+      "Vile"
+    ],
+    "frequency": 28,
+    "chapters": [6, 10]
+  },
+  {
+    "term": "Good",
+    "quote": "But whatsoever is the object of any mans Appetite or Desire; that is it, which he for his part calleth Good.",
+    "chapter_ref": "CHAPTER VI; Good Evill",
+    "importance": "High",
+    "aliases": [
+      "Bonum",
+      "Apparent Good"
+    ],
+    "frequency": 160,
+    "chapters": [2, 6, 10, 11, 15]
+  },
+  {
+    "term": "Evill",
+    "quote": "And the object of his Hate, and Aversion, evill; And of his contempt, Vile, and Inconsiderable.",
+    "chapter_ref": "CHAPTER VI; Good Evill",
+    "importance": "High",
+    "aliases": [
+      "Malum"
+    ],
+    "frequency": 145,
+    "chapters": [2, 6, 11, 13, 15]
+  },
+  {
+    "term": "Pulchrum",
+    "quote": "Whereof the former signifies that, which by some apparent signes promiseth Good.",
+    "chapter_ref": "CHAPTER VI; Pulchrum Turpe; Delightfull Profitable; Unpleasant Unprofitable",
+    "importance": "Medium",
+    "aliases": [
+      "Fayre",
+      "Beautifull"
+    ],
+    "frequency": 6,
+    "chapters": [6]
+  },
+  {
+    "term": "Turpe",
+    "quote": "And the later, that, which promiseth evill.",
+    "chapter_ref": "CHAPTER VI; Pulchrum Turpe; Delightfull Profitable; Unpleasant Unprofitable",
+    "importance": "Medium",
+    "aliases": [
+      "Foule",
+      "Deformed"
+    ],
+    "frequency": 5,
+    "chapters": [6]
+  },
+  {
+    "term": "Delight",
+    "quote": "the apparence, or sense of that motion, is that wee either call DELIGHT, or TROUBLE OF MIND.",
+    "chapter_ref": "CHAPTER VI; Delight Displeasure",
+    "importance": "Medium",
+    "aliases": [
+      "Jucunda",
+      "Pleasure"
+    ],
+    "frequency": 34,
+    "chapters": [4, 6, 11]
+  },
+  {
+    "term": "Trouble of Mind",
+    "quote": "the apparence, or sense of that motion, is that wee either call DELIGHT, or TROUBLE OF MIND.",
+    "chapter_ref": "CHAPTER VI; Delight Displeasure",
+    "importance": "Medium",
+    "aliases": [
+      "Displeasure",
+      "Molestum"
+    ],
+    "frequency": 12,
+    "chapters": [6]
+  },
+  {
+    "term": "Pleasure",
+    "quote": "Pleasure therefore, (or Delight,) is the apparence, or sense of Good.",
+    "chapter_ref": "CHAPTER VI; Pleasure Offence",
+    "importance": "High",
+    "aliases": [
+      "Jucundum",
+      "Delight"
+    ],
+    "frequency": 48,
+    "chapters": [4, 6, 11]
+  },
+  {
+    "term": "Offence",
+    "quote": "and the contrary, Molesta, Offensive, from hindering, and troubling the motion vitall.",
+    "chapter_ref": "CHAPTER VI; Pleasure Offence",
+    "importance": "Medium",
+    "aliases": [
+      "Offensive",
+      "Molestatio"
+    ],
+    "frequency": 14,
+    "chapters": [6]
+  },
+  {
+    "term": "Joy",
+    "quote": "And these are Pleasures Of The Mind of him that draweth those consequences; and are generally called JOY.",
+    "chapter_ref": "CHAPTER VI; Pleasures Of Sense; Pleasures Of The Mind; Joy Paine Griefe",
+    "importance": "Medium",
+    "aliases": [
+      "Exultation"
+    ],
+    "frequency": 25,
+    "chapters": [6, 11]
+  },
+  {
+    "term": "Paine",
+    "quote": "In the like manner, Displeasures, are some in the Sense, and called PAYNE.",
+    "chapter_ref": "CHAPTER VI; Pleasures Of Sense; Pleasures Of The Mind; Joy Paine Griefe",
+    "importance": "Medium",
+    "aliases": [
+      "Displeasure in the sense"
+    ],
+    "frequency": 18,
+    "chapters": [6, 12]
+  },
+  {
+    "term": "Griefe",
+    "quote": "others, in the Expectation of consequences, and are called GRIEFE.",
+    "chapter_ref": "CHAPTER VI; Pleasures Of Sense; Pleasures Of The Mind; Joy Paine Griefe",
+    "importance": "Medium",
+    "aliases": [
+      "Dejection",
+      "Compassion"
+    ],
+    "frequency": 28,
+    "chapters": [6, 13]
+  },
+  {
+    "term": "Hope",
+    "quote": "For Appetite with an opinion of attaining, is called HOPE.",
+    "chapter_ref": "CHAPTER VI; Hope—",
+    "importance": "Medium",
+    "aliases": [
+      "Spes"
+    ],
+    "frequency": 44,
+    "chapters": [6, 10, 13, 14]
+  },
+  {
+    "term": "Despaire",
+    "quote": "The same, without such opinion, DESPAIRE.",
+    "chapter_ref": "CHAPTER VI; Despaire—",
+    "importance": "Medium",
+    "aliases": [
+      "Despayre"
+    ],
+    "frequency": 12,
+    "chapters": [6]
+  },
+  {
+    "term": "Feare",
+    "quote": "Aversion, with opinion of Hurt from the object, FEARE.",
+    "chapter_ref": "CHAPTER VI; Feare—",
+    "importance": "High",
+    "aliases": [
+      "Metus",
+      "Terrour"
+    ],
+    "frequency": 135,
+    "chapters": [2, 3, 6, 11, 12, 13, 14, 15]
+  },
+  {
+    "term": "Courage",
+    "quote": "The same, with hope of avoyding that Hurt by resistance, COURAGE.",
+    "chapter_ref": "CHAPTER VI; Courage—",
+    "importance": "Medium",
+    "aliases": [
+      "Fortitude"
+    ],
+    "frequency": 22,
+    "chapters": [6, 10]
+  },
+  {
+    "term": "Anger",
+    "quote": "Sudden Courage, ANGER.",
+    "chapter_ref": "CHAPTER VI; Anger—",
+    "importance": "Medium",
+    "aliases": [
+      "Choler",
+      "Fury"
+    ],
+    "frequency": 38,
+    "chapters": [2, 6, 8, 11]
+  },
+  {
+    "term": "Wit",
+    "quote": "And by Vertues INTELLECTUALL, are always understood such abilityes of the mind, as men praise, value, and desire should be in themselves; and go commonly under the name of a Good Witte.",
+    "chapter_ref": "CHAPTER VIII; Intellectuall Vertue Defined",
+    "importance": "High",
+    "aliases": [
+      "Witte",
+      "Ingenium"
+    ],
+    "frequency": 65,
+    "chapters": [3, 8, 11, 13]
+  },
+  {
+    "term": "Fancy",
+    "quote": "Those that observe their similitudes, in case they be such as are but rarely observed by others, are sayd to have a Good Wit; by which, in this occasion, is meant a Good Fancy.",
+    "chapter_ref": "CHAPTER VIII; Good Wit, Or Fancy; Good Judgement; Discretion",
+    "importance": "Medium",
+    "aliases": [
+      "Good Fancy"
+    ],
+    "frequency": 35,
+    "chapters": [8]
+  },
+  {
+    "term": "Judgement",
+    "quote": "But they that observe their differences, and dissimilitudes... in case, such discerning be not easie, are said to have a Good Judgement.",
+    "chapter_ref": "CHAPTER VIII; Good Wit, Or Fancy; Good Judgement; Discretion",
+    "importance": "High",
+    "aliases": [
+      "Discerning",
+      "Distinguishing"
+    ],
+    "frequency": 48,
+    "chapters": [2, 8, 12, 13]
+  },
+  {
+    "term": "Discretion",
+    "quote": "in matter of conversation and businesse; wherein, times, places, and persons are to be discerned, this Vertue is called DISCRETION.",
+    "chapter_ref": "CHAPTER VIII; Good Wit, Or Fancy; Good Judgement; Discretion",
+    "importance": "Medium",
+    "aliases": [
+      "Prudence in Conversation"
+    ],
+    "frequency": 18,
+    "chapters": [8, 10]
+  },
+  {
+    "term": "Craft",
+    "quote": "To Prudence, if you adde the use of unjust, or dishonest means... you have that Crooked Wisdome, which is called CRAFT.",
+    "chapter_ref": "CHAPTER VIII; Craft",
+    "importance": "Medium",
+    "aliases": [
+      "Crooked Wisdome",
+      "Versutia"
+    ],
+    "frequency": 14,
+    "chapters": [8, 10, 11]
+  },
+  {
+    "term": "Madnesse",
+    "quote": "to have stronger, and more vehement Passions for any thing, than is ordinarily seen in others, is that which men call MADNESSE.",
+    "chapter_ref": "CHAPTER VIII; Giddinesse Madnesse",
+    "importance": "Medium",
+    "aliases": [
+      "Distraction",
+      "Spiritati"
+    ],
+    "frequency": 56,
+    "chapters": [8]
+  },
+  {
+    "term": "Rage",
+    "quote": "Pride, subjecteth a man to Anger, the excesse whereof, is the Madnesse called RAGE, and FURY.",
+    "chapter_ref": "CHAPTER VIII; Rage",
+    "importance": "Low",
+    "aliases": [
+      "Fury"
+    ],
+    "frequency": 12,
+    "chapters": [8]
+  },
+  {
+    "term": "Melancholy",
+    "quote": "Dejection, subjects a man to causelesse fears; which is a Madnesse commonly called MELANCHOLY.",
+    "chapter_ref": "CHAPTER VIII; Melancholy",
+    "importance": "Low",
+    "aliases": [
+      "Causelesse fears"
+    ],
+    "frequency": 8,
+    "chapters": [8]
+  },
+  {
+    "term": "Insignificant Speech",
+    "quote": "And that is, when men speak such words, as put together, have in them no signification at all.",
+    "chapter_ref": "CHAPTER VIII; Insignificant Speech",
+    "importance": "Medium",
+    "aliases": [
+      "Absurdity",
+      "Non-sense"
+    ],
+    "frequency": 24,
+    "chapters": [1, 4, 5, 8]
+  },
+  {
+    "term": "Dulnesse",
+    "quote": "On the Contrary a slow Imagination, maketh that Defect, or fault of the mind, which is commonly called DULNESSE, Stupidity.",
+    "chapter_ref": "CHAPTER VIII; Wit, Naturall, Or Acquired",
+    "importance": "Low",
+    "aliases": [
+      "Stupidity"
+    ],
+    "frequency": 10,
+    "chapters": [8]
+  },
+  {
+    "term": "Giddinesse",
+    "quote": "to have Passions indifferently for every thing, GIDDINESSE, and Distraction.",
+    "chapter_ref": "CHAPTER VIII; Wit, Naturall, Or Acquired",
+    "importance": "Low",
+    "aliases": [
+      "Distraction"
+    ],
+    "frequency": 9,
+    "chapters": [8]
+  },
+  {
+    "term": "Power",
+    "quote": "The POWER of a Man, (to take it Universally,) is his present means, to obtain some future apparent Good.",
+    "chapter_ref": "CHAPTER X; Power",
+    "importance": "High",
+    "aliases": [
+      "Naturall Power",
+      "Instrumentall Power"
+    ],
+    "frequency": 240,
+    "chapters": [6, 8, 10, 11, 12, 13, 14, 15]
+  },
+  {
+    "term": "Worth",
+    "quote": "The Value, or WORTH of a man, is as of all other things, his Price; that is to say, so much as would be given for the use of his Power.",
+    "chapter_ref": "CHAPTER X; Worth",
+    "importance": "High",
+    "aliases": [
+      "Price",
+      "Value"
+    ],
+    "frequency": 28,
+    "chapters": [10]
+  },
+  {
+    "term": "Value",
+    "quote": "And as in other things, so in men, not the seller, but the buyer determines the Price.",
+    "chapter_ref": "CHAPTER X; Worth",
+    "importance": "Medium",
+    "aliases": [
+      "Valuing"
+    ],
+    "frequency": 42,
+    "chapters": [10, 13, 15]
+  },
+  {
+    "term": "Dignity",
+    "quote": "The publique worth of a man, which is the Value set on him by the Common-wealth, is that which men commonly call DIGNITY.",
+    "chapter_ref": "CHAPTER X; Dignity",
+    "importance": "Medium",
+    "aliases": [
+      "Publique worth"
+    ],
+    "frequency": 14,
+    "chapters": [10, 12]
+  },
+  {
+    "term": "Honour",
+    "quote": "To Value a man at a high rate, is to Honour him; at a low rate, is to Dishonour him.",
+    "chapter_ref": "CHAPTER X; Worth",
+    "importance": "High",
+    "aliases": [
+      "Honouring"
+    ],
+    "frequency": 95,
+    "chapters": [10, 11]
+  },
+  {
+    "term": "Dishonour",
+    "quote": "To neglect, is to Dishonour... To contemne, or lesse to love or feare then he expects, is to Dishonour.",
+    "chapter_ref": "CHAPTER X; To Honour and Dishonour",
+    "importance": "Medium",
+    "aliases": [
+      "Dishonouring",
+      "Undervaluing"
+    ],
+    "frequency": 38,
+    "chapters": [10]
+  },
+  {
+    "term": "Honourable",
+    "quote": "Honourable is whatsoever possession, action, or quality, is an argument and signe of Power.",
+    "chapter_ref": "CHAPTER X; To Honour and Dishonour",
+    "importance": "Medium",
+    "aliases": [
+      "Signe of Power"
+    ],
+    "frequency": 52,
+    "chapters": [10]
+  },
+  {
+    "term": "Worthinesse",
+    "quote": "WORTHINESSE, is a thing different from the worth, or value of a man; and also from his merit, or desert; and consisteth in a particular power, or ability for that, whereof he is said to be worthy.",
+    "chapter_ref": "CHAPTER X; Worthinesse Fitnesse",
+    "importance": "Medium",
+    "aliases": [
+      "Aptitude"
+    ],
+    "frequency": 12,
+    "chapters": [10]
+  },
+  {
+    "term": "Fitnesse",
+    "quote": "which particular ability, is usually named FITNESSE, or Aptitude.",
+    "chapter_ref": "CHAPTER X; Worthinesse Fitnesse",
+    "importance": "Medium",
+    "aliases": [
+      "Aptitude"
+    ],
+    "frequency": 8,
+    "chapters": [10]
+  },
+  {
+    "term": "Merit",
+    "quote": "He that performeth first in the case of a Contract, is said to MERIT that which he is to receive by the performance of the other; and he hath it as Due.",
+    "chapter_ref": "CHAPTER XIV; Merit What",
+    "importance": "High",
+    "aliases": [
+      "Desert",
+      "Meritum"
+    ],
+    "frequency": 24,
+    "chapters": [14, 15]
+  },
+  {
+    "term": "Equality",
+    "quote": "Nature hath made men so equall, in the faculties of body, and mind; as that... the difference between man, and man, is not so considerable.",
+    "chapter_ref": "CHAPTER XIII; No Title",
+    "importance": "High",
+    "aliases": [
+      "Equalitie",
+      "Equall"
+    ],
+    "frequency": 34,
+    "chapters": [13, 15]
+  },
+  {
+    "term": "Diffidence",
+    "quote": "And from this diffidence of one another, there is no way for any man to secure himselfe, so reasonable, as Anticipation.",
+    "chapter_ref": "CHAPTER XIII; From Diffidence Warre",
+    "importance": "High",
+    "aliases": [
+      "Distrust"
+    ],
+    "frequency": 26,
+    "chapters": [6, 13]
+  },
+  {
+    "term": "Warre",
+    "quote": "during the time men live without a common Power to keep them all in awe, they are in that condition which is called Warre; and such a warre, as is of every man, against every man.",
+    "chapter_ref": "CHAPTER XIII; Out Of Civil States, There Is Alwayes Warre Of Every One Against Every One",
+    "importance": "High",
+    "aliases": [
+      "War",
+      "Condition of Warre"
+    ],
+    "frequency": 115,
+    "chapters": [11, 13, 14, 15]
+  },
+  {
+    "term": "Peace",
+    "quote": "The Passions that encline men to Peace, are Feare of Death; Desire of such things as are necessary to commodious living; and a Hope by their Industry to obtain them.",
+    "chapter_ref": "CHAPTER XIII; The Passions That Incline Men To Peace",
+    "importance": "High",
+    "aliases": [
+      "Pax"
+    ],
+    "frequency": 145,
+    "chapters": [11, 13, 14, 15]
+  },
+  {
+    "term": "Right of Nature",
+    "quote": "The RIGHT OF NATURE, which Writers commonly call Jus Naturale, is the Liberty each man hath, to use his own power, as he will himselfe, for the preservation of his own Nature.",
+    "chapter_ref": "CHAPTER XIV; Right Of Nature What",
+    "importance": "High",
+    "aliases": [
+      "Jus Naturale"
+    ],
+    "frequency": 38,
+    "chapters": [13, 14]
+  },
+  {
+    "term": "Liberty",
+    "quote": "By LIBERTY, is understood, according to the proper signification of the word, the absence of externall Impediments.",
+    "chapter_ref": "CHAPTER XIV; Liberty What",
+    "importance": "High",
+    "aliases": [
+      "Libertie",
+      "Freedom"
+    ],
+    "frequency": 58,
+    "chapters": [14, 16]
+  },
+  {
+    "term": "Law of Nature",
+    "quote": "A LAW OF NATURE, (Lex Naturalis,) is a Precept, or generall Rule, found out by Reason, by which a man is forbidden to do, that, which is destructive of his life.",
+    "chapter_ref": "CHAPTER XIV; A Law Of Nature What",
+    "importance": "High",
+    "aliases": [
+      "Lex Naturalis",
+      "Precept of Reason"
+    ],
+    "frequency": 165,
+    "chapters": [14, 15, 16]
+  },
+  {
+    "term": "Contract",
+    "quote": "The mutuall transferring of Right, is that which men call CONTRACT.",
+    "chapter_ref": "CHAPTER XIV; Contract What",
+    "importance": "High",
+    "aliases": [
+      "Pactio"
+    ],
+    "frequency": 55,
+    "chapters": [14, 15]
+  },
+  {
+    "term": "Covenant",
+    "quote": "one of the Contractors, may deliver the Thing contracted for on his part, and leave the other to perform his part at some determinate time after... is called PACT, or COVENANT.",
+    "chapter_ref": "CHAPTER XIV; Covenant What",
+    "importance": "High",
+    "aliases": [
+      "Pact",
+      "Faith"
+    ],
+    "frequency": 310,
+    "chapters": [14, 15, 16]
+  },
+  {
+    "term": "Justice",
+    "quote": "And in this law of Nature, consisteth the Fountain and Originall of JUSTICE. For where no Covenant hath preceded, there hath no Right been transferred.",
+    "chapter_ref": "CHAPTER XV; The Third Law Of Nature, Justice",
+    "importance": "High",
+    "aliases": [
+      "Keeping of Covenant",
+      "Righteousness"
+    ],
+    "frequency": 155,
+    "chapters": [14, 15, 16]
+  },
+  {
+    "term": "Propriety",
+    "quote": "It is consequent also to the same condition, that there be no Propriety, no Dominion, no Mine and Thine distinct; but onely that to be every mans that he can get.",
+    "chapter_ref": "CHAPTER XIII; Out Of Civil States, There Is Alwayes Warre Of Every One Against Every One",
+    "importance": "High",
+    "aliases": [
+      "Property",
+      "Dominion"
+    ],
+    "frequency": 22,
+    "chapters": [13, 15]
+  },
+  {
+    "term": "Equity",
+    "quote": "The observance of this law, from the equall distribution to each man, of that which in reason belongeth to him, is called EQUITY.",
+    "chapter_ref": "CHAPTER XV; The Eleventh Equity",
+    "importance": "High",
+    "aliases": [
+      "Distributive justice"
+    ],
+    "frequency": 32,
+    "chapters": [11, 15]
+  },
+  {
+    "term": "Lot",
+    "quote": "The Law of Nature, which prescribeth Equity, requireth, 'That the Entire Right; or else, (making the use alternate,) the First Possession, be determined by Lot.'",
+    "chapter_ref": "CHAPTER XV; The Thirteenth, Of Lot",
+    "importance": "Medium",
+    "aliases": [
+      "Kleronomia"
+    ],
+    "frequency": 8,
+    "chapters": [15]
+  },
+  {
+    "term": "Primogeniture",
+    "quote": "Natural, is either Primogeniture, (which the Greek calls Kleronomia, which signifies, Given by Lot;) or First Seisure.",
+    "chapter_ref": "CHAPTER XV; The Fourteenth, Of Primogeniture, And First Seising",
+    "importance": "Low",
+    "aliases": [
+      "First-Borne"
+    ],
+    "frequency": 4,
+    "chapters": [15]
+  },
+  {
+    "term": "Person",
+    "quote": "A PERSON, is he whose words or actions are considered, either as his own, or as representing the words or actions of an other man.",
+    "chapter_ref": "CHAPTER XVI; A Person",
+    "importance": "High",
+    "aliases": [
+      "Persona",
+      "Actor"
+    ],
+    "frequency": 82,
+    "chapters": [16]
+  },
+  {
+    "term": "Actor",
+    "quote": "Of Persons Artificiall, some have their words and actions Owned by those whom they represent. And then the Person is the Actor.",
+    "chapter_ref": "CHAPTER XVI; Actor, Author; Authority",
+    "importance": "High",
+    "aliases": [
+      "Representer",
+      "Representative"
+    ],
+    "frequency": 48,
+    "chapters": [16]
+  },
+  {
+    "term": "Author",
+    "quote": "he that oweth his words and actions, is the AUTHOR: In which case the Actor acteth by Authority.",
+    "chapter_ref": "CHAPTER XVI; Actor, Author; Authority",
+    "importance": "High",
+    "aliases": [
+      "Owner",
+      "Dominus"
+    ],
+    "frequency": 55,
+    "chapters": [16]
+  },
+  {
+    "term": "Authority",
+    "quote": "And as the Right of possession, is called Dominion; so the Right of doing any Action, is called AUTHORITY.",
+    "chapter_ref": "CHAPTER XVI; Actor, Author; Authority",
+    "importance": "High",
+    "aliases": [
+      "Commission",
+      "Licence"
+    ],
+    "frequency": 64,
+    "chapters": [16]
+  },
+  {
+    "term": "Multitude",
+    "quote": "A Multitude of men, are made One Person, when they are by one man, or one Person, Represented; so that it be done with the consent of every one of that Multitude in particular.",
+    "chapter_ref": "CHAPTER XVI; A Multitude Of Men, How One Person",
+    "importance": "High",
+    "aliases": [
+      "The Many"
+    ],
+    "frequency": 42,
+    "chapters": [16]
+  }
+]

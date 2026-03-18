@@ -1,0 +1,122 @@
+{
+  "suite_id": "spelling",
+  "book_id": "thomas_hobbes-leviathan_book_01",
+  "mode": "short",
+  "note": "Same as work but with spelling mistakes introduced in ~half the questions to test spell correction.",
+  "tests": [
+    {
+      "id": "A_Q01_state_of_nature",
+      "question": "What does Hobes mean by State of Natuer?",
+      "spelling_note": "TYPO: Hobes, Natuer",
+      "category": "FACTUAL",
+      "must_refuse": false,
+      "expected": [{"ch": 13, "sec": 5}]
+    },
+    {
+      "id": "A_Q02_science",
+      "question": "What does Hobbes mean by Science?",
+      "spelling_note": "CORRECT",
+      "category": "FACTUAL",
+      "must_refuse": false,
+      "expected": [{"ch": 5, "sec": 7}]
+    },
+    {
+      "id": "A_Q03_science_vs_fact",
+      "question": "What is the diference between Sience and Knowlegde of Fact?",
+      "spelling_note": "TYPO: diference, Sience, Knowlegde",
+      "category": "DISTINCTION",
+      "must_refuse": false,
+      "expected": [{"ch": 5, "sec": 7}]
+    },
+    {
+      "id": "A_Q04_appetite_vs_aversion",
+      "question": "What is the difference between Appetite and Aversion?",
+      "spelling_note": "CORRECT",
+      "category": "DISTINCTION",
+      "must_refuse": false,
+      "expected": [{"ch": 6, "sec": 2}]
+    },
+    {
+      "id": "A_Q05_animals_prudence",
+      "question": "Are animels capable of Prudense?",
+      "spelling_note": "TYPO: animels, Prudense",
+      "category": "DISTINCTION",
+      "must_refuse": false,
+      "expected": [{"ch": 3, "sec": 6}]
+    },
+    {
+      "id": "A_Q06_animals_language",
+      "question": "Are animals capable of langage?",
+      "spelling_note": "TYPO: langage",
+      "category": "DISTINCTION",
+      "must_refuse": false,
+      "expected": [{"ch": 6, "sec": 1}]
+    },
+    {
+      "id": "A_Q07_time",
+      "question": "What does Hobbes think about sense of time?",
+      "spelling_note": "CORRECT",
+      "category": "PARAPHRASE_MODERN",
+      "must_refuse": false,
+      "expected": [{"ch": 3, "sec": 5}]
+    },
+    {
+      "id": "A_Q08_animals_wisdom",
+      "question": "Are animals capabl of wisdm?",
+      "spelling_note": "TYPO: capabl, wisdm",
+      "category": "PARAPHRASE_MODERN",
+      "must_refuse": false,
+      "expected": [{"ch": 3, "sec": 6}]
+    },
+    {
+      "id": "A_Q09_fair",
+      "question": "How do we know what is fair according to Hobbes?",
+      "spelling_note": "CORRECT",
+      "category": "PARAPHRASE_MODERN",
+      "must_refuse": false
+    },
+    {
+      "id": "A_Q10_logic",
+      "question": "What does Hobbes meen by logik?",
+      "spelling_note": "TYPO: meen, logik",
+      "category": "PARAPHRASE_MODERN",
+      "must_refuse": false
+    },
+    {
+      "id": "A_Q11_why_fight",
+      "question": "Why does Hobbes think humans fight so much?",
+      "spelling_note": "CORRECT",
+      "category": "PARAPHRASE_MODERN",
+      "must_refuse": false
+    },
+    {
+      "id": "A_Q12_spirituality",
+      "question": "What does Hobbes mean by Spirituality?",
+      "spelling_note": "CORRECT",
+      "category": "OUT_OF_SCOPE",
+      "must_refuse": true
+    },
+    {
+      "id": "A_Q13_meditation",
+      "question": "What does Hobbes think about meditation or inner peace?",
+      "spelling_note": "CORRECT",
+      "category": "OUT_OF_SCOPE",
+      "must_refuse": true
+    },
+    {
+      "id": "A_Q14_life_without_government",
+      "question": "Acordin to Hobes, what carachterizes human life witout goverment?",
+      "spelling_note": "TYPO: Acordin, Hobes, carachterizes, witout, goverment",
+      "category": "BORDERLINE",
+      "must_refuse": false,
+      "expected": [{"ch": 13, "sec": 4}]
+    },
+    {
+      "id": "A_Q15_human_nature",
+      "question": "What is human nature?",
+      "spelling_note": "CORRECT",
+      "category": "BORDERLINE",
+      "must_refuse": false
+    }
+  ]
+}

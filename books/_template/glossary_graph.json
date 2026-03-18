@@ -1,0 +1,42 @@
+[
+  {
+    "term": "TermA",
+    "edges": [
+      {
+        "term_b": "TermB",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Quote showing TermA and TermB are equivalent"
+      },
+      {
+        "term_b": "TermC",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "Quote showing TermC defines TermA"
+      },
+      {
+        "term_b": "TermD",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "medium",
+        "evidence_quote": "Quote showing TermA and TermD are opposed"
+      },
+      {
+        "term_b": "TermE",
+        "relation_type": "related",
+        "direction": "a_produces_b",
+        "strength": "medium",
+        "evidence_quote": "Quote showing the relationship"
+      },
+      {
+        "term_b": "TermF",
+        "relation_type": "argumentative_neighbor",
+        "direction": "bidirectional",
+        "strength": "low",
+        "evidence_quote": "Quote showing they appear together in an argument"
+      }
+    ]
+  }
+]

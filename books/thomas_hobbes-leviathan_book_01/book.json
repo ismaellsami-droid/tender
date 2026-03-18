@@ -1,0 +1,12 @@
+{
+  "book_id": "thomas_hobbes-leviathan_book_01",
+  "book_slug": "leviathan_book_01",
+  "book_number": 1,
+  "book_title_slug": "of_man",
+  "label": "Thomas Hobbes — Leviathan (Book I)",
+  "reference_label": "Leviathan (Book I)",
+  "model": "gpt-4.1-mini",
+  "graph_model": "gpt-4.5",
+  "retrieval_k": 20,
+  "selection_k": 8
+}

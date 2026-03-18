@@ -1,0 +1,14 @@
+{
+  "suite_id": "smoke",
+  "book_id": "thomas_hobbes-leviathan_book_01",
+  "mode": "short",
+  "tests": [
+    {
+      "id": "A_Q01_state_of_nature",
+      "question": "What does Hobbes mean by State of Nature?",
+      "category": "FACTUAL",
+      "must_refuse": false,
+      "expected": [{"ch": 13, "sec": 5}]
+    }
+  ]
+}

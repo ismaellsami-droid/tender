@@ -1,0 +1,3313 @@
+[
+  {
+    "term": "Sense",
+    "edges": [
+      {
+        "term_b": "Fancy",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "And this Seeming, or Fancy, is that which men call sense"
+      },
+      {
+        "term_b": "Representation",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "medium",
+        "evidence_quote": "Singly, they are every one a Representation or Apparence"
+      },
+      {
+        "term_b": "Motion",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "Sense in all cases, is nothing els but originall fancy, caused... by the motion, of externall things"
+      },
+      {
+        "term_b": "Imagination",
+        "relation_type": "related",
+        "direction": "a_is_source_of_b",
+        "strength": "high",
+        "evidence_quote": "Imagination therefore is nothing but Decaying Sense"
+      },
+      {
+        "term_b": "Object",
+        "relation_type": "argumentative_neighbor",
+        "direction": "b_causes_a",
+        "strength": "high",
+        "evidence_quote": "The cause of Sense, is the Externall Body, or Object"
+      },
+      {
+        "term_b": "Science",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "high",
+        "evidence_quote": "Science and Memory are but knowledge of Fact... Science is the knowledge of Consequences"
+      },
+      {
+        "term_b": "Sence",
+        "relation_type": "related",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "orthographic_variant: organs of Sense... what they receive, they teach: some saying, that Imaginations rise of themselves... (Senses)"
+      }
+    ]
+  },
+  {
+    "term": "Object",
+    "edges": [
+      {
+        "term_b": "Externall Body",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "the Externall Body, or Object, which presseth the organ"
+      },
+      {
+        "term_b": "Accident",
+        "relation_type": "definitional",
+        "direction": "a_is_composed_of_b",
+        "strength": "medium",
+        "evidence_quote": "Representation or Apparence, of some quality, or other Accident of a body without us; which is commonly called an Object"
+      },
+      {
+        "term_b": "Fancy",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "high",
+        "evidence_quote": "Yet still the object is one thing, the image or fancy is another"
+      }
+    ]
+  },
+  {
+    "term": "Fancy",
+    "edges": [
+      {
+        "term_b": "Sense",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "this Seeming, or Fancy, is that which men call sense"
+      },
+      {
+        "term_b": "Apparence",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Greeks call it Fancy; which signifies Apparence"
+      },
+      {
+        "term_b": "Imagination",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Imagination, as I said before; But when we would express the thing it self, (I mean Fancy it selfe)"
+      },
+      {
+        "term_b": "Motion",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "All Fancies are Motions within us, reliques of those made in the Sense"
+      },
+      {
+        "term_b": "Phantasme",
+        "relation_type": "related",
+        "direction": "bidirectional",
+        "strength": "medium",
+        "evidence_quote": "orthographic_variant: Phantasmes are Spirits"
+      }
+    ]
+  },
+  {
+    "term": "Imagination",
+    "edges": [
+      {
+        "term_b": "Memory",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Imagination and Memory, are but one thing, which for divers considerations hath divers names"
+      },
+      {
+        "term_b": "Decaying Sense",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "Imagination therefore is nothing but Decaying Sense"
+      },
+      {
+        "term_b": "Fancy",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "But the Greeks call it Fancy; which signifies Apparence"
+      },
+      {
+        "term_b": "Fiction",
+        "relation_type": "related",
+        "direction": "a_is_b",
+        "strength": "medium",
+        "evidence_quote": "it is a compound imagination, and properly but a Fiction of the mind"
+      }
+    ]
+  },
+  {
+    "term": "Memory",
+    "edges": [
+      {
+        "term_b": "Imagination",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Imagination and Memory, are but one thing"
+      },
+      {
+        "term_b": "Experience",
+        "relation_type": "related",
+        "direction": "a_accumulated_is_b",
+        "strength": "high",
+        "evidence_quote": "Much memory, or memory of many things, is called Experience"
+      },
+      {
+        "term_b": "Sense",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "medium",
+        "evidence_quote": "when we would express the Decay, and signifie that the Sense is fading, old, and past, it is called Memory"
+      }
+    ]
+  },
+  {
+    "term": "Experience",
+    "edges": [
+      {
+        "term_b": "Memory",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "Much memory, or memory of many things, is called Experience"
+      },
+      {
+        "term_b": "Prudence",
+        "relation_type": "argumentative_neighbor",
+        "direction": "a_produces_b",
+        "strength": "high",
+        "evidence_quote": "Prudence, is but Experience; which equall time, equally bestowes on all men"
+      },
+      {
+        "term_b": "Signes",
+        "relation_type": "related",
+        "direction": "a_provides_b",
+        "strength": "medium",
+        "evidence_quote": "he that has most experience... has most Signes, whereby to guesse"
+      },
+      {
+        "term_b": "Science",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "high",
+        "evidence_quote": "Reason is not... gotten by Experience onely; as Prudence is; but attayned by Industry"
+      }
+    ]
+  },
+  {
+    "term": "Dreams",
+    "edges": [
+      {
+        "term_b": "Imagination",
+        "relation_type": "definitional",
+        "direction": "b_of_sleeping_is_a",
+        "strength": "high",
+        "evidence_quote": "The imaginations of them that sleep, are those we call Dreams"
+      },
+      {
+        "term_b": "Sense",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "medium",
+        "evidence_quote": "hard matter... to distinguish exactly between Sense and Dreaming"
+      },
+      {
+        "term_b": "Vision",
+        "relation_type": "argumentative_neighbor",
+        "direction": "bidirectional",
+        "strength": "medium",
+        "evidence_quote": "related by Historians as a Vision: but... judge to have been but a short Dream"
+      },
+      {
+        "term_b": "Dreame",
+        "relation_type": "related",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "orthographic_variant: no Dreame, but what proceeds from the agitation"
+      }
+    ]
+  },
+  {
+    "term": "Understanding",
+    "edges": [
+      {
+        "term_b": "Imagination",
+        "relation_type": "definitional",
+        "direction": "b_raised_by_signs_is_a",
+        "strength": "high",
+        "evidence_quote": "Imagination that is raysed in man... by words, or other voluntary signes, is that we generally call Understanding"
+      },
+      {
+        "term_b": "Conception",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "medium",
+        "evidence_quote": "Understanding being nothing els, but conception caused by Speech"
+      },
+      {
+        "term_b": "Speech",
+        "relation_type": "argumentative_neighbor",
+        "direction": "b_enables_a",
+        "strength": "high",
+        "evidence_quote": "if Speech be peculiar to man... then is Understanding peculiar to him also"
+      }
+    ]
+  },
+  {
+    "term": "Mentall Discourse",
+    "edges": [
+      {
+        "term_b": "Trayne of Thoughts",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "By Consequence, or Trayne of Thoughts, I understand... Mentall Discourse"
+      },
+      {
+        "term_b": "Consequence",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "By Consequence, or Trayne of Thoughts... called... Mentall Discourse"
+      },
+      {
+        "term_b": "Discourse in words",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "high",
+        "evidence_quote": "to distinguish it from Discourse in words"
+      }
+    ]
+  },
+  {
+    "term": "Prudence",
+    "edges": [
+      {
+        "term_b": "Experience",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "Prudence, is but Experience; which equall time, equally bestowes on all men"
+      },
+      {
+        "term_b": "Foresight",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Which kind of thoughts, is called Foresight, and Prudence, or Providence"
+      },
+      {
+        "term_b": "Providence",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Which kind of thoughts, is called Foresight, and Prudence, or Providence"
+      },
+      {
+        "term_b": "Presumption",
+        "relation_type": "definitional",
+        "direction": "a_is_b",
+        "strength": "medium",
+        "evidence_quote": "it be called Prudence, when the Event answereth our Expectation; yet in its own nature, it is but Presumption"
+      },
+      {
+        "term_b": "Sapience",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "high",
+        "evidence_quote": "As, much Experience, is Prudence; so, is much Science, Sapience"
+      }
+    ]
+  },
+  {
+    "term": "Sign",
+    "edges": [
+      {
+        "term_b": "Consequent",
+        "relation_type": "definitional",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "A Signe, is the Event Antecedent, of the Consequent; and contrarily, the Consequent of the Antecedent"
+      },
+      {
+        "term_b": "Experience",
+        "relation_type": "argumentative_neighbor",
+        "direction": "b_provides_a",
+        "strength": "high",
+        "evidence_quote": "he that has most experience in any kind of businesse, has most Signes, whereby to guesse at the Future time"
+      },
+      {
+        "term_b": "Markes",
+        "relation_type": "related",
+        "direction": "bidirectional",
+        "strength": "medium",
+        "evidence_quote": "first use of names, is to serve for Markes, or Notes of remembrance... when many use the same words... for this use they are called Signes"
+      },
+      {
+        "term_b": "Signe",
+        "relation_type": "related",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "orthographic_variant: A Signe, is the Event Antecedent"
+      }
+    ]
+  },
+  {
+    "term": "Conjecture",
+    "edges": [
+      {
+        "term_b": "Experience",
+        "relation_type": "argumentative_neighbor",
+        "direction": "b_is_basis_of_a",
+        "strength": "high",
+        "evidence_quote": "his conjecture, has the same incertainty almost with the conjecture of the Future; both being grounded onely upon Experience"
+      },
+      {
+        "term_b": "Prudence",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "medium",
+        "evidence_quote": "Which kind of thoughts, is called Foresight, and Prudence... though such conjecture... be very fallacious"
+      },
+      {
+        "term_b": "Future",
+        "relation_type": "related",
+        "direction": "unidirectional",
+        "strength": "high",
+        "evidence_quote": "Future being but a fiction of the mind, applying the sequels of actions Past, to the actions that are Present... he that is most versed and studied in the matters he guesses at: for he hath most Signes to guesse by"
+      }
+    ]
+  },
+  {
+    "term": "Infinite",
+    "edges": [
+      {
+        "term_b": "Finite",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "high",
+        "evidence_quote": "Whatsoever we imagine, is Finite. Therefore there is no Idea, or conception of anything we call Infinite"
+      },
+      {
+        "term_b": "Inability",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "having no Conception of the thing, but of our own inability"
+      },
+      {
+        "term_b": "God",
+        "relation_type": "related",
+        "direction": "unidirectional",
+        "strength": "medium",
+        "evidence_quote": "acknowledge one God Eternall, Infinite, and Omnipotent... choose rather to confesse he is Incomprehensible"
+      },
+      {
+        "term_b": "Negative Names",
+        "relation_type": "related",
+        "direction": "a_is_type_of_b",
+        "strength": "high",
+        "evidence_quote": "There be also other Names, called Negative... as these words Nothing, No Man, Infinite"
+      }
+    ]
+  },
+  {
+    "term": "Printing",
+    "edges": [
+      {
+        "term_b": "Letters",
+        "relation_type": "related",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "The Invention of Printing, though ingenious, compared with the invention of Letters, is no great matter"
+      },
+      {
+        "term_b": "Speech",
+        "relation_type": "argumentative_neighbor",
+        "direction": "unidirectional",
+        "strength": "low",
+        "evidence_quote": "But the most noble and profitable invention of all other, was that of Speech"
+      }
+    ]
+  },
+  {
+    "term": "Letters",
+    "edges": [
+      {
+        "term_b": "Wisdom",
+        "relation_type": "argumentative_neighbor",
+        "direction": "a_enables_b",
+        "strength": "high",
+        "evidence_quote": "Nor is it possible without Letters for any man to become either excellently wise, or... excellently foolish"
+      },
+      {
+        "term_b": "Memory",
+        "relation_type": "related",
+        "direction": "a_serves_b",
+        "strength": "medium",
+        "evidence_quote": "A profitable Invention for continuing the memory of time past"
+      },
+      {
+        "term_b": "Printing",
+        "relation_type": "related",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Invention of Printing... compared with the invention of Letters, is no great matter"
+      }
+    ]
+  },
+  {
+    "term": "Markes",
+    "edges": [
+      {
+        "term_b": "Remembrance",
+        "relation_type": "definitional",
+        "direction": "a_serves_b",
+        "strength": "high",
+        "evidence_quote": "the first use of names, is to serve for Markes, or Notes of remembrance"
+      },
+      {
+        "term_b": "Notes",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "the first use of names, is to serve for Markes, or Notes of remembrance"
+      },
+      {
+        "term_b": "Signes",
+        "relation_type": "related",
+        "direction": "bidirectional",
+        "strength": "medium",
+        "evidence_quote": "first use of names, is to serve for Markes... Another is... what they conceive... for this use they are called Signes"
+      }
+    ]
+  },
+  {
+    "term": "Notes",
+    "edges": [
+      {
+        "term_b": "Markes",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "the first use of names, is to serve for Markes, or Notes of remembrance"
+      },
+      {
+        "term_b": "Negative Names",
+        "relation_type": "related",
+        "direction": "b_is_type_of_a",
+        "strength": "medium",
+        "evidence_quote": "There be also other Names, called Negative; which are notes to signifie that a word is not the name of the thing"
+      }
+    ]
+  },
+  {
+    "term": "Thought",
+    "edges": [
+      {
+        "term_b": "Representation",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Singly, they are every one a Representation or Apparence"
+      },
+      {
+        "term_b": "Apparence",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Singly, they are every one a Representation or Apparence"
+      },
+      {
+        "term_b": "Sense",
+        "relation_type": "argumentative_neighbor",
+        "direction": "b_is_origin_of_a",
+        "strength": "high",
+        "evidence_quote": "The Originall of them all, is that which we call Sense"
+      },
+      {
+        "term_b": "Mentall Discourse",
+        "relation_type": "related",
+        "direction": "a_in_succession_is_b",
+        "strength": "high",
+        "evidence_quote": "By Consequence, or Trayne of Thoughts, I understand that succession of one Thought to another, which is called... Mentall Discourse"
+      }
+    ]
+  },
+  {
+    "term": "Apparence",
+    "edges": [
+      {
+        "term_b": "Thought",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Singly, they are every one a Representation or Apparence"
+      },
+      {
+        "term_b": "Fancy",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Greeks call it Fancy; which signifies Apparence"
+      },
+      {
+        "term_b": "Object",
+        "relation_type": "argumentative_neighbor",
+        "direction": "b_produces_a",
+        "strength": "medium",
+        "evidence_quote": "Which Object worketh... and by diversity of working, produceth diversity of Apparences"
+      }
+    ]
+  },
+  {
+    "term": "Train of Thoughts",
+    "edges": [
+      {
+        "term_b": "Mentall Discourse",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "By Consequence, or Trayne of Thoughts, I understand... Mentall Discourse"
+      },
+      {
+        "term_b": "Consequence",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "By Consequence, or Trayne of Thoughts, I understand that succession of one Thought to another"
+      },
+      {
+        "term_b": "Desire",
+        "relation_type": "related",
+        "direction": "b_regulates_a",
+        "strength": "medium",
+        "evidence_quote": "The second is more constant; as being Regulated by some desire, and designee"
+      },
+      {
+        "term_b": "Trayne of Thoughts",
+        "relation_type": "related",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "orthographic_variant: By Consequence, or Trayne of Thoughts, I understand that succession"
+      }
+    ]
+  },
+  {
+    "term": "Error",
+    "edges": [
+      {
+        "term_b": "Deception",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "For Error is but a deception, in presuming that somewhat is past, or to come"
+      },
+      {
+        "term_b": "Untruth",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "high",
+        "evidence_quote": "Errour there may be... but in neither case can a man be charged with Untruth"
+      },
+      {
+        "term_b": "Absurdity",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "high",
+        "evidence_quote": "When a man reckons without the use of words... this is called ERROR... But when we Reason in Words... it is indeed an ABSURDITY"
+      },
+      {
+        "term_b": "Presuming",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "Error is but a deception, in presuming that somewhat is past, or to come"
+      }
+    ]
+  },
+  {
+    "term": "Absurdity",
+    "edges": [
+      {
+        "term_b": "Senseless Speech",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "it is indeed an ABSURDITY, or senseless Speech"
+      },
+      {
+        "term_b": "Non-sense",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "words whereby we conceive nothing but the sound, are those we call Absurd, insignificant, and Non-sense"
+      },
+      {
+        "term_b": "Error",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "high",
+        "evidence_quote": "When we Reason in Words of generall signification, and fall upon a generall inference which is false... it is indeed an ABSURDITY"
+      },
+      {
+        "term_b": "Naturall sense",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "high",
+        "evidence_quote": "Naturall sense and imagination, are not subject to absurdity"
+      },
+      {
+        "term_b": "Injustice",
+        "relation_type": "argumentative_neighbor",
+        "direction": "bidirectional",
+        "strength": "medium",
+        "evidence_quote": "Injury, or Injustice... is somewhat like to that, which in the disputations of Scholers is called Absurdity"
+      },
+      {
+        "term_b": "Absurditie",
+        "relation_type": "related",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "orthographic_variant: Causes Of Absurditie"
+      }
+    ]
+  },
+  {
+    "term": "Inconstant Names",
+    "edges": [
+      {
+        "term_b": "Passions",
+        "relation_type": "argumentative_neighbor",
+        "direction": "b_causes_a",
+        "strength": "high",
+        "evidence_quote": "tincture of our different passions. And therefore in reasoning, a man bust take heed of words... of Inconstant signification"
+      },
+      {
+        "term_b": "Conceptions",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "medium",
+        "evidence_quote": "seeing all names are imposed to signifie our conceptions; and all our affections are but conceptions; when we conceive the same things differently, we can hardly avoyd different naming"
+      },
+      {
+        "term_b": "Metaphors",
+        "relation_type": "related",
+        "direction": "bidirectional",
+        "strength": "medium",
+        "evidence_quote": "such names can never be true grounds of any ratiocination. No more can Metaphors, and Tropes of speech: but these are less dangerous, because they profess their inconstancy"
+      }
+    ]
+  },
+  {
+    "term": "Addition",
+    "edges": [
+      {
+        "term_b": "Subtraction",
+        "relation_type": "argumentative_neighbor",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Reason... is nothing but Reckoning (that is, Adding and Substracting)"
+      },
+      {
+        "term_b": "Multiplication",
+        "relation_type": "related",
+        "direction": "a_is_basis_of_b",
+        "strength": "medium",
+        "evidence_quote": "Multiplication, is but Addition together of things equall"
+      },
+      {
+        "term_b": "Reckoning",
+        "relation_type": "definitional",
+        "direction": "a_is_part_of_b",
+        "strength": "high",
+        "evidence_quote": "Reasoning, hee does nothing els but conceive a summe totall, from Addition of parcels"
+      }
+    ]
+  },
+  {
+    "term": "Subtraction",
+    "edges": [
+      {
+        "term_b": "Addition",
+        "relation_type": "argumentative_neighbor",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Reason... is nothing but Reckoning (that is, Adding and Substracting)"
+      },
+      {
+        "term_b": "Division",
+        "relation_type": "related",
+        "direction": "a_is_basis_of_b",
+        "strength": "medium",
+        "evidence_quote": "Division, but Substracting of one thing, as often as we can"
+      },
+      {
+        "term_b": "Substraction",
+        "relation_type": "related",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "orthographic_variant: conceive a Remainder, from Substraction of one summe from another"
+      }
+    ]
+  },
+  {
+    "term": "Ratiocination",
+    "edges": [
+      {
+        "term_b": "Accounting",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "The Latines called Accounts of mony Rationes, and accounting, Ratiocinatio"
+      },
+      {
+        "term_b": "Definitions",
+        "relation_type": "argumentative_neighbor",
+        "direction": "b_starts_a",
+        "strength": "high",
+        "evidence_quote": "there is not one of them that begins his ratiocination from the Definitions"
+      },
+      {
+        "term_b": "Reasoning",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "medium",
+        "evidence_quote": "they extended the word Ratio, to the faculty of Reckoning in all other things"
+      }
+    ]
+  },
+  {
+    "term": "Logos",
+    "edges": [
+      {
+        "term_b": "Speech",
+        "relation_type": "related",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "The Greeks have but one word Logos, for both Speech and Reason"
+      },
+      {
+        "term_b": "Reason",
+        "relation_type": "related",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "The Greeks have but one word Logos, for both Speech and Reason"
+      },
+      {
+        "term_b": "Reasoning",
+        "relation_type": "argumentative_neighbor",
+        "direction": "unidirectional",
+        "strength": "medium",
+        "evidence_quote": "not that they thought there was no Speech without Reason; but no Reasoning without Speech"
+      }
+    ]
+  },
+  {
+    "term": "Subject to Names",
+    "edges": [
+      {
+        "term_b": "Account",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "Subject To Names, is whatsoever can enter into, or be considered in an account"
+      },
+      {
+        "term_b": "Body",
+        "relation_type": "related",
+        "direction": "a_includes_b",
+        "strength": "medium",
+        "evidence_quote": "First, a thing may enter into account for Matter, or Body"
+      },
+      {
+        "term_b": "Accident",
+        "relation_type": "related",
+        "direction": "a_includes_b",
+        "strength": "medium",
+        "evidence_quote": "Secondly, it may enter into account... for some accident or quality"
+      },
+      {
+        "term_b": "Names",
+        "relation_type": "related",
+        "direction": "a_includes_b",
+        "strength": "medium",
+        "evidence_quote": "Fourthly, we bring into account, consider, and give names, to Names themselves"
+      }
+    ]
+  },
+  {
+    "term": "Negative Names",
+    "edges": [
+      {
+        "term_b": "Notes",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "medium",
+        "evidence_quote": "Names, called Negative; which are notes to signifie that a word is not the name of the thing"
+      },
+      {
+        "term_b": "Positive Names",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "high",
+        "evidence_quote": "this is all the variety of Names Positive... There be also other Names, called Negative"
+      },
+      {
+        "term_b": "Infinite",
+        "relation_type": "related",
+        "direction": "b_is_type_of_a",
+        "strength": "low",
+        "evidence_quote": "as these words Nothing, No Man, Infinite"
+      }
+    ]
+  },
+  {
+    "term": "Insignificant Sounds",
+    "edges": [
+      {
+        "term_b": "Absurd",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "words whereby we conceive nothing but the sound, are those we call Absurd, insignificant, and Non-sense"
+      },
+      {
+        "term_b": "Definitions",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "medium",
+        "evidence_quote": "new, and yet their meaning not explained by Definition"
+      },
+      {
+        "term_b": "Contradictory Names",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "when men make a name of two Names, whose significations are contradictory and inconsistent... signifie nothing at all... is a meere sound"
+      }
+    ]
+  },
+  {
+    "term": "Endeavour",
+    "edges": [
+      {
+        "term_b": "Motion",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "These small beginnings of Motion, within the body of Man... are commonly called ENDEAVOUR"
+      },
+      {
+        "term_b": "Voluntary Motion",
+        "relation_type": "related",
+        "direction": "a_is_beginning_of_b",
+        "strength": "high",
+        "evidence_quote": "Imagination is the first internall beginning of all Voluntary Motion... [these] are commonly called ENDEAVOUR"
+      },
+      {
+        "term_b": "Appetite",
+        "relation_type": "related",
+        "direction": "a_is_b",
+        "strength": "high",
+        "evidence_quote": "This Endeavour, when it is toward something which causes it, is called APPETITE"
+      },
+      {
+        "term_b": "Aversion",
+        "relation_type": "related",
+        "direction": "a_is_b",
+        "strength": "high",
+        "evidence_quote": "when the Endeavour is fromward something, it is generally called AVERSION"
+      }
+    ]
+  },
+  {
+    "term": "Appetite",
+    "edges": [
+      {
+        "term_b": "Endeavour",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "This Endeavour, when it is toward something which causes it, is called APPETITE"
+      },
+      {
+        "term_b": "Desire",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "is called APPETITE, or DESIRE; the later, being the generall name"
+      },
+      {
+        "term_b": "Aversion",
+        "relation_type": "antonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Appetite, and Aversion... signifie the motions, one of approaching, the other of retiring"
+      },
+      {
+        "term_b": "Love",
+        "relation_type": "related",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "That which men Desire, they are also sayd to LOVE... So that Desire, and Love, are the same thing"
+      }
+    ]
+  },
+  {
+    "term": "Desire",
+    "edges": [
+      {
+        "term_b": "Appetite",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "is called APPETITE, or DESIRE; the later, being the generall name"
+      },
+      {
+        "term_b": "Absence",
+        "relation_type": "definitional",
+        "direction": "b_characterizes_a",
+        "strength": "high",
+        "evidence_quote": "by Desire, we alwayes signifie the Absence of the object"
+      },
+      {
+        "term_b": "Love",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Desire, and Love, are the same thing; save that by Desire, we alwayes signifie the Absence of the object; by Love, most commonly the Presence"
+      },
+      {
+        "term_b": "Aversion",
+        "relation_type": "antonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Of Appetites, and Aversions... some are born with men... The rest... proceed from Experience"
+      },
+      {
+        "term_b": "Good",
+        "relation_type": "argumentative_neighbor",
+        "direction": "a_defines_b",
+        "strength": "high",
+        "evidence_quote": "whatsoever is the object of any mans Appetite or Desire; that is it, which he for his part calleth Good"
+      }
+    ]
+  },
+  {
+    "term": "Hunger",
+    "edges": [
+      {
+        "term_b": "Desire",
+        "relation_type": "definitional",
+        "direction": "a_is_type_of_b",
+        "strength": "high",
+        "evidence_quote": "oftentimes restrayned to signifie the Desire of Food, namely Hunger and Thirst"
+      },
+      {
+        "term_b": "Food",
+        "relation_type": "related",
+        "direction": "b_is_object_of_a",
+        "strength": "high",
+        "evidence_quote": "signifie the Desire of Food, namely Hunger"
+      }
+    ]
+  },
+  {
+    "term": "Thirst",
+    "edges": [
+      {
+        "term_b": "Desire",
+        "relation_type": "definitional",
+        "direction": "a_is_type_of_b",
+        "strength": "high",
+        "evidence_quote": "oftentimes restrayned to signifie the Desire of Food, namely Hunger and Thirst"
+      },
+      {
+        "term_b": "Food",
+        "relation_type": "related",
+        "direction": "b_is_object_of_a",
+        "strength": "high",
+        "evidence_quote": "signifie the Desire of Food... and Thirst"
+      }
+    ]
+  },
+  {
+    "term": "Aversion",
+    "edges": [
+      {
+        "term_b": "Endeavour",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "when the Endeavour is fromward something, it is generally called AVERSION"
+      },
+      {
+        "term_b": "Hate",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "HATE those things, for which they have Aversion"
+      },
+      {
+        "term_b": "Appetite",
+        "relation_type": "antonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Appetite, and Aversion... signifie the motions, one of approaching, the other of retiring"
+      },
+      {
+        "term_b": "Absence",
+        "relation_type": "definitional",
+        "direction": "b_characterizes_a",
+        "strength": "high",
+        "evidence_quote": "by Aversion, we signifie the Absence; and by Hate, the Presence of the Object"
+      }
+    ]
+  },
+  {
+    "term": "Love",
+    "edges": [
+      {
+        "term_b": "Desire",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Desire, and Love, are the same thing"
+      },
+      {
+        "term_b": "Presence",
+        "relation_type": "definitional",
+        "direction": "b_characterizes_a",
+        "strength": "high",
+        "evidence_quote": "by Love, most commonly the Presence of the same [object]"
+      },
+      {
+        "term_b": "Hate",
+        "relation_type": "antonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Desire, and Love... [and] Hate those things, for which they have Aversion"
+      }
+    ]
+  },
+  {
+    "term": "Hate",
+    "edges": [
+      {
+        "term_b": "Aversion",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "HATE those things, for which they have Aversion"
+      },
+      {
+        "term_b": "Presence",
+        "relation_type": "definitional",
+        "direction": "b_characterizes_a",
+        "strength": "high",
+        "evidence_quote": "by Hate, the Presence of the Object"
+      },
+      {
+        "term_b": "Love",
+        "relation_type": "antonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Desire, and Love... [and] Hate those things"
+      }
+    ]
+  },
+  {
+    "term": "Contempt",
+    "edges": [
+      {
+        "term_b": "Immobility",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "CONTEMPT being nothing els but an immobility, or contumacy of the Heart"
+      },
+      {
+        "term_b": "Desire",
+        "relation_type": "antonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Those things which we neither Desire, nor Hate, we are said to Contemne"
+      },
+      {
+        "term_b": "Hate",
+        "relation_type": "antonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Those things which we neither Desire, nor Hate, we are said to Contemne"
+      },
+      {
+        "term_b": "Vile",
+        "relation_type": "argumentative_neighbor",
+        "direction": "a_defines_b",
+        "strength": "medium",
+        "evidence_quote": "And of his contempt, Vile, and Inconsiderable"
+      }
+    ]
+  },
+  {
+    "term": "Good",
+    "edges": [
+      {
+        "term_b": "Appetite",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "whatsoever is the object of any mans Appetite or Desire; that is it, which he for his part calleth Good"
+      },
+      {
+        "term_b": "Evil",
+        "relation_type": "antonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Good, evill, and Contemptible, are ever used with relation to the person that useth them"
+      },
+      {
+        "term_b": "Delight",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "medium",
+        "evidence_quote": "Pleasure therefore, (or Delight,) is the apparence, or sense of Good"
+      },
+      {
+        "term_b": "Pulchrum",
+        "relation_type": "related",
+        "direction": "b_promises_a",
+        "strength": "medium",
+        "evidence_quote": "Pulchrum... signifies that, which by some apparent signes promiseth Good"
+      }
+    ]
+  },
+  {
+    "term": "Evil",
+    "edges": [
+      {
+        "term_b": "Hate",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "the object of his Hate, and Aversion, evill"
+      },
+      {
+        "term_b": "Good",
+        "relation_type": "antonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "these words of Good, evill, and Contemptible, are ever used with relation to the person"
+      },
+      {
+        "term_b": "Molestum",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "evill in Effect, and End, is Molestum, Unpleasant, Troublesome"
+      },
+      {
+        "term_b": "Inutile",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "evill in the Means, Inutile, Unprofitable, Hurtfull"
+      },
+      {
+        "term_b": "Displeasure",
+        "relation_type": "related",
+        "direction": "b_is_sense_of_a",
+        "strength": "high",
+        "evidence_quote": "Displeasure, the apparence, or sense of evill"
+      },
+      {
+        "term_b": "Evill",
+        "relation_type": "related",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "orthographic_variant: the object of his Hate... evill"
+      }
+    ]
+  },
+  {
+    "term": "Pulchrum",
+    "edges": [
+      {
+        "term_b": "Good",
+        "relation_type": "definitional",
+        "direction": "b_promised_defines_a",
+        "strength": "high",
+        "evidence_quote": "Pulchrum... signifies that, which by some apparent signes promiseth Good"
+      },
+      {
+        "term_b": "Turpe",
+        "relation_type": "antonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "approach to those of Good and Evill... And those are Pulchrum and Turpe"
+      },
+      {
+        "term_b": "Fayre",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "medium",
+        "evidence_quote": "for Pulchrum, we say in some things, Fayre; in other Beautifull"
+      },
+      {
+        "term_b": "Honourable",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "medium",
+        "evidence_quote": "for Pulchrum, we say... Gallant, or Honourable, or Comely"
+      }
+    ]
+  },
+  {
+    "term": "Turpe",
+    "edges": [
+      {
+        "term_b": "Evil",
+        "relation_type": "definitional",
+        "direction": "b_promised_defines_a",
+        "strength": "high",
+        "evidence_quote": "Turpe... that, which promiseth evill"
+      },
+      {
+        "term_b": "Pulchrum",
+        "relation_type": "antonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Pulchrum and Turpe... the former signifies... promising Good; and the later, that, which promiseth evill"
+      },
+      {
+        "term_b": "Foule",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "medium",
+        "evidence_quote": "for Turpe, Foule, Deformed, Ugly, Base, Nauseous"
+      }
+    ]
+  },
+  {
+    "term": "Delight",
+    "edges": [
+      {
+        "term_b": "Pleasure",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Pleasure therefore, (or Delight,) is the apparence, or sense of Good"
+      },
+      {
+        "term_b": "Trouble of Mind",
+        "relation_type": "antonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "the apparence... is that wee either call DELIGHT, or TROUBLE OF MIND"
+      },
+      {
+        "term_b": "Appetite",
+        "relation_type": "definitional",
+        "direction": "b_apparent_is_a",
+        "strength": "high",
+        "evidence_quote": "apparence of it Delight, and Pleasure, seemeth to be, a corroboration of Vitall motion"
+      },
+      {
+        "term_b": "Jucunda",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "medium",
+        "evidence_quote": "things as caused Delight, were not improperly called Jucunda"
+      }
+    ]
+  },
+  {
+    "term": "Trouble of Mind",
+    "edges": [
+      {
+        "term_b": "Delight",
+        "relation_type": "antonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "is that wee either call DELIGHT, or TROUBLE OF MIND"
+      },
+      {
+        "term_b": "Aversion",
+        "relation_type": "definitional",
+        "direction": "b_apparent_is_a",
+        "strength": "high",
+        "evidence_quote": "real effect there is nothing but Motion... in Appetite, or Aversion... apparence... is that wee... call... TROUBLE OF MIND"
+      },
+      {
+        "term_b": "Displeasure",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Molestation or Displeasure, the apparence, or sense of evill"
+      }
+    ]
+  },
+  {
+    "term": "Pleasure",
+    "edges": [
+      {
+        "term_b": "Good",
+        "relation_type": "definitional",
+        "direction": "b_apparent_is_a",
+        "strength": "high",
+        "evidence_quote": "Pleasure therefore, (or Delight,) is the apparence, or sense of Good"
+      },
+      {
+        "term_b": "Displeasure",
+        "relation_type": "antonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "accompaniied with some Delight... with more or lesse Displeasure and Offence"
+      },
+      {
+        "term_b": "Molestation",
+        "relation_type": "antonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Pleasure therefore... and Molestation or Displeasure, the apparence, or sense of evill"
+      },
+      {
+        "term_b": "Joy",
+        "relation_type": "related",
+        "direction": "a_of_mind_is_b",
+        "strength": "medium",
+        "evidence_quote": "Pleasures Of The Mind... are generally called JOY"
+      }
+    ]
+  },
+  {
+    "term": "Offence",
+    "edges": [
+      {
+        "term_b": "Displeasure",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "more or lesse Displeasure and Offence"
+      },
+      {
+        "term_b": "Pleasure",
+        "relation_type": "antonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "accompaniied with some Delight... with more or lesse Displeasure and Offence"
+      },
+      {
+        "term_b": "Aversion",
+        "relation_type": "argumentative_neighbor",
+        "direction": "b_is_accompanied_by_a",
+        "strength": "medium",
+        "evidence_quote": "all Hatred, and Aversion, with more or lesse Displeasure and Offence"
+      }
+    ]
+  },
+  {
+    "term": "Joy",
+    "edges": [
+      {
+        "term_b": "Grief",
+        "relation_type": "antonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "generally called JOY. In the like manner... called GRIEFE"
+      },
+      {
+        "term_b": "Expectation",
+        "relation_type": "definitional",
+        "direction": "a_is_pleasure_in_b",
+        "strength": "high",
+        "evidence_quote": "arise from the Expectation, that proceeds from foresight... these are Pleasures Of The Mind... generally called JOY"
+      },
+      {
+        "term_b": "Admiration",
+        "relation_type": "related",
+        "direction": "b_is_type_of_a",
+        "strength": "medium",
+        "evidence_quote": "Joy, from apprehension of novelty, ADMIRATION"
+      },
+      {
+        "term_b": "Glorying",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "medium",
+        "evidence_quote": "Joy, arising from imagination of a man’s own power... exultation of the mind which is called GLORYING"
+      }
+    ]
+  },
+  {
+    "term": "Pain",
+    "edges": [
+      {
+        "term_b": "Sense",
+        "relation_type": "definitional",
+        "direction": "a_is_displeasure_in_b",
+        "strength": "high",
+        "evidence_quote": "Displeasures, are some in the Sense, and called PAYNE"
+      },
+      {
+        "term_b": "Pleasure of Sense",
+        "relation_type": "antonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Pleasures Of Sense... Displeasures, are some in the Sense, and called PAYNE"
+      },
+      {
+        "term_b": "Grief",
+        "relation_type": "argumentative_neighbor",
+        "direction": "bidirectional",
+        "strength": "medium",
+        "evidence_quote": "some in the Sense, and called PAYNE; others, in the Expectation of consequences, and are called GRIEFE"
+      },
+      {
+        "term_b": "Paine",
+        "relation_type": "related",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "orthographic_variant: Displeasures... called PAYNE"
+      }
+    ]
+  },
+  {
+    "term": "Grief",
+    "edges": [
+      {
+        "term_b": "Expectation",
+        "relation_type": "definitional",
+        "direction": "a_is_displeasure_in_b",
+        "strength": "high",
+        "evidence_quote": "Displeasures... in the Expectation of consequences, and are called GRIEFE"
+      },
+      {
+        "term_b": "Joy",
+        "relation_type": "antonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "generally called JOY... In the like manner, Displeasures... are called GRIEFE"
+      },
+      {
+        "term_b": "Pitty",
+        "relation_type": "related",
+        "direction": "b_is_type_of_a",
+        "strength": "medium",
+        "evidence_quote": "Griefe, for the calamity of another is PITTY"
+      },
+      {
+        "term_b": "Shame",
+        "relation_type": "related",
+        "direction": "b_is_type_of_a",
+        "strength": "medium",
+        "evidence_quote": "Griefe, for the discovery of some defect of ability is SHAME"
+      },
+      {
+        "term_b": "Griefe",
+        "relation_type": "related",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "orthographic_variant: are called GRIEFE"
+      }
+    ]
+  },
+  {
+    "term": "Hope",
+    "edges": [
+      {
+        "term_b": "Appetite",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "Appetite with an opinion of attaining, is called HOPE."
+      },
+      {
+        "term_b": "Despair",
+        "relation_type": "antonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "The same, without such opinion, DESPAIRE."
+      },
+      {
+        "term_b": "Confidence",
+        "relation_type": "related",
+        "direction": "a_constant_is_b",
+        "strength": "medium",
+        "evidence_quote": "Constant Hope, CONFIDENCE of our selves."
+      },
+      {
+        "term_b": "Deliberation",
+        "relation_type": "argumentative_neighbor",
+        "direction": "a_is_part_of_b",
+        "strength": "high",
+        "evidence_quote": "When in the mind of man, Appetites and Aversions, Hopes and Feares... is that we call DELIBERATION."
+      }
+    ]
+  },
+  {
+    "term": "Despair",
+    "edges": [
+      {
+        "term_b": "Appetite",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "Appetite... without such opinion [of attaining], DESPAIRE."
+      },
+      {
+        "term_b": "Hope",
+        "relation_type": "antonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Appetite with an opinion of attaining, is called HOPE. The same, without such opinion, DESPAIRE."
+      },
+      {
+        "term_b": "Diffidence",
+        "relation_type": "related",
+        "direction": "a_constant_is_b",
+        "strength": "medium",
+        "evidence_quote": "Constant Despayre, DIFFIDENCE of our selves."
+      },
+      {
+        "term_b": "Despaire",
+        "relation_type": "related",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "orthographic_variant: The same, without such opinion, DESPAIRE."
+      }
+    ]
+  },
+  {
+    "term": "Fear",
+    "edges": [
+      {
+        "term_b": "Aversion",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "Aversion, with opinion of Hurt from the object, FEARE."
+      },
+      {
+        "term_b": "Courage",
+        "relation_type": "antonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Aversion, with opinion of Hurt... FEARE. The same, with hope of avoyding that Hurt... COURAGE."
+      },
+      {
+        "term_b": "Power",
+        "relation_type": "argumentative_neighbor",
+        "direction": "b_causes_a",
+        "strength": "high",
+        "evidence_quote": "what quality soever maketh a man beloved, or feared of many... is Power."
+      },
+      {
+        "term_b": "Religion",
+        "relation_type": "related",
+        "direction": "a_is_seed_of_b",
+        "strength": "high",
+        "evidence_quote": "this Feare of things invisible, is the naturall Seed of that, which every one in himself calleth Religion."
+      },
+      {
+        "term_b": "Peace",
+        "relation_type": "argumentative_neighbor",
+        "direction": "a_inclines_to_b",
+        "strength": "high",
+        "evidence_quote": "The Passions that encline men to Peace, are Feare of Death."
+      },
+      {
+        "term_b": "Feare",
+        "relation_type": "related",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "orthographic_variant: Aversion, with opinion of Hurt from the object, FEARE."
+      }
+    ]
+  },
+  {
+    "term": "Courage",
+    "edges": [
+      {
+        "term_b": "Fear",
+        "relation_type": "antonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Feare... The same, with hope of avoyding that Hurt by resistance, COURAGE."
+      },
+      {
+        "term_b": "Aversion",
+        "relation_type": "definitional",
+        "direction": "b_plus_hope_defines_a",
+        "strength": "high",
+        "evidence_quote": "The same [Aversion], with hope of avoyding that Hurt by resistance, COURAGE."
+      },
+      {
+        "term_b": "Anger",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "medium",
+        "evidence_quote": "Sudden Courage, ANGER."
+      },
+      {
+        "term_b": "Power",
+        "relation_type": "related",
+        "direction": "b_is_basis_of_a",
+        "strength": "medium",
+        "evidence_quote": "the ground of Courage is alwayes Strength or Skill, which are Power."
+      }
+    ]
+  },
+  {
+    "term": "Anger",
+    "edges": [
+      {
+        "term_b": "Courage",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "Sudden Courage, ANGER."
+      },
+      {
+        "term_b": "Indignation",
+        "relation_type": "argumentative_neighbor",
+        "direction": "a_for_others_is_b",
+        "strength": "medium",
+        "evidence_quote": "Anger for great hurt done to another... INDIGNATION."
+      },
+      {
+        "term_b": "Rage",
+        "relation_type": "related",
+        "direction": "a_excess_is_b",
+        "strength": "high",
+        "evidence_quote": "Anger, the excesse whereof, is the Madnesse called RAGE, and FURY."
+      },
+      {
+        "term_b": "Pride",
+        "relation_type": "argumentative_neighbor",
+        "direction": "b_causes_a",
+        "strength": "medium",
+        "evidence_quote": "Pride, subjecteth a man to Anger."
+      }
+    ]
+  },
+  {
+    "term": "Wit",
+    "edges": [
+      {
+        "term_b": "Intellectual Virtue",
+        "relation_type": "definitional",
+        "direction": "a_is_b",
+        "strength": "high",
+        "evidence_quote": "Vertues INTELLECTUALL... go commonly under the name of a Good Witte."
+      },
+      {
+        "term_b": "Natural Wit",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "NATURALL WITTE, consisteth principally in... Celerity Of Imagining... and Steddy Direction."
+      },
+      {
+        "term_b": "Acquired Wit",
+        "relation_type": "related",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Vertues are of two sorts; Naturall, and Acquired."
+      },
+      {
+        "term_b": "Dullness",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "high",
+        "evidence_quote": "On the Contrary a slow Imagination, maketh... DULNESSE."
+      },
+      {
+        "term_b": "Witte",
+        "relation_type": "related",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "orthographic_variant: NATURALL WITTE, consisteth principally..."
+      }
+    ]
+  },
+  {
+    "term": "Fancy",
+    "edges": [
+      {
+        "term_b": "Sense",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "this Seeming, or Fancy, is that which men call sense."
+      },
+      {
+        "term_b": "Imagination",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "this Decaying Sense, when wee would express the thing it self, (I mean Fancy it selfe,) wee call Imagination."
+      },
+      {
+        "term_b": "Motion",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "All Fancies are Motions within us, reliques of those made in the Sense."
+      },
+      {
+        "term_b": "Wit",
+        "relation_type": "argumentative_neighbor",
+        "direction": "a_observing_similitudes_is_b",
+        "strength": "high",
+        "evidence_quote": "Those that observe their similitudes... are sayd to have a Good Wit; by which... is meant a Good Fancy."
+      },
+      {
+        "term_b": "Judgement",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "high",
+        "evidence_quote": "Judgement therefore without Fancy is Wit, but Fancy without Judgement not."
+      }
+    ]
+  },
+  {
+    "term": "Judgement",
+    "edges": [
+      {
+        "term_b": "Fancy",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "high",
+        "evidence_quote": "Those that observe their similitudes... Good Fancy. But they that observe their differences... Good Judgement."
+      },
+      {
+        "term_b": "Wit",
+        "relation_type": "argumentative_neighbor",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Judgement therefore without Fancy is Wit."
+      },
+      {
+        "term_b": "Opinion",
+        "relation_type": "definitional",
+        "direction": "b_resolute_is_a",
+        "strength": "high",
+        "evidence_quote": "the last Opinion in search of the truth of Past, and Future, is called the JUDGEMENT."
+      },
+      {
+        "term_b": "Discretion",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "medium",
+        "evidence_quote": "discerning... in matter of conversation and businesse... this Vertue is called DISCRETION."
+      }
+    ]
+  },
+  {
+    "term": "Discretion",
+    "edges": [
+      {
+        "term_b": "Judgement",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "the later which is Judgement, and Discretion, is commended for it selfe."
+      },
+      {
+        "term_b": "Wit",
+        "relation_type": "argumentative_neighbor",
+        "direction": "a_is_necessary_for_b",
+        "strength": "high",
+        "evidence_quote": "where Wit is wanting, it is not Fancy that is wanting, but Discretion."
+      },
+      {
+        "term_b": "Indiscretion",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "medium",
+        "evidence_quote": "please for the Extravagancy; but ought not to displease by Indiscretion."
+      }
+    ]
+  },
+  {
+    "term": "Craft",
+    "edges": [
+      {
+        "term_b": "Wisdom",
+        "relation_type": "definitional",
+        "direction": "b_crooked_is_a",
+        "strength": "high",
+        "evidence_quote": "that Crooked Wisdome, which is called CRAFT."
+      },
+      {
+        "term_b": "Prudence",
+        "relation_type": "definitional",
+        "direction": "a_corrupts_b",
+        "strength": "high",
+        "evidence_quote": "To Prudence, if you adde the use of unjust, or dishonest means... you have... CRAFT."
+      },
+      {
+        "term_b": "Pusillanimity",
+        "relation_type": "argumentative_neighbor",
+        "direction": "a_is_sign_of_b",
+        "strength": "high",
+        "evidence_quote": "CRAFT; which is a signe of Pusillanimity."
+      },
+      {
+        "term_b": "Magnanimity",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "high",
+        "evidence_quote": "CRAFT... is a signe of Pusillanimity. For Magnanimity is contempt of unjust, or dishonest helps."
+      },
+      {
+        "term_b": "Shifting",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "medium",
+        "evidence_quote": "Versutia, (translated into English, Shifting)... is but a shorter sighted Craft."
+      }
+    ]
+  },
+  {
+    "term": "Madnesse",
+    "edges": [
+      {
+        "term_b": "Vehement Passions",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "stronger, and more vehement Passions for any thing... is that which men call MADNESSE"
+      },
+      {
+        "term_b": "Appearing Passion",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Madnesse is nothing else, but too much appearing Passion"
+      },
+      {
+        "term_b": "Unguided Passions",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "medium",
+        "evidence_quote": "Passions unguided, are for the most part meere Madnesse"
+      },
+      {
+        "term_b": "Absurdity",
+        "relation_type": "related",
+        "direction": "unidirectional",
+        "strength": "medium",
+        "evidence_quote": "abuse of words... Name of Absurdity... may also be numbred amongst the sorts of Madnesse"
+      },
+      {
+        "term_b": "Lucide Intervals",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "medium",
+        "evidence_quote": "forbear disputing, or writing thus, but Lucide Intervals"
+      },
+      {
+        "term_b": "Madness",
+        "relation_type": "related",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "orthographic_variant: MADNESSE... Madness is of one and the same nature"
+      }
+    ]
+  },
+  {
+    "term": "Rage",
+    "edges": [
+      {
+        "term_b": "Anger",
+        "relation_type": "definitional",
+        "direction": "b_excess_is_a",
+        "strength": "high",
+        "evidence_quote": "Anger, the excesse whereof, is the Madnesse called RAGE"
+      },
+      {
+        "term_b": "Fury",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Madnesse called RAGE, and FURY"
+      },
+      {
+        "term_b": "Madnesse",
+        "relation_type": "related",
+        "direction": "a_is_type_of_b",
+        "strength": "high",
+        "evidence_quote": "the excesse whereof, is the Madnesse called RAGE"
+      },
+      {
+        "term_b": "Revenge",
+        "relation_type": "argumentative_neighbor",
+        "direction": "b_excess_is_a",
+        "strength": "medium",
+        "evidence_quote": "excessive desire of Revenge, when it becomes habituall... becomes Rage"
+      }
+    ]
+  },
+  {
+    "term": "Melancholy",
+    "edges": [
+      {
+        "term_b": "Dejection",
+        "relation_type": "definitional",
+        "direction": "b_causes_a",
+        "strength": "high",
+        "evidence_quote": "Dejection, subjects a man to causelesse fears; which is a Madnesse commonly called MELANCHOLY"
+      },
+      {
+        "term_b": "Causelesse fears",
+        "relation_type": "argumentative_neighbor",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "subjects a man to causelesse fears; which is a Madnesse commonly called MELANCHOLY"
+      },
+      {
+        "term_b": "Madnesse",
+        "relation_type": "related",
+        "direction": "a_is_type_of_b",
+        "strength": "high",
+        "evidence_quote": "MELANCHOLY... apparent also in divers manners... are called by the generall name of Madnesse"
+      }
+    ]
+  },
+  {
+    "term": "Insignificant Speech",
+    "edges": [
+      {
+        "term_b": "Absurdity",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "abuse of words... Name of Absurdity... is yet another fault... numbred amongst the sorts of Madnesse"
+      },
+      {
+        "term_b": "Meere sound",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "words whereby we conceive nothing but the sound, are those we call Absurd, insignificant"
+      },
+      {
+        "term_b": "Madnesse",
+        "relation_type": "related",
+        "direction": "a_is_type_of_b",
+        "strength": "medium",
+        "evidence_quote": "another fault... which may also be numbred amongst the sorts of Madnesse; namely, that abuse of words"
+      },
+      {
+        "term_b": "Perspicuous Words",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "high",
+        "evidence_quote": "Light of humane minds is Perspicuous Words... contrary, Metaphors, and senslesse and ambiguous words"
+      }
+    ]
+  },
+  {
+    "term": "Dulnesse",
+    "edges": [
+      {
+        "term_b": "Weak Passions",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "to have weak Passions, is Dulnesse"
+      },
+      {
+        "term_b": "Slow Imagination",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "a slow Imagination, maketh that Defect... which is commonly called DULNESSE"
+      },
+      {
+        "term_b": "Stupidity",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "medium",
+        "evidence_quote": "commonly called DULNESSE, Stupidity"
+      },
+      {
+        "term_b": "Celerity Of Imagining",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "high",
+        "evidence_quote": "NATURALL WITTE, consisteth principally in... Celerity Of Imagining... On the Contrary a slow Imagination, maketh... DULNESSE"
+      }
+    ]
+  },
+  {
+    "term": "Giddinesse",
+    "edges": [
+      {
+        "term_b": "Indifferent Passions",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "to have Passions indifferently for every thing, GIDDINESSE, and Distraction"
+      },
+      {
+        "term_b": "Distraction",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "GIDDINESSE, and Distraction"
+      },
+      {
+        "term_b": "Madnesse",
+        "relation_type": "related",
+        "direction": "a_is_type_of_b",
+        "strength": "medium",
+        "evidence_quote": "joyned with Envy, Rage... becomes Distraction, and Giddinesse... generall name of Madnesse"
+      }
+    ]
+  },
+  {
+    "term": "Power",
+    "edges": [
+      {
+        "term_b": "Means",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "The POWER of a Man... is his present means, to obtain some future apparent Good"
+      },
+      {
+        "term_b": "Naturall Power",
+        "relation_type": "related",
+        "direction": "b_is_type_of_a",
+        "strength": "high",
+        "evidence_quote": "Naturall Power, is the eminence of the Faculties of Body, or Mind"
+      },
+      {
+        "term_b": "Instrumentall Power",
+        "relation_type": "related",
+        "direction": "b_is_type_of_a",
+        "strength": "high",
+        "evidence_quote": "Instrumentall are those Powers, which acquired by these, or by fortune, are means and Instruments to acquire more"
+      },
+      {
+        "term_b": "Riches",
+        "relation_type": "argumentative_neighbor",
+        "direction": "b_is_type_of_a",
+        "strength": "medium",
+        "evidence_quote": "For Riches, Knowledge and Honour are but severall sorts of Power"
+      },
+      {
+        "term_b": "Reputation",
+        "relation_type": "argumentative_neighbor",
+        "direction": "b_is_type_of_a",
+        "strength": "medium",
+        "evidence_quote": "Reputation of power, is Power"
+      }
+    ]
+  },
+  {
+    "term": "Worth",
+    "edges": [
+      {
+        "term_b": "Price",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "The Value, or WORTH of a man, is as of all other things, his Price"
+      },
+      {
+        "term_b": "Power",
+        "relation_type": "definitional",
+        "direction": "b_evaluation_is_a",
+        "strength": "high",
+        "evidence_quote": "so much as would be given for the use of his Power"
+      },
+      {
+        "term_b": "Value",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "The Value, or WORTH of a man"
+      },
+      {
+        "term_b": "Dignity",
+        "relation_type": "related",
+        "direction": "a_public_is_b",
+        "strength": "high",
+        "evidence_quote": "The publique worth of a man... is that which men commonly call DIGNITY"
+      }
+    ]
+  },
+  {
+    "term": "Value",
+    "edges": [
+      {
+        "term_b": "Price",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "Value, or WORTH of a man, is as of all other things, his Price"
+      },
+      {
+        "term_b": "Worth",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "The Value, or WORTH of a man"
+      },
+      {
+        "term_b": "Power",
+        "relation_type": "argumentative_neighbor",
+        "direction": "a_of_b",
+        "strength": "medium",
+        "evidence_quote": "so much as would be given for the use of his Power"
+      }
+    ]
+  },
+  {
+    "term": "Dignity",
+    "edges": [
+      {
+        "term_b": "Publique worth",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "The publique worth of a man, which is the Value set on him by the Common-wealth, is that which men commonly call DIGNITY"
+      },
+      {
+        "term_b": "Worth",
+        "relation_type": "related",
+        "direction": "a_is_public_b",
+        "strength": "high",
+        "evidence_quote": "publique worth of a man... commonly call DIGNITY"
+      },
+      {
+        "term_b": "Common-wealth",
+        "relation_type": "argumentative_neighbor",
+        "direction": "b_sets_a",
+        "strength": "medium",
+        "evidence_quote": "Value set on him by the Common-wealth, is that which men commonly call DIGNITY"
+      }
+    ]
+  },
+  {
+    "term": "Honour",
+    "edges": [
+      {
+        "term_b": "Dishonour",
+        "relation_type": "antonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "To Value a man at a high rate, is to Honour him; at a low rate, is to Dishonour him."
+      },
+      {
+        "term_b": "Value",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "The manifestation of the Value we set on one another, is that which is commonly called Honouring."
+      },
+      {
+        "term_b": "Power",
+        "relation_type": "argumentative_neighbor",
+        "direction": "b_is_basis_of_a",
+        "strength": "high",
+        "evidence_quote": "nothing but goodnesse, power, and felicity is valued [and thus honoured]."
+      },
+      {
+        "term_b": "Praise",
+        "relation_type": "related",
+        "direction": "a_includes_b",
+        "strength": "medium",
+        "evidence_quote": "To praise, magnifie, or call happy, is to Honour."
+      },
+      {
+        "term_b": "Belief",
+        "relation_type": "related",
+        "direction": "a_includes_b",
+        "strength": "medium",
+        "evidence_quote": "To believe, to trust, to rely on another, is to Honour him."
+      }
+    ]
+  },
+  {
+    "term": "Dishonour",
+    "edges": [
+      {
+        "term_b": "Honour",
+        "relation_type": "antonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "To Value a man at a high rate, is to Honour him; at a low rate, is to Dishonour him."
+      },
+      {
+        "term_b": "Undervaluing",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "To contemne, or lesse to love or feare then he expects, is to Dishonour; for ’tis undervaluing."
+      },
+      {
+        "term_b": "Disobey",
+        "relation_type": "related",
+        "direction": "a_is_type_of_b",
+        "strength": "medium",
+        "evidence_quote": "to disobey, is to Dishonour."
+      },
+      {
+        "term_b": "Ignominy",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "medium",
+        "evidence_quote": "Honour ordained for them that refuse, and Ignominy for them that make the Challenge."
+      }
+    ]
+  },
+  {
+    "term": "Honourable",
+    "edges": [
+      {
+        "term_b": "Power",
+        "relation_type": "definitional",
+        "direction": "b_signe_is_a",
+        "strength": "high",
+        "evidence_quote": "Honourable is whatsoever possession, action, or quality, is an argument and signe of Power."
+      },
+      {
+        "term_b": "Dishonourable",
+        "relation_type": "antonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "To be Honoured, loved, or feared of many, is Honourable... To be Honoured of few or none, Dishonourable."
+      },
+      {
+        "term_b": "Courage",
+        "relation_type": "argumentative_neighbor",
+        "direction": "b_proves_a",
+        "strength": "high",
+        "evidence_quote": "Hope, Courage, Confidence, are Honourable; for they proceed from the conscience of Power."
+      },
+      {
+        "term_b": "Conspicuous",
+        "relation_type": "related",
+        "direction": "a_is_b",
+        "strength": "medium",
+        "evidence_quote": "To be Conspicuous... is Honourable; as a signe of the power for which he is conspicuous."
+      }
+    ]
+  },
+  {
+    "term": "Worthinesse",
+    "edges": [
+      {
+        "term_b": "Fitnesse",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "particular power, or ability for that, whereof he is said to be worthy: which particular ability, is usually named FITNESSE."
+      },
+      {
+        "term_b": "Worth",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "high",
+        "evidence_quote": "WORTHINESSE, is a thing different from the worth, or value of a man."
+      },
+      {
+        "term_b": "Aptitude",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "particular ability, is usually named FITNESSE, or Aptitude."
+      },
+      {
+        "term_b": "Merit",
+        "relation_type": "argumentative_neighbor",
+        "direction": "contrast",
+        "strength": "medium",
+        "evidence_quote": "a thing different from... his merit, or desert."
+      }
+    ]
+  },
+  {
+    "term": "Fitnesse",
+    "edges": [
+      {
+        "term_b": "Worthinesse",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "particular power, or ability for that, whereof he is said to be worthy: which particular ability, is usually named FITNESSE."
+      },
+      {
+        "term_b": "Aptitude",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "particular ability, is usually named FITNESSE, or Aptitude."
+      },
+      {
+        "term_b": "Ability",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "which particular ability, is usually named FITNESSE."
+      }
+    ]
+  },
+  {
+    "term": "Merit",
+    "edges": [
+      {
+        "term_b": "Promise",
+        "relation_type": "definitional",
+        "direction": "b_is_basis_of_a",
+        "strength": "high",
+        "evidence_quote": "Merit, praesupposeth a right, and that the thing deserved is due by promise."
+      },
+      {
+        "term_b": "Contract",
+        "relation_type": "argumentative_neighbor",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "He that performeth first in the case of a Contract, is said to MERIT that which he is to receive."
+      },
+      {
+        "term_b": "Desert",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "different from his merit, or desert."
+      },
+      {
+        "term_b": "Worthinesse",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "medium",
+        "evidence_quote": "can plead no right to have it before another; and therefore cannot be said to merit or deserve it [though worthy]."
+      },
+      {
+        "term_b": "Meritum Congrui",
+        "relation_type": "related",
+        "direction": "a_is_b",
+        "strength": "low",
+        "evidence_quote": "he that shall so walk, shall Merit Paradise Ex Congruo."
+      }
+    ]
+  },
+  {
+    "term": "Equality",
+    "edges": [
+      {
+        "term_b": "Nature",
+        "relation_type": "argumentative_neighbor",
+        "direction": "b_makes_a",
+        "strength": "high",
+        "evidence_quote": "Nature hath made men so equall, in the faculties of body, and mind."
+      },
+      {
+        "term_b": "Inequality",
+        "relation_type": "antonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "The inequallity that now is, has been introduced by the Lawes civill."
+      },
+      {
+        "term_b": "Diffidence",
+        "relation_type": "related",
+        "direction": "a_produces_b",
+        "strength": "high",
+        "evidence_quote": "From this equality of ability, ariseth equality of hope... And from this diffidence of one another."
+      },
+      {
+        "term_b": "Hope",
+        "relation_type": "related",
+        "direction": "a_produces_b",
+        "strength": "medium",
+        "evidence_quote": "From this equality of ability, ariseth equality of hope in the attaining of our Ends."
+      }
+    ]
+  },
+  {
+    "term": "Diffidence",
+    "edges": [
+      {
+        "term_b": "Despair",
+        "relation_type": "definitional",
+        "direction": "b_constant_is_a",
+        "strength": "high",
+        "evidence_quote": "Constant Despayre, DIFFIDENCE of our selves."
+      },
+      {
+        "term_b": "Confidence",
+        "relation_type": "antonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Constant Hope, CONFIDENCE... Constant Despayre, DIFFIDENCE."
+      },
+      {
+        "term_b": "Equality",
+        "relation_type": "argumentative_neighbor",
+        "direction": "b_causes_a",
+        "strength": "high",
+        "evidence_quote": "From this equality of ability... from this diffidence of one another."
+      },
+      {
+        "term_b": "War",
+        "relation_type": "related",
+        "direction": "a_leads_to_b",
+        "strength": "high",
+        "evidence_quote": "from this diffidence of one another, there is no way for any man to secure himselfe... [but War]."
+      },
+      {
+        "term_b": "Safety",
+        "relation_type": "argumentative_neighbor",
+        "direction": "a_aims_at_b",
+        "strength": "medium",
+        "evidence_quote": "the second [cause of quarrel, Diffidence], for Safety."
+      }
+    ]
+  },
+  {
+    "term": "War",
+    "edges": [
+      {
+        "term_b": "Time",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "WARRE, consisteth not in Battell onely... but in a tract of time, wherein the Will to contend by Battell is sufficiently known."
+      },
+      {
+        "term_b": "Peace",
+        "relation_type": "antonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "the known disposition thereto, during all the time there is no assurance to the contrary. All other time is PEACE."
+      },
+      {
+        "term_b": "Diffidence",
+        "relation_type": "argumentative_neighbor",
+        "direction": "b_causes_a",
+        "strength": "high",
+        "evidence_quote": "from this diffidence... Out Of Civil States, There Is Alwayes Warre."
+      },
+      {
+        "term_b": "Warre",
+        "relation_type": "related",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "orthographic_variant: during the time men live without a common Power... they are in that condition which is called Warre."
+      }
+    ]
+  },
+  {
+    "term": "Peace",
+    "edges": [
+      {
+        "term_b": "War",
+        "relation_type": "antonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "the known disposition thereto, during all the time there is no assurance to the contrary. All other time is PEACE."
+      },
+      {
+        "term_b": "Feare",
+        "relation_type": "argumentative_neighbor",
+        "direction": "b_of_death_inclines_to_a",
+        "strength": "high",
+        "evidence_quote": "The Passions that encline men to Peace, are Feare of Death."
+      },
+      {
+        "term_b": "Reason",
+        "relation_type": "argumentative_neighbor",
+        "direction": "b_suggests_a",
+        "strength": "high",
+        "evidence_quote": "Reason suggesteth convenient Articles of Peace, upon which men may be drawn to agreement."
+      },
+      {
+        "term_b": "Law of Nature",
+        "relation_type": "related",
+        "direction": "b_mandates_a",
+        "strength": "high",
+        "evidence_quote": "Fundamentall Law of Nature... is, To seek Peace, and follow it."
+      }
+    ]
+  },
+  {
+    "term": "Right of Nature",
+    "edges": [
+      {
+        "term_b": "Liberty",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "The RIGHT OF NATURE... is the Liberty each man hath, to use his own power, as he will himselfe"
+      },
+      {
+        "term_b": "Self-preservation",
+        "relation_type": "argumentative_neighbor",
+        "direction": "a_aims_at_b",
+        "strength": "high",
+        "evidence_quote": "for the preservation of his own Nature; that is to say, of his own Life"
+      },
+      {
+        "term_b": "Law of Nature",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "high",
+        "evidence_quote": "they ought to be distinguished; because RIGHT, consisteth in liberty to do, or to forbeare; Whereas LAW, determineth, and bindeth"
+      },
+      {
+        "term_b": "Jus Naturale",
+        "relation_type": "related",
+        "direction": "bidirectional",
+        "strength": "medium",
+        "evidence_quote": "orthographic_variant: The RIGHT OF NATURE, which Writers commonly call Jus Naturale"
+      }
+    ]
+  },
+  {
+    "term": "Liberty",
+    "edges": [
+      {
+        "term_b": "External Impediments",
+        "relation_type": "definitional",
+        "direction": "b_absence_defines_a",
+        "strength": "high",
+        "evidence_quote": "By LIBERTY, is understood... the absence of externall Impediments"
+      },
+      {
+        "term_b": "Obligation",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "high",
+        "evidence_quote": "Law, and Right, differ as much, as Obligation, and Liberty; which in one and the same matter are inconsistent"
+      },
+      {
+        "term_b": "Power",
+        "relation_type": "related",
+        "direction": "unidirectional",
+        "strength": "medium",
+        "evidence_quote": "take away part of a mans power to do what hee would; but cannot hinder him from using the power left him"
+      }
+    ]
+  },
+  {
+    "term": "Law of Nature",
+    "edges": [
+      {
+        "term_b": "Reason",
+        "relation_type": "definitional",
+        "direction": "b_finds_a",
+        "strength": "high",
+        "evidence_quote": "A LAW OF NATURE, (Lex Naturalis,) is a Precept, or generall Rule, found out by Reason"
+      },
+      {
+        "term_b": "Right of Nature",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "high",
+        "evidence_quote": "Law, and Right, differ as much, as Obligation, and Liberty"
+      },
+      {
+        "term_b": "Peace",
+        "relation_type": "argumentative_neighbor",
+        "direction": "a_dictates_b",
+        "strength": "high",
+        "evidence_quote": "These are the Lawes of Nature, dictating Peace, for a means of the conservation of men"
+      },
+      {
+        "term_b": "Moral Philosophy",
+        "relation_type": "related",
+        "direction": "a_is_subject_of_b",
+        "strength": "medium",
+        "evidence_quote": "the true Doctrine of the Lawes of Nature, is the true Morall Philosophie"
+      }
+    ]
+  },
+  {
+    "term": "Contract",
+    "edges": [
+      {
+        "term_b": "Right",
+        "relation_type": "definitional",
+        "direction": "b_transfer_is_a",
+        "strength": "high",
+        "evidence_quote": "The mutuall transferring of Right, is that which men call CONTRACT"
+      },
+      {
+        "term_b": "Covenant",
+        "relation_type": "related",
+        "direction": "b_is_type_of_a",
+        "strength": "high",
+        "evidence_quote": "the Contract on his part, is called PACT, or COVENANT"
+      },
+      {
+        "term_b": "Free-gift",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "high",
+        "evidence_quote": "When the transferring of Right, is not mutuall... This is not Contract, but GIFT, FREEGIFT, GRACE"
+      }
+    ]
+  },
+  {
+    "term": "Covenant",
+    "edges": [
+      {
+        "term_b": "Trust",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "he that is to performe in time to come, being trusted, his performance is called Keeping Of Promise, or Faith"
+      },
+      {
+        "term_b": "Justice",
+        "relation_type": "argumentative_neighbor",
+        "direction": "a_performance_is_b",
+        "strength": "high",
+        "evidence_quote": "the nature of Justice, consisteth in keeping of valid Covenants"
+      },
+      {
+        "term_b": "Injustice",
+        "relation_type": "antonym",
+        "direction": "b_is_breach_of_a",
+        "strength": "high",
+        "evidence_quote": "the definition of INJUSTICE, is no other than The Not Performance Of Covenant"
+      },
+      {
+        "term_b": "Pact",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "the Contract on his part, is called PACT, or COVENANT"
+      }
+    ]
+  },
+  {
+    "term": "Justice",
+    "edges": [
+      {
+        "term_b": "Covenant",
+        "relation_type": "definitional",
+        "direction": "b_performance_defines_a",
+        "strength": "high",
+        "evidence_quote": "That Men Performe Their Covenants Made: without which... we are still in the condition of Warre"
+      },
+      {
+        "term_b": "Injustice",
+        "relation_type": "antonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "whatsoever is not Unjust, is Just"
+      },
+      {
+        "term_b": "Propriety",
+        "relation_type": "argumentative_neighbor",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "where there is no Own, that is, no Propriety, there is no Injustice"
+      },
+      {
+        "term_b": "Reason",
+        "relation_type": "related",
+        "direction": "a_is_rule_of_b",
+        "strength": "medium",
+        "evidence_quote": "Justice therefore... is a Rule of Reason, by which we are forbidden to do any thing destructive to our life"
+      }
+    ]
+  },
+  {
+    "term": "Propriety",
+    "edges": [
+      {
+        "term_b": "Common-wealth",
+        "relation_type": "argumentative_neighbor",
+        "direction": "b_enables_a",
+        "strength": "high",
+        "evidence_quote": "where there is no coerceive Power erected, that is, where there is no Common-wealth, there is no Propriety"
+      },
+      {
+        "term_b": "Justice",
+        "relation_type": "related",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Justice And Propriety Begin With The Constitution of Common-wealth"
+      },
+      {
+        "term_b": "War",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "high",
+        "evidence_quote": "In Such A Warre... there be no Propriety, no Dominion, no Mine and Thine distinct"
+      }
+    ]
+  },
+  {
+    "term": "Equity",
+    "edges": [
+      {
+        "term_b": "Judge",
+        "relation_type": "definitional",
+        "direction": "b_dealing_equally_is_a",
+        "strength": "high",
+        "evidence_quote": "If a man be trusted to judge between man and man... that he deale Equally between them... is called EQUITY"
+      },
+      {
+        "term_b": "Distributive Justice",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "is called EQUITY, and (as I have sayd before) distributive justice"
+      },
+      {
+        "term_b": "Acception of Persons",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "high",
+        "evidence_quote": "violation [of Equity], Acception Of Persons, Prosopolepsia"
+      }
+    ]
+  },
+  {
+    "term": "Lot",
+    "edges": [
+      {
+        "term_b": "Indivisible things",
+        "relation_type": "argumentative_neighbor",
+        "direction": "a_distributes_b",
+        "strength": "high",
+        "evidence_quote": "things there be, that can neither be divided, nor enjoyed in common... determined by Lot"
+      },
+      {
+        "term_b": "Equity",
+        "relation_type": "related",
+        "direction": "b_prescribes_a",
+        "strength": "high",
+        "evidence_quote": "The Law of Nature, which prescribeth Equity, requireth... the First Possession, be determined by Lot"
+      },
+      {
+        "term_b": "Primogeniture",
+        "relation_type": "related",
+        "direction": "a_is_b",
+        "strength": "medium",
+        "evidence_quote": "Naturall [Lot], is either Primogeniture... or First Seisure"
+      }
+    ]
+  },
+  {
+    "term": "Primogeniture",
+    "edges": [
+      {
+        "term_b": "Natural Lot",
+        "relation_type": "definitional",
+        "direction": "a_is_b",
+        "strength": "high",
+        "evidence_quote": "Of Lots there be two sorts... Naturall, is either Primogeniture... or First Seisure"
+      },
+      {
+        "term_b": "First-Born",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "medium",
+        "evidence_quote": "ought to be adjudged to the First Possessor; and is some cases to the First-Borne"
+      }
+    ]
+  },
+  {
+    "term": "Person",
+    "edges": [
+      {
+        "term_b": "Actor",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "a Person, is the same that an Actor is, both on the Stage and in common Conversation"
+      },
+      {
+        "term_b": "Representer",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "translated to any Representer of speech and action"
+      },
+      {
+        "term_b": "Naturall Person",
+        "relation_type": "related",
+        "direction": "a_includes_b",
+        "strength": "high",
+        "evidence_quote": "When they are considered as his owne, then is he called a Naturall Person"
+      },
+      {
+        "term_b": "Artificiall Person",
+        "relation_type": "related",
+        "direction": "a_includes_b",
+        "strength": "high",
+        "evidence_quote": "representing the words and actions of an other, then is he a Feigned or Artificiall person"
+      },
+      {
+        "term_b": "Multitude",
+        "relation_type": "argumentative_neighbor",
+        "direction": "b_becomes_a",
+        "strength": "high",
+        "evidence_quote": "A Multitude of men, are made One Person, when they are by one man, or one Person, Represented"
+      },
+      {
+        "term_b": "Persona",
+        "relation_type": "related",
+        "direction": "bidirectional",
+        "strength": "medium",
+        "evidence_quote": "orthographic_variant: Persona in latine signifies the Disguise, or Outward Appearance"
+      }
+    ]
+  },
+  {
+    "term": "Actor",
+    "edges": [
+      {
+        "term_b": "Person",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "a Person, is the same that an Actor is"
+      },
+      {
+        "term_b": "Author",
+        "relation_type": "argumentative_neighbor",
+        "direction": "a_represents_b",
+        "strength": "high",
+        "evidence_quote": "the Person is the Actor; and he that owneth his words and actions, is the AUTHOR"
+      },
+      {
+        "term_b": "Authority",
+        "relation_type": "definitional",
+        "direction": "b_enables_a",
+        "strength": "high",
+        "evidence_quote": "In which case the Actor acteth by Authority"
+      },
+      {
+        "term_b": "Representative",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "medium",
+        "evidence_quote": "called in diverse occasions, diversly; as a Representer, or Representative"
+      }
+    ]
+  },
+  {
+    "term": "Author",
+    "edges": [
+      {
+        "term_b": "Owner",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "that which in speaking of goods and possessions, is called an Owner... speaking of Actions, is called Author"
+      },
+      {
+        "term_b": "Actor",
+        "relation_type": "argumentative_neighbor",
+        "direction": "b_acts_for_a",
+        "strength": "high",
+        "evidence_quote": "the Person is the Actor; and he that owneth his words and actions, is the AUTHOR"
+      },
+      {
+        "term_b": "Authority",
+        "relation_type": "definitional",
+        "direction": "a_right_is_b",
+        "strength": "high",
+        "evidence_quote": "the Right of doing any Action, is called AUTHORITY"
+      },
+      {
+        "term_b": "Dominus",
+        "relation_type": "related",
+        "direction": "bidirectional",
+        "strength": "medium",
+        "evidence_quote": "called an Owner, and in latine Dominus"
+      },
+      {
+        "term_b": "Surety",
+        "relation_type": "related",
+        "direction": "b_is_conditional_a",
+        "strength": "medium",
+        "evidence_quote": "these Authors conditionall, are generally called SURETYES"
+      }
+    ]
+  },
+  {
+    "term": "Authority",
+    "edges": [
+      {
+        "term_b": "Right",
+        "relation_type": "definitional",
+        "direction": "b_of_action_is_a",
+        "strength": "high",
+        "evidence_quote": "by Authority, is alwayes understood a Right of doing any act"
+      },
+      {
+        "term_b": "Commission",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "Done By Authority, done by Commission, or Licence"
+      },
+      {
+        "term_b": "Dominion",
+        "relation_type": "related",
+        "direction": "contrast",
+        "strength": "medium",
+        "evidence_quote": "As the Right of possession, is called Dominion; so the Right of doing any Action, is called AUTHORITY"
+      },
+      {
+        "term_b": "Author",
+        "relation_type": "argumentative_neighbor",
+        "direction": "b_gives_a",
+        "strength": "high",
+        "evidence_quote": "no man is obliged by a Covenant... beside the Authority he gave"
+      }
+    ]
+  },
+  {
+    "term": "Multitude",
+    "edges": [
+      {
+        "term_b": "One Person",
+        "relation_type": "argumentative_neighbor",
+        "direction": "a_becomes_b",
+        "strength": "high",
+        "evidence_quote": "A Multitude of men, are made One Person, when they are by one man, or one Person, Represented"
+      },
+      {
+        "term_b": "Unity",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "high",
+        "evidence_quote": "the Multitude naturally is not One, but Many"
+      },
+      {
+        "term_b": "Many Authors",
+        "relation_type": "definitional",
+        "direction": "a_is_b",
+        "strength": "high",
+        "evidence_quote": "they cannot be understood for one; but many Authors, of every thing their Representative saith"
+      },
+      {
+        "term_b": "Representer",
+        "relation_type": "argumentative_neighbor",
+        "direction": "b_unifies_a",
+        "strength": "high",
+        "evidence_quote": "it is the Unity of the Representer, not the Unity of the Represented, that maketh the Person One"
+      }
+    ]
+  },
+  {
+    "term": "Speech",
+    "edges": [
+      {
+        "term_b": "Names",
+        "relation_type": "definitional",
+        "direction": "b_composes_a",
+        "strength": "high",
+        "evidence_quote": "Speech, consisting of Names or Apellations, and their Connexion"
+      },
+      {
+        "term_b": "Mentall Discourse",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "high",
+        "evidence_quote": "succession of one Thought to another, which is called (to distinguish it from Discourse in words) Mentall Discourse"
+      },
+      {
+        "term_b": "Commonwealth",
+        "relation_type": "argumentative_neighbor",
+        "direction": "a_enables_b",
+        "strength": "high",
+        "evidence_quote": "without which, there had been amongst men, neither Common-wealth, nor Society"
+      },
+      {
+        "term_b": "Understanding",
+        "relation_type": "related",
+        "direction": "a_is_basis_of_b",
+        "strength": "medium",
+        "evidence_quote": "Understanding being nothing els, but conception caused by Speech"
+      }
+    ]
+  },
+  {
+    "term": "Names",
+    "edges": [
+      {
+        "term_b": "Markes",
+        "relation_type": "definitional",
+        "direction": "a_serves_as_b",
+        "strength": "high",
+        "evidence_quote": "the first use of names, is to serve for Markes, or Notes of remembrance"
+      },
+      {
+        "term_b": "Signes",
+        "relation_type": "related",
+        "direction": "unidirectional",
+        "strength": "high",
+        "evidence_quote": "when many use the same words... for this use they are called Signes"
+      },
+      {
+        "term_b": "Universall",
+        "relation_type": "related",
+        "direction": "a_is_b",
+        "strength": "medium",
+        "evidence_quote": "One Universall name is imposed on many things, for their similitude"
+      },
+      {
+        "term_b": "Appellations",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "reckoning of the consequences of things imagined in the mind, into a reckoning of the consequences of Appellations"
+      }
+    ]
+  },
+  {
+    "term": "Universall",
+    "edges": [
+      {
+        "term_b": "Individual",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "high",
+        "evidence_quote": "there being nothing in the world Universall but Names; for the things named, are every one of them Individual and Singular"
+      },
+      {
+        "term_b": "Singular",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "high",
+        "evidence_quote": "the things named, are every one of them Individual and Singular"
+      },
+      {
+        "term_b": "Names",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "One Universall name is imposed on many things, for their similitude in some quality"
+      }
+    ]
+  },
+  {
+    "term": "Definition",
+    "edges": [
+      {
+        "term_b": "Reason",
+        "relation_type": "argumentative_neighbor",
+        "direction": "a_is_start_of_b",
+        "strength": "high",
+        "evidence_quote": "Reason... is nothing but Reckoning... of the Consequences of generall names agreed upon... which settling of significations, they call Definitions"
+      },
+      {
+        "term_b": "Science",
+        "relation_type": "related",
+        "direction": "a_is_basis_of_b",
+        "strength": "high",
+        "evidence_quote": "in the right Definition of Names, lyes the first use of Speech; which is the Acquisition of Science"
+      },
+      {
+        "term_b": "Absurdity",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "medium",
+        "evidence_quote": "For there is not one of them that begins his ratiocination from the Definitions... which lead men into absurdities"
+      }
+    ]
+  },
+  {
+    "term": "Truth",
+    "edges": [
+      {
+        "term_b": "Falshood",
+        "relation_type": "antonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "True and False are attributes of Speech, not of things"
+      },
+      {
+        "term_b": "Names",
+        "relation_type": "definitional",
+        "direction": "b_ordering_defines_a",
+        "strength": "high",
+        "evidence_quote": "Truth consisteth in the right ordering of names in our affirmations"
+      },
+      {
+        "term_b": "Speech",
+        "relation_type": "argumentative_neighbor",
+        "direction": "b_enables_a",
+        "strength": "high",
+        "evidence_quote": "where Speech is not, there is neither Truth nor Falshood"
+      }
+    ]
+  },
+  {
+    "term": "Falshood",
+    "edges": [
+      {
+        "term_b": "Truth",
+        "relation_type": "antonym",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "For True and False are attributes of Speech, not of things"
+      },
+      {
+        "term_b": "Error",
+        "relation_type": "related",
+        "direction": "contrast",
+        "strength": "medium",
+        "evidence_quote": "Errour there may be... but in neither case can a man be charged with Untruth"
+      },
+      {
+        "term_b": "Falsehood",
+        "relation_type": "related",
+        "direction": "bidirectional",
+        "strength": "high",
+        "evidence_quote": "orthographic_variant: Truth consisteth in the right ordering of names... where Speech is not, there is neither Truth nor Falshood"
+      }
+    ]
+  },
+  {
+    "term": "Science",
+    "edges": [
+      {
+        "term_b": "Consequences",
+        "relation_type": "definitional",
+        "direction": "b_is_subject_of_a",
+        "strength": "high",
+        "evidence_quote": "Science is the knowledge of Consequences, and dependance of one fact upon another"
+      },
+      {
+        "term_b": "Fact",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "high",
+        "evidence_quote": "Sense and Memory are but knowledge of Fact... Science is the knowledge of Consequences"
+      },
+      {
+        "term_b": "Prudence",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "high",
+        "evidence_quote": "Reason is not as Sense, and Memory, borne with us; nor gotten by Experience onely; as Prudence is; but attayned by Industry... and that is it, men call SCIENCE"
+      },
+      {
+        "term_b": "Sapience",
+        "relation_type": "related",
+        "direction": "a_is_b",
+        "strength": "medium",
+        "evidence_quote": "As, much Experience, is Prudence; so, is much Science, Sapience"
+      }
+    ]
+  },
+  {
+    "term": "Reason",
+    "edges": [
+      {
+        "term_b": "Reckoning",
+        "relation_type": "definitional",
+        "direction": "b_defines_a",
+        "strength": "high",
+        "evidence_quote": "Reason... is nothing but Reckoning (that is, Adding and Substracting)"
+      },
+      {
+        "term_b": "Logos",
+        "relation_type": "synonym",
+        "direction": "bidirectional",
+        "strength": "medium",
+        "evidence_quote": "The Greeks have but one word Logos, for both Speech and Reason"
+      },
+      {
+        "term_b": "Syllogisme",
+        "relation_type": "related",
+        "direction": "b_is_act_of_a",
+        "strength": "high",
+        "evidence_quote": "the act of reasoning they called syllogisme"
+      },
+      {
+        "term_b": "Sense",
+        "relation_type": "antonym",
+        "direction": "contrast",
+        "strength": "high",
+        "evidence_quote": "Reason is not as Sense, and Memory, borne with us"
+      }
+    ]
+  },
+  {
+    "term": "Syllogisme",
+    "edges": [
+      {
+        "term_b": "Reasoning",
+        "relation_type": "definitional",
+        "direction": "a_is_act_of_b",
+        "strength": "high",
+        "evidence_quote": "the act of reasoning they called syllogisme; which signifieth summing up of the consequences"
+      },
+      {
+        "term_b": "Affirmation",
+        "relation_type": "related",
+        "direction": "b_composes_a",
+        "strength": "medium",
+        "evidence_quote": "adding together Two Names, to make an Affirmation; and Two Affirmations, to make a syllogisme"
+      },
+      {
+        "term_b": "Demonstration",
+        "relation_type": "related",
+        "direction": "a_composes_b",
+        "strength": "medium",
+        "evidence_quote": "Many syllogismes to make a Demonstration"
+      }
+    ]
+  },
+  {
+    "term": "Demonstration",
+    "edges": [
+      {
+        "term_b": "Syllogisme",
+        "relation_type": "definitional",
+        "direction": "b_composes_a",
+        "strength": "high",
+        "evidence_quote": "Many syllogismes to make a Demonstration"
+      },
+      {
+        "term_b": "Science",
+        "relation_type": "argumentative_neighbor",
+        "direction": "b_contains_a",
+        "strength": "high",
+        "evidence_quote": "Registers of Science, are such Books as contain the Demonstrations of Consequences"
+      },
+      {
+        "term_b": "Signifying",
+        "relation_type": "related",
+        "direction": "a_is_act_of_b",
+        "strength": "medium",
+        "evidence_quote": "Signifying, when we demonstrate, or approve our reckonings to other men"
+      }
+    ]
+  }
+]

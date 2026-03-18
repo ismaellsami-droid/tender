@@ -29,8 +29,13 @@ openai_ids/
 
 # Outputs / reports
 eval_runs/
+runs/
 analysis/report.html
 books/*/output/
+.cache/
+
+# Raw book files (PDFs, original TXTs — often large / copyright)
+books/*/raw/
 
 # Archives / scratch
 archive/

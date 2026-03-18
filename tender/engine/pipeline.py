@@ -1,11 +1,48 @@
 # tender/engine/pipeline.py
+import json
+import logging
+import os
 import re
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
 from tender.corpora.registry import default_corpus_id, get_corpus
 from tender.engine.trace import TraceCollector
-from tender.engine.engine import answer_with_citations, _ch_sec_from_filename
+from tender.engine.engine import answer_with_citations, get_engine, _ch_sec_from_filename
+
+logger = logging.getLogger(__name__)
+
+# Module-level cache: corpus_id -> anchor resources (lives for the process lifetime)
+_ANCHOR_RESOURCES_CACHE: Dict[str, Any] = {}
+
+_SPELL_CORRECTION_MODEL = "gpt-4o-mini"
+_SPELL_CORRECTION_PROMPT = (
+    "Correct only spelling mistakes in the following question. "
+    "Do not rephrase, add, or remove any words. "
+    "If there are no spelling mistakes, return the question unchanged. "
+    "Return only the corrected question, nothing else."
+)
+
+
+def _correct_spelling(question: str) -> str:
+    """Return spelling-corrected question. Falls back to original on any error."""
+    try:
+        from openai import OpenAI
+        client = OpenAI()
+        resp = client.chat.completions.create(
+            model=_SPELL_CORRECTION_MODEL,
+            messages=[
+                {"role": "system", "content": _SPELL_CORRECTION_PROMPT},
+                {"role": "user", "content": question},
+            ],
+            temperature=0,
+            max_tokens=256,
+        )
+        corrected = (resp.choices[0].message.content or "").strip()
+        return corrected if corrected else question
+    except Exception as exc:
+        logger.warning("Spell correction failed (%s) — using original question", exc)
+        return question
 
 REFUSAL_TEXT = "Je ne peux pas répondre à partir du corpus actuel."
 
@@ -304,6 +341,125 @@ def _format_final_from_quotes(
     return final, items, uniq_files
 
 
+
+def _get_anchor_resources(corpus_id: str, glossary_path: str, graph_path: str) -> Dict[str, Any]:
+    """Return cached anchor detection resources for a corpus."""
+    from openai import OpenAI
+    from tender.engine.anchor_detection import GlossaryLookup, OpenAIEmbeddingBackend
+
+    cached = _ANCHOR_RESOURCES_CACHE.get(corpus_id)
+    if cached is not None:
+        return cached
+
+    glossary_entries: List[Dict[str, Any]] = json.loads(Path(glossary_path).read_text(encoding="utf-8"))
+    graph_nodes: List[Dict[str, Any]] = json.loads(Path(graph_path).read_text(encoding="utf-8"))
+
+    glossary_by_term: Dict[str, Dict[str, Any]] = {}
+    for entry in glossary_entries:
+        term = entry.get("term")
+        if not isinstance(term, str) or not term.strip():
+            continue
+        glossary_by_term[term.strip().lower()] = entry
+
+    client = OpenAI()
+    embedding_backend = OpenAIEmbeddingBackend(client)
+    lookup = GlossaryLookup(
+        glossary_entries=glossary_entries,
+        graph_nodes=graph_nodes,
+        embedding_backend=embedding_backend,
+        glossary_by_term=glossary_by_term,
+    )
+
+    resources = {
+        "lookup": lookup,
+        "glossary_by_term": glossary_by_term,
+    }
+    _ANCHOR_RESOURCES_CACHE[corpus_id] = resources
+    return resources
+
+
+def _build_anchor_glossary_match_result(
+    question: str,
+    zone: str,
+    lookup: Any,
+    glossary_by_term: Dict[str, Dict[str, Any]],
+) -> Dict[str, Any]:
+    from tender.engine.scoring import extract_keywords
+
+    kw_result = extract_keywords(question)
+    keywords: List[str] = kw_result["kept"] if not kw_result["fallback"] else []
+    lookup_results = lookup.lookup_keywords(keywords)
+
+    keyword_results: List[Dict[str, Any]] = []
+    unmatched_keywords: List[str] = []
+    has_matches = False
+
+    for result in lookup_results:
+        related_terms: List[Dict[str, Any]] = []
+
+        if result.matched_step == "no_match" or result.canonical_term is None:
+            unmatched_keywords.append(result.keyword)
+        else:
+            has_matches = True
+            canonical = result.canonical_term
+            entry = glossary_by_term.get(canonical, {})
+
+            # Determine origin label for the anchor row
+            if result.matched_step == "satellite" and result.satellite_term:
+                origin = f"Close in Glossary (via {result.satellite_term})"
+            else:
+                origin = "Close in Glossary"
+
+            related_terms.append({
+                "term": canonical,
+                "sim": result.best_score,
+                "origin": origin,
+                "link_type": None,
+                "from_term": None,
+                "is_glossary": True,
+                "importance": entry.get("importance"),
+                "frequency": entry.get("frequency"),
+                "strength": None,
+                "matched_step": result.matched_step,
+                "satellite_term": result.satellite_term,
+            })
+
+            # Graph neighbors (steps 1 & 2 only; step 3 has no neighbors)
+            for neighbor in result.graph_neighbors:
+                t = neighbor["term"]
+                link_type = neighbor["link_type"]
+                neighbor_entry = glossary_by_term.get(t, {})
+                related_terms.append({
+                    "term": t,
+                    "sim": None,
+                    "origin": f"{link_type} of {canonical}",
+                    "link_type": link_type,
+                    "from_term": canonical,
+                    "is_glossary": neighbor["is_glossary"],
+                    "importance": neighbor_entry.get("importance") if neighbor_entry else neighbor.get("importance"),
+                    "frequency": neighbor_entry.get("frequency") if neighbor_entry else neighbor.get("frequency"),
+                    "strength": neighbor.get("strength"),
+                })
+
+        keyword_results.append({
+            "keyword": result.keyword,
+            "matched_step": result.matched_step,
+            "anchor": result.canonical_term,
+            "best_score": result.best_score,
+            "satellite_term": result.satellite_term,
+            "related_terms": related_terms,
+            "has_matches": len(related_terms) > 0,
+        })
+
+    raw_result = {
+        "keywords": keywords,
+        "keyword_results": keyword_results,
+        "unmatched_keywords": unmatched_keywords,
+        "has_matches": has_matches,
+    }
+    return _build_glossary_match_result(raw_result, zone)
+
+
 def run_pipeline(
     question: str,
     *,
@@ -385,3 +541,260 @@ def run_pipeline(
     enrich_trace_with_retrieval_alignment(trace_dict)
     selection = build_selection_view(trace_dict, final_quotes=items, data_dir=effective_data_dir)
     return {"final_answer": final_text, "trace": trace_dict, "selection": selection}
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Pipeline with BookScore + anchor detection + graph expansion
+# ─────────────────────────────────────────────────────────────────────────────
+
+_BOOKSCORE_LABEL: Dict[str, str] = {
+    "high": "Le match est satisfaisant.",
+    "med":  "Le match est moyen.",
+    "low":  "Aucun match n'a été trouvé.",
+}
+
+_HINT_TYPE: Dict[str, str] = {
+    "high": "exploration",
+    "med":  "reformulation",
+    "low":  "reformulation",
+}
+
+_HINT_MESSAGE: Dict[str, str] = {
+    "high": "Des options d'exploration sont disponibles à partir de la question.",
+    "med":  "Des options de reformulation sont disponibles pour trouver la réponse dans le livre.",
+    "low":  "Des options de reformulation sont disponibles pour trouver la réponse dans le livre.",
+}
+
+
+def _build_glossary_match_result(
+    match_result: Dict[str, Any],
+    zone: str,
+) -> Dict[str, Any]:
+    """Add hint block to the raw glossary match result based on bookscore zone."""
+    hint: Optional[Dict[str, Any]] = None
+    if match_result["has_matches"]:
+        seen: set = set()
+        options: List[str] = []
+        for kr in match_result.get("keyword_results", []):
+            for item in kr.get("related_terms", []):
+                if item.get("is_glossary") and item["term"] not in seen:
+                    seen.add(item["term"])
+                    options.append(item["term"])
+        hint = {
+            "type": _HINT_TYPE[zone],
+            "message": _HINT_MESSAGE[zone],
+            "options": options,
+        }
+
+    return {**match_result, "hint": hint}
+
+
+def run_pipeline_with_policy(
+    question: str,
+    *,
+    corpus_id: str = default_corpus_id(),
+    data_dir: Optional[str] = None,
+    bookscore_score_low: float = 0.20,
+    bookscore_score_high: float = 0.80,
+) -> Dict[str, Any]:
+    """Pipeline with BookScore gate + anchor detection hints.
+
+    Stages:
+      1. Retrieve passages  → pool  (vector store, always runs)
+      2. Select passages    → working set
+      3. BookScore          → zone (high / med / low)
+      4. Anchor detection   → per-keyword glossary anchors
+      5. Graph expansion    → one-hop related glossary terms
+      6. high / med → call LLM to extract quotes + format answer
+         low        → skip LLM extraction, return empty answer
+      7. Build trace + selection view
+
+    Returns:
+        {
+            "final_answer": str,
+            "trace": {...},
+            "selection": {...},
+            "bookscore": {
+                "value": float, "zone": str, "label": str,
+                "B1": float, ...
+            },
+            "glossary_match": {
+                "keywords": [...],
+                "matches": [...],
+                "has_matches": bool,
+                "hint": None | {"type": str, "message": str, "options": [...]}
+            }
+        }
+    """
+    from tender.engine.scoring import compute_bookscore
+
+    corpus = get_corpus(corpus_id)
+    effective_data_dir = data_dir or corpus.data_dir
+    retrieval_k = getattr(corpus, "retrieval_k", 20)
+    selection_k = getattr(corpus, "selection_k", 8)
+    glossary_path = getattr(corpus, "glossary_path", None)
+    graph_path = getattr(corpus, "graph_path", None)
+
+    tr = TraceCollector()
+    tr.set_meta(
+        question=question,
+        corpus_id=corpus_id,
+        data_dir=effective_data_dir,
+        pipeline_mode="bookscore_v2",
+    )
+    tr.stamp("pipeline_start")
+
+    # ── 0. Spell correction ───────────────────────────────────────────────────
+    corrected_question = _correct_spelling(question)
+    spelling_corrected = corrected_question != question
+    tr.stamp("spell_correction", original=question, corrected=corrected_question, changed=spelling_corrected)
+    effective_question = corrected_question
+
+    # ── 1. Retrieve ──────────────────────────────────────────────────────────
+    engine = get_engine(corpus_id)
+    pool = engine.retrieve_passages(effective_question, retrieval_k=retrieval_k)
+    tr.stamp("retrieval_pool", source="vector_store.search", count=len(pool), pool=pool)
+
+    # ── 2. Select ────────────────────────────────────────────────────────────
+    selected, enriched_pool = engine.select_passages(pool, selection_k=selection_k)
+    tr.stamp(
+        "retrieval_selection",
+        strategy="top_k",
+        selected_count=len(selected),
+        selection_k=selection_k,
+    )
+
+    selected_sources_meta = [
+        {
+            "file_id": it.get("file_id"),
+            "filename": it.get("filename"),
+            "chapter": it.get("chapter"),
+            "section": it.get("section"),
+            "retrieval_rank": it.get("rank"),
+            "retrieval_score": it.get("score"),
+        }
+        for it in enriched_pool
+        if str(it.get("selected", "")).upper() == "Y"
+    ]
+    tr.stamp(
+        "assistant_message_extracted",
+        message_id=None, text_blocks_count=1, text_total_len=0,
+        grounded_citation_count=0,
+        sources_count=len(selected_sources_meta),
+        sources=selected_sources_meta,
+    )
+
+    # ── 3. BookScore ─────────────────────────────────────────────────────────
+    bs_result = compute_bookscore(
+        selected,
+        score_low=bookscore_score_low,
+        score_high=bookscore_score_high,
+    )
+    zone = bs_result["zone"]
+    tr.stamp(
+        "bookscore_computed",
+        bookscore=bs_result["bookscore"],
+        zone=zone,
+        B1=bs_result["B1"],
+    )
+
+    bookscore_out: Dict[str, Any] = {
+        **bs_result,
+        "label": _BOOKSCORE_LABEL[zone],
+    }
+
+    # ── 4. Anchor detection + graph expansion ────────────────────────────────
+    if glossary_path and graph_path and Path(glossary_path).exists() and Path(graph_path).exists():
+        resources = _get_anchor_resources(corpus_id, glossary_path, graph_path)
+        glossary_match = _build_anchor_glossary_match_result(
+            effective_question,
+            zone,
+            resources["lookup"],
+            resources["glossary_by_term"],
+        )
+    else:
+        glossary_match = _build_glossary_match_result(
+            {"keywords": [], "keyword_results": [], "unmatched_keywords": [], "has_matches": False},
+            zone,
+        )
+    tr.stamp(
+        "glossary_match_computed",
+        has_matches=glossary_match["has_matches"],
+        n_keywords=len(glossary_match["keywords"]),
+        n_keyword_results=len(glossary_match.get("keyword_results", [])),
+        unmatched_keywords=glossary_match.get("unmatched_keywords", []),
+    )
+
+    # ── 5a. LOW bookscore: no retrieval ──────────────────────────────────────
+    if zone == "low":
+        tr.set_meta(audit_passed=False, audit_reason="bookscore_low")
+        tr.stamp("audit_refused", reason="bookscore_low")
+        tr.stamp("quotes_selected", count=0, quotes=[])
+        tr.stamp("format_end", final_len=0)
+        tr.stamp("sources_selected", count=0, filenames=[])
+
+        trace_dict = tr.to_dict()
+        enrich_trace_with_retrieval_alignment(trace_dict)
+        selection = build_selection_view(trace_dict, final_quotes=[], data_dir=effective_data_dir)
+        out = {
+            "final_answer": REFUSAL_TEXT,
+            "trace": trace_dict,
+            "selection": selection,
+            "bookscore": bookscore_out,
+            "glossary_match": glossary_match,
+        }
+        if spelling_corrected:
+            out["corrected_question"] = corrected_question
+        return out
+
+    # ── 5b. HIGH / MED: extract quotes ───────────────────────────────────────
+    extraction = engine.extract_quotes(effective_question, selected)
+    quoted = extraction.get("quotes", []) or []
+    refused = bool(extraction.get("refused", False))
+
+    grounded_count = len(quoted) if not refused else 0
+    tr.stamp(
+        "answer_generated",
+        grounded_citations=grounded_count,
+        cited_files_count=len({q.get("filename") for q in quoted if q.get("filename")}),
+        refused=refused,
+    )
+
+    final_text, items, files = _format_final_from_quotes(
+        quoted, reference_label=corpus.reference_label
+    )
+    tr.stamp("format_end", final_len=len(final_text))
+    tr.stamp("sources_selected", count=len(files), filenames=files)
+    tr.stamp("quotes_selected", count=len(items), quotes=items)
+
+    if refused or not items:
+        tr.set_meta(audit_passed=False, audit_reason="No verified quote extracted from fixed context")
+        tr.stamp("audit_refused")
+        trace_dict = tr.to_dict()
+        enrich_trace_with_retrieval_alignment(trace_dict)
+        selection = build_selection_view(trace_dict, final_quotes=[], data_dir=effective_data_dir)
+        out = {
+            "final_answer": REFUSAL_TEXT,
+            "trace": trace_dict,
+            "selection": selection,
+            "bookscore": bookscore_out,
+            "glossary_match": glossary_match,
+        }
+        if spelling_corrected:
+            out["corrected_question"] = corrected_question
+        return out
+
+    tr.set_meta(audit_passed=True)
+    trace_dict = tr.to_dict()
+    enrich_trace_with_retrieval_alignment(trace_dict)
+    selection = build_selection_view(trace_dict, final_quotes=items, data_dir=effective_data_dir)
+    out = {
+        "final_answer": final_text,
+        "trace": trace_dict,
+        "selection": selection,
+        "bookscore": bookscore_out,
+        "glossary_match": glossary_match,
+    }
+    if spelling_corrected:
+        out["corrected_question"] = corrected_question
+    return out

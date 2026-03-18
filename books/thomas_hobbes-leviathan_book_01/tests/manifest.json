@@ -1,0 +1,5 @@
+{
+  "book_id": "thomas_hobbes-leviathan_book_01",
+  "default_suite": "work",
+  "available_suites": ["smoke", "work", "spelling", "blind"]
+}
