@@ -1,0 +1,33 @@
+{
+  "suite_id": "anchor_focus",
+  "book_id": "thomas_hobbes-leviathan_book_01",
+  "tests": [
+    {
+      "id": "A_Q01_state_of_nature",
+      "question": "What does Hobbes mean by State of Nature?",
+      "category": "FACTUAL",
+      "must_refuse": false,
+      "expected": [{"ch": 13, "sec": 5}]
+    },
+    {
+      "id": "A_Q02_science",
+      "question": "What does Hobbes mean by Science?",
+      "category": "FACTUAL",
+      "must_refuse": false,
+      "expected": [{"ch": 5, "sec": 7}]
+    },
+    {
+      "id": "A_Q08_animals_wisdom",
+      "question": "Are animals capable of wisdom?",
+      "category": "PARAPHRASE_MODERN",
+      "must_refuse": false,
+      "expected": [{"ch": 3, "sec": 6}]
+    },
+    {
+      "id": "A_Q09_fair",
+      "question": "How do we know what is fair according to Hobbes?",
+      "category": "PARAPHRASE_MODERN",
+      "must_refuse": false
+    }
+  ]
+}

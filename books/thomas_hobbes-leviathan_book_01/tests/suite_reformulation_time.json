@@ -1,0 +1,14 @@
+{
+  "suite_id": "reformulation_time",
+  "book_id": "thomas_hobbes-leviathan_book_01",
+  "mode": "short",
+  "tests": [
+    {
+      "id": "A_Q07_time",
+      "question": "What does Hobbes think about sense of time?",
+      "category": "PARAPHRASE_MODERN",
+      "must_refuse": false,
+      "expected": [{"ch": 3, "sec": 5}]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "suite_id": "work_first2",
+  "book_id": "thomas_hobbes-leviathan_book_01",
+  "mode": "short",
+  "tests": [
+    {
+      "id": "A_Q01_state_of_nature",
+      "question": "What does Hobbes mean by State of Nature?",
+      "category": "FACTUAL",
+      "must_refuse": false,
+      "expected": [
+        {
+          "ch": 13,
+          "sec": 5
+        }
+      ]
+    },
+    {
+      "id": "A_Q02_science",
+      "question": "What does Hobbes mean by Science?",
+      "category": "FACTUAL",
+      "must_refuse": false,
+      "expected": [
+        {
+          "ch": 5,
+          "sec": 7
+        }
+      ]
+    }
+  ]
+}

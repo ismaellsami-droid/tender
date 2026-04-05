@@ -345,7 +345,7 @@ def _format_final_from_quotes(
 def _get_anchor_resources(corpus_id: str, glossary_path: str, graph_path: str) -> Dict[str, Any]:
     """Return cached anchor detection resources for a corpus."""
     from openai import OpenAI
-    from tender.engine.anchor_detection import GlossaryLookup, OpenAIEmbeddingBackend
+    from tender.engine.anchor_detection import GlossaryLookup, OpenAIEmbeddingBackend, OpenAIExplorationAdvisor
 
     cached = _ANCHOR_RESOURCES_CACHE.get(corpus_id)
     if cached is not None:
@@ -363,11 +363,13 @@ def _get_anchor_resources(corpus_id: str, glossary_path: str, graph_path: str) -
 
     client = OpenAI()
     embedding_backend = OpenAIEmbeddingBackend(client)
+    exploration_advisor = OpenAIExplorationAdvisor(client)
     lookup = GlossaryLookup(
         glossary_entries=glossary_entries,
         graph_nodes=graph_nodes,
         embedding_backend=embedding_backend,
         glossary_by_term=glossary_by_term,
+        exploration_advisor=exploration_advisor,
     )
 
     resources = {
@@ -388,74 +390,42 @@ def _build_anchor_glossary_match_result(
 
     kw_result = extract_keywords(question)
     keywords: List[str] = kw_result["kept"] if not kw_result["fallback"] else []
-    lookup_results = lookup.lookup_keywords(keywords)
+    reformulation = lookup.suggest_question_reformulation(question, keywords)
 
-    keyword_results: List[Dict[str, Any]] = []
-    unmatched_keywords: List[str] = []
-    has_matches = False
-
-    for result in lookup_results:
-        related_terms: List[Dict[str, Any]] = []
-
-        if result.matched_step == "no_match" or result.canonical_term is None:
-            unmatched_keywords.append(result.keyword)
-        else:
-            has_matches = True
-            canonical = result.canonical_term
-            entry = glossary_by_term.get(canonical, {})
-
-            # Determine origin label for the anchor row
-            if result.matched_step == "satellite" and result.satellite_term:
-                origin = f"Close in Glossary (via {result.satellite_term})"
-            else:
-                origin = "Close in Glossary"
-
-            related_terms.append({
-                "term": canonical,
-                "sim": result.best_score,
-                "origin": origin,
-                "link_type": None,
-                "from_term": None,
-                "is_glossary": True,
-                "importance": entry.get("importance"),
-                "frequency": entry.get("frequency"),
-                "strength": None,
-                "matched_step": result.matched_step,
-                "satellite_term": result.satellite_term,
-            })
-
-            # Graph neighbors (steps 1 & 2 only; step 3 has no neighbors)
-            for neighbor in result.graph_neighbors:
-                t = neighbor["term"]
-                link_type = neighbor["link_type"]
-                neighbor_entry = glossary_by_term.get(t, {})
-                related_terms.append({
-                    "term": t,
-                    "sim": None,
-                    "origin": f"{link_type} of {canonical}",
-                    "link_type": link_type,
-                    "from_term": canonical,
-                    "is_glossary": neighbor["is_glossary"],
-                    "importance": neighbor_entry.get("importance") if neighbor_entry else neighbor.get("importance"),
-                    "frequency": neighbor_entry.get("frequency") if neighbor_entry else neighbor.get("frequency"),
-                    "strength": neighbor.get("strength"),
-                })
-
-        keyword_results.append({
-            "keyword": result.keyword,
-            "matched_step": result.matched_step,
-            "anchor": result.canonical_term,
-            "best_score": result.best_score,
-            "satellite_term": result.satellite_term,
-            "related_terms": related_terms,
-            "has_matches": len(related_terms) > 0,
+    related_terms: List[Dict[str, Any]] = []
+    for item in reformulation.candidates:
+        term = item.get("term")
+        if not term:
+            continue
+        related_terms.append({
+            "term": term,
+            "sim": item.get("final_score", item.get("score")),
+            "origin": ", ".join(item.get("candidate_sources", [])) or "question_reformulation",
+            "link_type": item.get("link_type"),
+            "from_term": item.get("source_anchor") or item.get("source_satellite"),
+            "is_glossary": item.get("is_glossary", term in glossary_by_term),
+            "importance": item.get("importance"),
+            "frequency": glossary_by_term.get(term, {}).get("frequency"),
+            "strength": item.get("strength"),
+            "matched_step": "question_reformulation",
+            "satellite_term": item.get("source_satellite"),
         })
+
+    keyword_results: List[Dict[str, Any]] = [{
+        "keyword": question,
+        "matched_step": "question_reformulation" if related_terms else "no_match",
+        "anchor": None,
+        "best_score": None,
+        "satellite_term": None,
+        "related_terms": related_terms,
+        "has_matches": len(related_terms) > 0,
+    }]
 
     raw_result = {
         "keywords": keywords,
         "keyword_results": keyword_results,
-        "unmatched_keywords": unmatched_keywords,
-        "has_matches": has_matches,
+        "unmatched_keywords": [] if related_terms else keywords,
+        "has_matches": len(related_terms) > 0,
     }
     return _build_glossary_match_result(raw_result, zone)
 

@@ -1,0 +1,52 @@
+{
+  "suite_id": "work_reformulated_clicks",
+  "book_id": "thomas_hobbes-leviathan_book_01",
+  "mode": "short",
+  "tests": [
+    {
+      "id": "A_Q06_animals_language_reformulated",
+      "question": "Are animals capable of speech?",
+      "category": "DISTINCTION",
+      "must_refuse": false,
+      "expected": [{"ch": 6, "sec": 1}],
+      "original_question": "Are animals capable of language?"
+    },
+    {
+      "id": "A_Q08_animals_foresight_reformulated",
+      "question": "Are animals capable of thought?",
+      "category": "PARAPHRASE_MODERN",
+      "must_refuse": false,
+      "expected": [{"ch": 3, "sec": 6}],
+      "original_question": "Are animals capable of foresight?"
+    },
+    {
+      "id": "A_Q09_fair_reformulated",
+      "question": "How do we know what is justice according to Hobbes?",
+      "category": "PARAPHRASE_MODERN",
+      "must_refuse": false,
+      "original_question": "How do we know what is fair according to Hobbes?"
+    },
+    {
+      "id": "A_Q10_logic_reformulated",
+      "question": "What does Hobbes mean by reason?",
+      "category": "PARAPHRASE_MODERN",
+      "must_refuse": false,
+      "original_question": "What does Hobbes mean by logic?"
+    },
+    {
+      "id": "A_Q13_meditation_reformulated",
+      "question": "What does Hobbes think about meditation or trouble of mind?",
+      "category": "OUT_OF_SCOPE",
+      "must_refuse": true,
+      "original_question": "What does Hobbes think about meditation or inner peace?"
+    },
+    {
+      "id": "A_Q14_life_without_government_reformulated",
+      "question": "According to Hobbes, what characterizes human life without authority?",
+      "category": "BORDERLINE",
+      "must_refuse": false,
+      "expected": [{"ch": 13, "sec": 4}],
+      "original_question": "According to Hobbes, what characterizes human life without government?"
+    }
+  ]
+}

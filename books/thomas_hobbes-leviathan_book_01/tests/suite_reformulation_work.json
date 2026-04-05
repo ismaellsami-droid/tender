@@ -1,43 +1,8 @@
 {
-  "suite_id": "work",
+  "suite_id": "reformulation_work",
   "book_id": "thomas_hobbes-leviathan_book_01",
   "mode": "short",
   "tests": [
-    {
-      "id": "A_Q01_state_of_nature",
-      "question": "What does Hobbes mean by State of Nature?",
-      "category": "FACTUAL",
-      "must_refuse": false,
-      "expected": [{"ch": 13, "sec": 5}]
-    },
-    {
-      "id": "A_Q02_science",
-      "question": "What does Hobbes mean by Science?",
-      "category": "FACTUAL",
-      "must_refuse": false,
-      "expected": [{"ch": 5, "sec": 7}]
-    },
-    {
-      "id": "A_Q03_science_vs_fact",
-      "question": "What is the difference between Science and Knowledge of Fact?",
-      "category": "DISTINCTION",
-      "must_refuse": false,
-      "expected": [{"ch": 5, "sec": 7}]
-    },
-    {
-      "id": "A_Q04_appetite_vs_aversion",
-      "question": "What is the difference between Appetite and Aversion?",
-      "category": "DISTINCTION",
-      "must_refuse": false,
-      "expected": [{"ch": 6, "sec": 2}]
-    },
-    {
-      "id": "A_Q05_animals_prudence",
-      "question": "Are animals capable of Prudence?",
-      "category": "DISTINCTION",
-      "must_refuse": false,
-      "expected": [{"ch": 3, "sec": 6}]
-    },
     {
       "id": "A_Q06_animals_language",
       "question": "Are animals capable of language?",
